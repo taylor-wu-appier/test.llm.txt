@@ -1,0 +1,8223 @@
+<SYSTEM>This is the full developer documentation for the Aiqua Design System.</SYSTEM>
+
+# AddFilter
+
+The AddFilter component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {
+  render: Template,
+  args: {
+    label: 'Add Filter',
+    children: [<MenuItem value="status" key="status">
+        Status
+      </MenuItem>, <MenuItem value="date" key="date">
+        Date
+      </MenuItem>, <MenuItem value="category" key="category">
+        Category
+      </MenuItem>, <MenuItem value="priority" key="priority">
+        Priority
+      </MenuItem>, <MenuDivider key="divider" />, <MenuItem key="advanced" submenu={{
+      items: [<MenuItem value="severity" key="severity">
+              Severity
+            </MenuItem>, <MenuItem value="type" key="type">
+              Type
+            </MenuItem>, <MenuItem value="component" key="component">
+              Component
+            </MenuItem>]
+    }}>
+        Advanced Filters
+      </MenuItem>, <MenuDivider key="divider2" />, <MenuIconItem value="custom" key="custom" icon={<DSIcon is="settingsSolid20" />}>
+        Custom Filter
+      </MenuIconItem>]
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { AddFilter } from "@appier/aiqua-design-system/AddFilter";
+
+<AddFilter />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `onChange` | `(selectedFilters: string[]) => void` |
+| `children` | `ReactNode` |
+| `label` | `string` |
+| `value` | `string[]` |
+| `menuProps` | `Partial<Omit<MenuProps, 'open' \| 'anchorEl' \| 'onClose'>>` |
+| `disabled` | `boolean` |
+
+## Examples
+
+### With No Options
+
+```tsx
+export const WithNoOptions = {
+  render: Template,
+  args: {
+    label: 'Add Filter',
+    children: []
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'When there are no filter options available, the AddFilter component is disabled.'
+      }
+    }
+  }
+};
+```
+
+### With Preselected Filters
+
+```tsx
+export const WithPreselectedFilters = {
+  render: PreselectedTemplate,
+  args: {
+    label: 'Add Filter',
+    children: [<MenuItem value="status" key="status">
+        Status
+      </MenuItem>, <MenuItem value="date" key="date">
+        Date
+      </MenuItem>, <MenuItem value="category" key="category">
+        Category
+      </MenuItem>, <MenuItem value="priority" key="priority">
+        Priority
+      </MenuItem>, <MenuItem key="project-filters" submenu={{
+      items: [<MenuItem value="milestone" key="milestone">
+              Milestone
+            </MenuItem>, <MenuItem key="team-filters" submenu={{
+        items: [<MenuItem value="sprint" key="sprint">
+                    Sprint
+                  </MenuItem>]
+      }}>
+              Team Filters
+            </MenuItem>]
+    }}>
+        Project Filters
+      </MenuItem>]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This example demonstrates the AddFilter component with preselected filters (Status and Category). The preselected filters are displayed as filter components, and users can still add additional filters from the dropdown menu.'
+      }
+    }
+  }
+};
+```
+
+### With Many Filters
+
+```tsx
+export const WithManyFilters = {
+  render: ManyFiltersTemplate,
+  args: {
+    label: 'Add Filter',
+    children: [<MenuItem value="status" key="status">
+        Status
+      </MenuItem>, <MenuItem value="date" key="date">
+        Date
+      </MenuItem>, <MenuItem value="category" key="category">
+        Category
+      </MenuItem>, <MenuItem value="priority" key="priority">
+        Priority
+      </MenuItem>, <MenuItem key="project-group" submenu={{
+      items: [<MenuItem value="milestone" key="milestone">
+              Milestone
+            </MenuItem>, <MenuItem value="version" key="version">
+              Version
+            </MenuItem>]
+    }}>
+        Project Group
+      </MenuItem>, <MenuItem key="team-group" submenu={{
+      items: [<MenuItem value="sprint" key="sprint">
+              Sprint
+            </MenuItem>]
+    }}>
+        Team Group
+      </MenuItem>, <MenuItem key="technical-group" submenu={{
+      items: [<MenuItem value="component" key="component">
+              Component
+            </MenuItem>, <MenuItem value="platform" key="platform">
+              Platform
+            </MenuItem>, <MenuItem value="severity" key="severity">
+              Severity
+            </MenuItem>, <MenuItem value="type" key="type">
+              Type
+            </MenuItem>]
+    }}>
+        Technical Group
+      </MenuItem>]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This example demonstrates how the AddFilter component handles many selected filters. It shows proper wrapping behavior when multiple filters are applied, ensuring the interface remains usable even with a large number of active filters. The filters are organized into logical groups using submenus for better organization.'
+      }
+    }
+  }
+};
+```
+
+### With Nested Submenus
+
+```tsx
+export const WithNestedSubmenus = {
+  render: Template,
+  args: {
+    label: 'Add Filter',
+    children: [<MenuItem value="status" key="status">
+        Status
+      </MenuItem>, <MenuItem key="categories" submenu={{
+      items: [<MenuItem value="category" key="category">
+              Category
+            </MenuItem>, <MenuItem key="subcategories" submenu={{
+        items: [<MenuItem value="subcategory1" key="subcategory1">
+                    Subcategory 1
+                  </MenuItem>, <MenuItem value="subcategory2" key="subcategory2">
+                    Subcategory 2
+                  </MenuItem>, <MenuItem key="deepnested" submenu={{
+          items: [<MenuItem value="deepnested1" key="deepnested1">
+                          Deep Nested 1
+                        </MenuItem>, <MenuItem value="deepnested2" key="deepnested2">
+                          Deep Nested 2
+                        </MenuItem>]
+        }}>
+                    Deep Nested
+                  </MenuItem>]
+      }}>
+              Subcategories
+            </MenuItem>]
+    }}>
+        Categories
+      </MenuItem>, <MenuItem key="organization" submenu={{
+      items: [<MenuItem key="departments" submenu={{
+        items: [<MenuItem value="engineering" key="engineering">
+                    Engineering
+                  </MenuItem>, <MenuItem value="design" key="design">
+                    Design
+                  </MenuItem>, <MenuItem value="product" key="product">
+                    Product
+                  </MenuItem>]
+      }}>
+              Departments
+            </MenuItem>]
+    }}>
+        Organization
+      </MenuItem>]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This example demonstrates the AddFilter component with deeply nested submenu structure. It showcases how multiple levels of nesting can be used to organize filters into hierarchical categories, making it easier for users to find specific filters in complex filtering systems.'
+      }
+    }
+  }
+};
+```
+
+### With Mixed Filter Types
+
+```tsx
+export const WithMixedFilterTypes = {
+  render: MixedFiltersTemplate,
+  args: {
+    label: 'Add Filter',
+    children: [<MenuItem value="category" key="category">
+        Category
+      </MenuItem>, <MenuItem value="date" key="date">
+        Date
+      </MenuItem>, <MenuItem key="advanced" submenu={{
+      items: [<MenuItem value="component" key="component">
+              Component
+            </MenuItem>, <MenuItem value="version" key="version">
+              Version
+            </MenuItem>]
+    }}>
+        Advanced
+      </MenuItem>]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This example demonstrates using AddFilter alongside other filter types in a complete filter bar. It shows how SingleSelectFilter, MultiSelectFilter, and AddFilter components can be used together to create a comprehensive filtering interface. The example includes a display of the selected values to demonstrate how different filter types can coexist and complement each other in a real application scenario.'
+      }
+    }
+  }
+};
+```
+
+
+# AffixInput
+
+The AffixInput component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { AffixInput } from "@appier/aiqua-design-system/AffixInput";
+
+<AffixInput />
+```
+
+## Examples
+
+### Value
+
+```tsx
+export const Value = () => {
+  const [inputValue, setInputValue] = React.useState('appier');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <AffixInput label="URL (Uncontrolled)" defaultValue="appier" prefix="https://" suffix=".com" width={300} />
+      <AffixInput label="URL (Controlled)" value={inputValue} onChange={setInputValue} prefix="https://" suffix=".com" width={300} />
+    </div>;
+};
+```
+
+### Prefix And Suffix
+
+```tsx
+export const PrefixAndSuffix = {
+  render: () => {
+    return <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '8px'
+    }}>
+        <AffixInput prefix="$" defaultValue="123456" />
+        <AffixInput suffix="kg" defaultValue="60" />
+        <AffixInput prefix="https://" suffix=".com" defaultValue="appier" />
+      </div>;
+  }
+};
+```
+
+### Label And Hint
+
+```tsx
+export const LabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+
+# Avatar
+
+The Avatar component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Avatar } from "@appier/aiqua-design-system/Avatar";
+
+<Avatar />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `size` | `(typeof SIZES)[keyof typeof SIZES]` |
+| `shape` | `(typeof SHAPES)[keyof typeof SHAPES]` |
+| `color` | `(typeof COLORS)[keyof typeof COLORS]` |
+| `name` | `string` |
+| `abbr` | `string` |
+| `src` | `string` |
+
+## Examples
+
+### Size
+
+```tsx
+export const Size = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Avatar size="small" />
+      <Avatar size="medium" />
+      <Avatar size="large" />
+    </div>;
+};
+```
+
+### Name And Abbr
+
+```tsx
+export const NameAndAbbr = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Avatar abbr="A" name="Aaron Yang" />
+      <Avatar src="https://www.w3schools.com/w3images/avatar2.png" />
+      <Avatar src="https://www.w3schools.com/w3images/avatar-2.png" name="Aaron Yang" />
+      <Avatar />
+      <Avatar name="沛星" />
+      <Avatar name="互動" />
+      <Avatar name="科技" />
+    </div>;
+};
+```
+
+### Color
+
+```tsx
+export const Color = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Avatar name="Aaron Chen" />
+      <Avatar name="Aaron Yang" />
+      <Avatar name="Alice Lin" />
+      <Avatar color={COLORS.BLUE} abbr="B" />
+      <Avatar color={COLORS.ORANGE} abbr="O" />
+      <Avatar color={COLORS.GREEN} abbr="G" />
+      <Avatar color={COLORS.PURPLE} abbr="P" />
+      <Avatar color={COLORS.FUCHSIA} abbr="F" />
+      <Avatar color={COLORS.GRAY} abbr="G" />
+    </div>;
+};
+```
+
+### Shape
+
+```tsx
+export const Shape = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Avatar shape={SHAPES.ROUND} />
+      <Avatar shape={SHAPES.SQUARE} />
+    </div>;
+};
+```
+
+
+# Badge
+
+The Badge component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Badge } from "@appier/aiqua-design-system/Badge";
+
+<Badge />
+```
+
+## Examples
+
+### Variant
+
+```tsx
+export const Variant = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Badge content="label" variant="text" />
+      <Badge content="0" variant="number" />
+    </div>;
+};
+```
+
+### Size
+
+```tsx
+export const Size = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Badge content="small" size="small" />
+      <Badge content="0" size="small" variant="number" />
+
+      <Badge content="medium" />
+      <Badge content="0" size="medium" variant="number" />
+    </div>;
+};
+```
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  args: {
+    label: 'Label'
+  }
+};
+```
+
+### Color
+
+```tsx
+export const Color = () => {
+  return <div className="flex items-center gap-spacing-8">
+      <Badge content="label" color="default" />
+      <Badge content="label" color="primary" />
+      <Badge content="label" color="secondary" />
+      <Badge content="label" color="error" />
+      <Badge content="label" color="warning" />
+      <Badge content="label" color="success" />
+      <Badge content="label" color="info" />
+      <Badge content="label" color="teal" />
+      <Badge content="label" color="fuchsia" />
+    </div>;
+};
+```
+
+### Color Style
+
+```tsx
+export const ColorStyle = () => {
+  return <div className="flex flex-col gap-spacing-4">
+      <span className="text-content-high headline-5">Default:</span>
+      <div className="flex items-center gap-spacing-8">
+        <Badge content="label" color="default" />
+        <Badge content="label" color="primary" />
+        <Badge content="label" color="secondary" />
+        <Badge content="label" color="error" />
+        <Badge content="label" color="warning" />
+        <Badge content="label" color="success" />
+        <Badge content="label" color="info" />
+        <Badge content="label" color="teal" />
+        <Badge content="label" color="fuchsia" />
+      </div>
+
+      <span className="mt-spacing-8 text-content-high headline-5">Solid:</span>
+      <div className="flex items-center gap-spacing-8">
+        <Badge content="label" color="default" colorStyle="solid" />
+        <Badge content="label" color="primary" colorStyle="solid" />
+        <Badge content="label" color="secondary" colorStyle="solid" />
+        <Badge content="label" color="error" colorStyle="solid" />
+        <Badge content="label" color="warning" colorStyle="solid" />
+        <Badge content="label" color="success" colorStyle="solid" />
+        <Badge content="label" color="info" colorStyle="solid" />
+        <Badge content="label" color="teal" colorStyle="solid" />
+        <Badge content="label" color="fuchsia" colorStyle="solid" />
+      </div>
+    </div>;
+};
+```
+
+
+# BasicChartComponent
+
+The BasicChartComponent component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { BasicChartComponent } from "@aiqua/components/BasicChartComponent";
+
+<BasicChartComponent />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `chartBasicOptions` | `echarts.EChartsCoreOption` |
+| `eChartTheme` | `Object` |
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Breadcrumb
+
+The Breadcrumb component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => <Breadcrumb {...args}>
+      <BreadcrumbItem href="https://tw.yahoo.com/">Yahoo</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.google.com/">Google</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.appier.com/zh-tw/">
+        Appier
+      </BreadcrumbItem>
+      <BreadcrumbItem disabled>AIQUA</BreadcrumbItem>
+    </Breadcrumb>
+};
+```
+
+## Usage
+
+```tsx
+import { Breadcrumb } from "@appier/aiqua-design-system/Breadcrumb";
+
+<Breadcrumb />
+```
+
+## Examples
+
+### With Truncate
+
+```tsx
+export const WithTruncate = {
+  render: args => <Breadcrumb {...args}>
+      <BreadcrumbItem href="https://tw.yahoo.com/">Yahoo</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.youtube.com/">Youtube</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.google.com/">Google</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.appier.com/zh-tw/">
+        Appier
+      </BreadcrumbItem>
+      <BreadcrumbItem disabled>AIQUA</BreadcrumbItem>
+    </Breadcrumb>
+};
+```
+
+### With Editable Current Page
+
+```tsx
+export const WithEditableCurrentPage = {
+  render: args => <Breadcrumb {...args}>
+      <BreadcrumbItem href="https://tw.yahoo.com/">Yahoo</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.google.com/">Google</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.appier.com/zh-tw/">
+        Appier
+      </BreadcrumbItem>
+      <BreadcrumbItem editable>AIQUA</BreadcrumbItem>
+    </Breadcrumb>
+};
+```
+
+### With Editable Current Page And Default Value
+
+```tsx
+export const WithEditableCurrentPageAndDefaultValue = {
+  render: args => <Breadcrumb {...args}>
+      <BreadcrumbItem href="https://tw.yahoo.com/">Yahoo</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.google.com/">Google</BreadcrumbItem>
+      <BreadcrumbItem href="https://www.appier.com/zh-tw/">
+        Appier
+      </BreadcrumbItem>
+      <BreadcrumbItem editable editableDefaultValue="Default Title">
+        AIQUA
+      </BreadcrumbItem>
+    </Breadcrumb>
+};
+```
+
+
+# Button
+
+The Button component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Button } from "@appier/aiqua-design-system/Button";
+
+<Button />
+```
+
+## Examples
+
+### Size
+
+```tsx
+export const Size = () => {
+  return <Layout>
+      <IconButton size="small" iconSize={20} icon={<DSIcon is="trashOutlined20" />} />
+      <IconButton size="normal" iconSize={20} icon={<DSIcon is="trashOutlined20" />} />
+    </Layout>;
+};
+```
+
+### Icon Size
+
+```tsx
+export const IconSize = () => {
+  return <Layout>
+      <IconButton size="small" iconSize={16} icon={<DSIcon is="trashOutlined16" />} />
+      <IconButton size="normal" iconSize={16} icon={<DSIcon is="trashOutlined16" />} />
+      <IconButton size="small" iconSize={20} icon={<DSIcon is="trashOutlined20" />} />
+      <IconButton size="normal" iconSize={20} icon={<DSIcon is="trashOutlined20" />} />
+    </Layout>;
+};
+```
+
+### Focused
+
+```tsx
+export const Focused = () => {
+  const [focused] = React.useState(true);
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <IconButton size="normal" iconSize={20} icon={<DSIcon is="trashOutlined20" />} focused={focused} />
+    </div>;
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Tooltip
+
+```tsx
+export const Tooltip = {
+  args: {
+    tooltipText: 'tooltip'
+  }
+};
+```
+
+
+# Card
+
+The Card component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: NormalComponent,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Card } from "@appier/aiqua-design-system/Card";
+
+<Card />
+```
+
+## Examples
+
+### With Action
+
+```tsx
+export const WithAction = () => <Card content={<VerticalContent />} title={'Card title'} action={<IconButton icon={<DSIcon is="moreOutlined20" />} size="small" />} />;
+```
+
+### Direction
+
+```tsx
+export const Direction = () => <Card title={'Card title'} direction={DIRECTION.HORIZONTAL} content={<HorizontalContent />} action={<IconButton icon={<DSIcon is="moreOutlined20" />} size="small" />} />;
+```
+
+### With Subtitle
+
+```tsx
+export const WithSubtitle = () => <Card title={'Card title'} direction={DIRECTION.HORIZONTAL} content={<HorizontalContent />} subtitle={'250KB'} />;
+```
+
+### Selected And Disabled
+
+```tsx
+export const SelectedAndDisabled = () => <div style={{
+  display: 'flex',
+  gap: 20
+}}>
+    <Card content={<VerticalContent />} title={'Card title'} selected />
+    <Card content={<VerticalContent />} title={'Card title'} disabled />
+  </div>;
+```
+
+### Error And Warning
+
+```tsx
+export const ErrorAndWarning = () => <div style={{
+  display: 'flex',
+  gap: 20
+}}>
+    <Card content={<VerticalContent />} title={'Card title'} error />
+    <Card content={<VerticalContent />} title={'Card title'} warning />
+  </div>;
+```
+
+
+# Chart
+
+The Chart component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Chart } from "@aiqua/components/Chart";
+
+<Chart />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Chat
+
+The Chat component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Chat } from "@aiqua/components/Chat";
+
+<Chat />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Chatroom
+
+The Chatroom component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Chatroom } from "@aiqua/components/Chatroom";
+
+<Chatroom />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Checkbox
+
+The Checkbox component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Value = () => {
+  const values = [{
+    title: <div>
+          <p className="m-spacing-0">label: 1</p>
+          <p className="m-spacing-0 text-content-low">sub label: 1</p>
+        </div>,
+    value: true,
+    children: [{
+      title: '1-1',
+      value: true,
+      children: [{
+        title: '1-1-1',
+        value: true,
+        children: [{
+          title: '1-1-1-1',
+          value: true
+        }]
+      }]
+    }, {
+      title: '1-2',
+      value: false
+    }, {
+      title: '1-3',
+      value: true,
+      children: [{
+        title: '1-3-1',
+        value: false
+      }]
+    }]
+  }, {
+    title: '2',
+    value: false
+  }];
+  const [checkedValues, setCheckedValues] = React.useState<Object[]>(values);
+  const handleOnChange = (newValues: Object[]) => {
+    setCheckedValues(newValues);
+  };
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <CheckboxTree values={checkedValues} onChange={handleOnChange} />
+    </div>;
+};
+```
+
+## Usage
+
+```tsx
+import { Checkbox } from "@appier/aiqua-design-system/Checkbox";
+
+<Checkbox />
+```
+
+## Examples
+
+### With Icon
+
+```tsx
+export const WithIcon = {
+  args: {
+    isWithIcon: true
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+
+# ColorPicker
+
+The ColorPicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: NormalComponent,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { ColorPicker } from "@appier/aiqua-design-system/ColorPicker";
+
+<ColorPicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `color` | `InputColor` |
+| `defaultColor` | `InputColor` |
+| `onColorChange` | `(color: Color) => void` |
+| `presetColors` | `InputColor[]` |
+| `defaultPresetColors` | `InputColor[]` |
+| `onPresetColorsChange` | `(presetColors: Color[]) => void` |
+| `disablePresetColors` | `boolean` |
+| `deleteLabel` | `string` |
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [color, setColor] = React.useState(DEFAULT_COLOR_INPUT);
+  const [presetColors, setPresetColors] = React.useState(DEFAULT_PRESET_COLORS_INPUT);
+  const handleColorChange = useCallback((color: Color) => {
+    setColor(toRgbaString({
+      ...color.rgb,
+      alpha: color.alpha
+    }));
+  }, []);
+  const handlePresetColorsChange = useCallback((presetColors: Color[]) => {
+    setPresetColors(presetColors.map(color => toRgbaString({
+      ...color.rgb,
+      alpha: color.alpha
+    })));
+  }, []);
+  return <div style={{
+    display: 'flex',
+    gap: '50px'
+  }}>
+      {/* Controlled */}
+      <ColorPicker color={color} onColorChange={handleColorChange} presetColors={presetColors} onPresetColorsChange={handlePresetColorsChange} />
+      {/* Uncontrolled */}
+      <ColorPicker defaultColor={DEFAULT_COLOR_INPUT} defaultPresetColors={DEFAULT_PRESET_COLORS_INPUT} onColorChange={c => {
+      console.log(c);
+    }} />
+    </div>;
+};
+```
+
+### Eye Dropper
+
+```tsx
+export const EyeDropper = () => {
+  const {
+    isEyeDropperSupported,
+    open: openEyeDropper
+  } = useEyeDropper();
+  return <IconButton iconSize={20} size="small" icon={<DSIcon is="dropperOutlined20" />} disabled={!isEyeDropperSupported} onClick={() => {
+    openEyeDropper(hex => {
+      console.log(hex);
+    });
+  }} />;
+};
+```
+
+### Disable Preset Colors
+
+```tsx
+export const DisablePresetColors = {
+  args: {
+    disablePresetColors: true
+  }
+};
+```
+
+
+# ColumnChart
+
+The ColumnChart component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const _ColumnChart = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { ColumnChart } from "@appier/aiqua-design-system/ColumnChart";
+
+<ColumnChart />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `chartMetrics` | `Metric[]` |
+| `chartTooltipOptions` | `BasicChartTooltipOptions` |
+
+## Examples
+
+### Customization
+
+```tsx
+export const Customization = () => {
+  return <div>
+      <div className="flex items-center gap-spacing-16">
+        <h1 className="text-lg">Chart with error bar</h1>
+        <span>
+          used in AX{' '}
+          <a href="https://www.figma.com/design/6d1qcKvOW6NNClSnUzwE09/AI-Gen-User?node-id=6017-42714">
+            (figma)
+          </a>
+        </span>
+      </div>
+      <ChartWrapper>
+        <ColumnChart chartMetrics={CHART_METRIC} chartData={BAR_CHART_TEST_DATA} chartDimensions={CHART_DIMENSIONS} customizeConfig={(config: EChartsCoreOption) => ({
+        ...config,
+        legend: false,
+        series: [{
+          ...(config.series as any[])?.find(s => s.type === 'bar'),
+          colorBy: 'category'
+        }, {
+          type: 'custom',
+          name: 'error',
+          isError: true,
+          renderItem: function (params: CustomSeriesRenderItemParams, api: CustomSeriesRenderItemAPI) {
+            const xValue = api.value(0);
+            const lowPoint = api.coord([xValue, api.value(1)]);
+            const highPoint = api.coord([xValue, api.value(2)]);
+            const halfWidth = 5;
+            const style = {
+              stroke: 'black',
+              lineWidth: 1.5,
+              lineCap: 'round'
+            };
+            return {
+              type: 'group',
+              children: [{
+                type: 'line',
+                transition: ['shape'],
+                shape: {
+                  x1: highPoint[0] - halfWidth,
+                  y1: highPoint[1],
+                  x2: highPoint[0] + halfWidth,
+                  y2: highPoint[1]
+                },
+                style
+              }, {
+                type: 'line',
+                transition: ['shape'],
+                shape: {
+                  x1: highPoint[0],
+                  y1: highPoint[1],
+                  x2: lowPoint[0],
+                  y2: lowPoint[1]
+                },
+                style
+              }, {
+                type: 'line',
+                transition: ['shape'],
+                shape: {
+                  x1: lowPoint[0] - halfWidth,
+                  y1: lowPoint[1],
+                  x2: lowPoint[0] + halfWidth,
+                  y2: lowPoint[1]
+                },
+                style
+              }]
+            };
+          },
+          encode: {
+            x: 'index',
+            y: ['low', 'high']
+          },
+          data: BAR_CHART_TEST_DATA.tables[0].rows.map(([platform, value]) => [platform, (value as number) * 0.9, (value as number) * 1.1]),
+          stack: 'stack',
+          z: 100,
+          tooltip: {
+            show: false
+          }
+        }]
+      })} />
+      </ChartWrapper>
+    </div>;
+};
+```
+
+
+# ColumnItem
+
+The ColumnItem component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { ColumnItem } from "@aiqua/components/ColumnItem";
+
+<ColumnItem />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `id` | `string` |
+| `headerName` | `string` |
+| `onRemove` | `() => void` |
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# ColumnSelectionPanel
+
+The ColumnSelectionPanel component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { ColumnSelectionPanel } from "@aiqua/components/ColumnSelectionPanel";
+
+<ColumnSelectionPanel />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `availableColumns` | `Columns<T>` |
+| `selectedColumns` | `Columns<T>` |
+| `searchQuery` | `string` |
+| `onSearchChange` | `(value: string) => void` |
+| `onColumnToggle` | `(value: string[]) => void` |
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# common
+
+The common component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { common } from "@aiqua/components/common";
+
+<common />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# components
+
+The components component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { components } from "@aiqua/components/components";
+
+<components />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# ConnectorCard
+
+The ConnectorCard component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs'],
+  render: (args: ConnectorCardProps<'div'>) => <div className="flex justify-center">
+      <ConnectorCard className="sm:col-start-2 lg:col-start-3" {...args} />
+    </div>
+};
+```
+
+## Usage
+
+```tsx
+import { ConnectorCard } from "@appier/aiqua-design-system/ConnectorCard";
+
+<ConnectorCard />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `as` | `T` |
+
+## Examples
+
+### Status
+
+```tsx
+export const Status = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ConnectorCard title="BotBonnie" status="available" statusContent="Connect" icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" status="connected" statusContent="Connected" icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" status="error" statusContent={<span>
+          <strong>2</strong> errors
+        </span>} icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" status="info" statusContent="Web SDK required" icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" status="warning" statusContent={<span>
+          <strong>2</strong> disconnected
+        </span>} icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" status="loading" icon="platformBotbonnieFullColor20" />
+    <ConnectorCard title="BotBonnie" statusContent="No status" icon="platformBotbonnieFullColor20" />
+  </div>;
+```
+
+### Disabled
+
+```tsx
+export const Disabled = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ConnectorCard as="button" title="LINE" disabled icon="platformLINEFullColor24" tags={['Shop', 'Communication', 'App', 'E-commerce']} />
+  </div>;
+```
+
+### As
+
+```tsx
+export const As = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ConnectorCard as="a" href="#" title="Instagram" status="available" statusContent="Connect" icon="platformInstagramFullColor24" />
+
+    <ConnectorCard as="button" title="Instagram" status="available" statusContent="Connect" icon="platformInstagramFullColor24" />
+  </div>;
+```
+
+### Icon
+
+```tsx
+export const Icon = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ConnectorCard title="Instagram" status="available" statusContent="Connect" icon="platformInstagramFullColor24" />
+    <ConnectorCard title="LINE" status="available" statusContent="Connect" icon="platformLINEFullColor24" />
+    <ConnectorCard title="TikTok" status="available" statusContent="Connect" icon="platformTiktokFullColor24" />
+  </div>;
+```
+
+### Tags
+
+```tsx
+export const Tags = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ConnectorCard title="LINE" status="available" statusContent="Connect" icon="platformLINEFullColor24" tags={['E-commerce']} />
+    <ConnectorCard title="LINE" status="available" statusContent="Connect" icon="platformLINEFullColor24" tags={['Shop', 'Communication', 'App', 'E-commerce']} />
+  </div>;
+```
+
+### Ui State
+
+```tsx
+export const UiState = () => <div className="grid grid-cols-1 gap-spacing-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div>
+      <ConnectorCard title="Platform name" icon="platformLINEFullColor24" status="available" statusContent="Connect" tags={['Source', 'Destination']} />
+    </div>
+    <div>
+      <ConnectorCard title="Platform name" icon="platformLINEFullColor24" status="available" statusContent="Connect" />
+    </div>
+    <div>
+      <ConnectorCard title="Platform name" icon="platformLINEFullColor24" tags={['Source', 'Destination']} />
+    </div>
+    <div>
+      <ConnectorCard title="Platform name" icon="platformLINEFullColor24" />
+    </div>
+  </div>;
+```
+
+### External
+
+```tsx
+export const External = () => <ConnectorCard as="a" href="https://www.appier.com" title="Platform name" icon="platformLINEFullColor24" external externalTooltip="Open in a new tab" status="available" statusContent="Connect" target="_blank" />;
+```
+
+
+# constants
+
+The constants component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { constants } from "@aiqua/components/constants";
+
+<constants />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# ContentAssistant
+
+The ContentAssistant component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => {
+    return <ContentAssistant {...args} />;
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { ContentAssistant } from "@appier/aiqua-design-system/ContentAssistant";
+
+<ContentAssistant />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `buttonContent` | `React.ReactNode` |
+| `assistantHeader` | `React.ReactNode` |
+| `assistantContent` | `React.ReactNode` |
+| `assistantFooter` | `React.ReactNode[]` |
+| `isCollapse` | `boolean` |
+| `toggleCollapse` | `() => void` |
+
+## Examples
+
+### With Hooks
+
+```tsx
+export const WithHooks = {
+  render: args => {
+    const {
+      contentAssistant,
+      toggleCollapse
+    } = useContentAssistant(args);
+    return <Container>
+        <Button onClick={toggleCollapse}>ToggleCollapse</Button>
+        {contentAssistant}
+      </Container>;
+  }
+};
+```
+
+
+# Context
+
+The Context component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Context } from "@aiqua/components/Context";
+
+<Context />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Date
+
+The Date component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Date } from "@aiqua/components/Date";
+
+<Date />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# DatePicker
+
+The DatePicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Solo = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { DatePicker } from "@appier/aiqua-design-system/DatePicker";
+
+<DatePicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `dateInputPlaceholder` | `string` |
+| `todayLabel` | `string` |
+| `customAnchorEl` | `React.ReactNode` |
+| `onOpenChange` | `(isOpen: boolean) => void` |
+| `defaultInputDate` | `Date` |
+
+## Examples
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    label: 'label'
+  },
+  parameters: {
+    controls: {
+      exclude: ['hint']
+    }
+  }
+};
+```
+
+### With Hint
+
+```tsx
+export const WithHint = {
+  render: Template,
+  args: {
+    hint: 'hint'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args
+  }
+};
+```
+
+### Trigger By Icon Button
+
+```tsx
+export const TriggerByIconButton = {
+  render: args => {
+    const [focused, setFocused] = useState(false);
+    const handleOpenChange = useCallback((isOpen: boolean) => {
+      setFocused(isOpen);
+    }, []);
+    return <>
+        <DatePicker {...args} customAnchorEl={<IconButton icon={<DSIcon is="datePickerOutlined20" />} focused={focused} />} onOpenChange={handleOpenChange} />
+      </>;
+  }
+};
+```
+
+### Hide Adjacent Min Months
+
+```tsx
+export const HideAdjacentMinMonths = {
+  render: Template,
+  args: {
+    hideAdjacentMinMonths: true,
+    minDate: new Date()
+  }
+};
+```
+
+### Solo And Cropped
+
+```tsx
+export const SoloAndCropped = {
+  render: args => {
+    return <div className="w-[100px]">
+        <DatePicker {...args}></DatePicker>
+      </div>;
+  }
+};
+```
+
+
+# DateQuickSelectionPicker
+
+The DateQuickSelectionPicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Solo = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { DateQuickSelectionPicker } from "@appier/aiqua-design-system/DateQuickSelectionPicker";
+
+<DateQuickSelectionPicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `quickSelectionRanges` | `QuickSelectionRanges` |
+| `onQuickSelectionSelectedChange` | `(currentSelection?: CustomQuickSelectionOption \| BasicQuickSelectionOption) => void` |
+| `customSelectionLabel` | `string` |
+| `allTimeSelectionLabel` | `string` |
+| `disableAllTimeSelectionOptions` | `boolean` |
+| `defaultQuickSelectionKey` | `string` |
+| `quickSelectionAreaClassName` | `string` |
+
+## Examples
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    label: 'label'
+  },
+  parameters: {
+    controls: {
+      exclude: ['hint']
+    }
+  }
+};
+```
+
+### With Hint
+
+```tsx
+export const WithHint = {
+  render: Template,
+  args: {
+    hint: 'hint'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args
+  }
+};
+```
+
+### Trigger By Icon Button
+
+```tsx
+export const TriggerByIconButton = {
+  render: args => {
+    const [focused, setFocused] = useState(false);
+    const handleOpenChange = useCallback((isOpen: boolean) => {
+      setFocused(isOpen);
+    }, []);
+    return <DateQuickSelectionPickerWrapper>
+        <DateQuickSelectionPicker {...args} customAnchorEl={<IconButton icon={<DSIcon is="datePickerOutlined20" />} focused={focused} />} quickSelectionRanges={quickSelectionRange} onOpenChange={handleOpenChange} />
+      </DateQuickSelectionPickerWrapper>;
+  }
+};
+```
+
+### With Default Quick Selection
+
+```tsx
+export const WithDefaultQuickSelection = {
+  render: args => {
+    const [selection, setSelection] = useState<any>();
+    const handleQuickSelectionSelectedChange = useCallback(currentSelection => {
+      if (currentSelection) {
+        setSelection(currentSelection);
+      }
+    }, [setSelection]);
+    return <DateQuickSelectionPickerWrapper>
+        <DateQuickSelectionPicker {...args} quickSelectionRanges={quickSelectionRange} onQuickSelectionSelectedChange={handleQuickSelectionSelectedChange} value={selection?.range ?? [new Date(), new Date()]} defaultQuickSelectionKey={BasicSelectionLabel.ALL_TIME} />
+      </DateQuickSelectionPickerWrapper>;
+  }
+};
+```
+
+### With Custom Quick Selection
+
+```tsx
+export const WithCustomQuickSelection = {
+  render: args => {
+    const [selection, setSelection] = useState<any>();
+    const handleQuickSelectionSelectedChange = useCallback(currentSelection => {
+      if (currentSelection) {
+        setSelection(currentSelection);
+      }
+    }, [setSelection]);
+    const customQuickSelectionRange: QuickSelectionRanges = [{
+      label: '2024',
+      unit: 'absolute_range',
+      value: [moment('2024-01-01', 'YYYY-MM-DD').toDate(), moment('2024-12-31', 'YYYY-MM-DD').toDate()]
+    }, {
+      label: '2024 Q4',
+      unit: 'absolute_range',
+      value: [moment('2024-10-01', 'YYYY-MM-DD').toDate(), moment('2024-12-31', 'YYYY-MM-DD').toDate()]
+    }, {
+      label: '3 months to 7 days before',
+      unit: 'relative_range',
+      value: [{
+        unit: 'month',
+        value: -3
+      }, {
+        unit: 'day',
+        value: -7
+      }]
+    }, {
+      label: '14 days to 7 days before',
+      unit: 'relative_range',
+      value: [{
+        unit: 'day',
+        value: -14
+      }, {
+        unit: 'day',
+        value: -7
+      }]
+    }];
+    return <DateQuickSelectionPickerWrapper>
+        <DateQuickSelectionPicker {...args} quickSelectionRanges={customQuickSelectionRange} onQuickSelectionSelectedChange={handleQuickSelectionSelectedChange} value={selection?.range ?? [new Date(), new Date()]} defaultQuickSelectionKey={BasicSelectionLabel.ALL_TIME} />
+      </DateQuickSelectionPickerWrapper>;
+  }
+};
+```
+
+### Solo And Cropped
+
+```tsx
+export const SoloAndCropped = {
+  render: args => {
+    return <div className="w-[100px]">
+        <DateQuickSelectionPicker {...args}></DateQuickSelectionPicker>
+      </div>;
+  }
+};
+```
+
+### Quick Selection Area Class Name
+
+```tsx
+export const QuickSelectionAreaClassName = {
+  render: args => {
+    return <DateQuickSelectionPickerWrapper>
+        <DateQuickSelectionPicker {...args} quickSelectionAreaClassName="w-[180px]" />
+      </DateQuickSelectionPickerWrapper>;
+  }
+};
+```
+
+### Disable Removable
+
+```tsx
+export const DisableRemovable = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args,
+    removable: false
+  }
+};
+```
+
+
+# DateRangePicker
+
+The DateRangePicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Solo = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { DateRangePicker } from "@appier/aiqua-design-system/DateRangePicker";
+
+<DateRangePicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `dateStartInputPlaceholder` | `string` |
+| `dateEndInputPlaceholder` | `string` |
+| `applyLabel` | `string` |
+| `cancelLabel` | `string` |
+| `customAnchorEl` | `React.ReactNode` |
+| `onOpenChange` | `(isOpen: boolean) => void` |
+| `onDateSelect` | `(newValue?: (Date \| undefined)[]) => void` |
+| `defaultStartDate` | `Date` |
+| `removable` | `boolean` |
+| `footerInfo` | `string` |
+
+## Examples
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    label: 'label'
+  },
+  parameters: {
+    controls: {
+      exclude: ['hint']
+    }
+  }
+};
+```
+
+### With Hint
+
+```tsx
+export const WithHint = {
+  render: Template,
+  args: {
+    hint: 'hint'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args
+  }
+};
+```
+
+### With Footer Info
+
+```tsx
+export const WithFooterInfo = {
+  render: Template,
+  args: {
+    label: 'Date Range',
+    hint: 'Select a start and end date',
+    footerInfo: 'This is some helpful information in the footer.'
+  }
+};
+```
+
+### Trigger By Icon Button
+
+```tsx
+export const TriggerByIconButton = {
+  render: args => {
+    const [focused, setFocused] = useState(false);
+    const handleOpenChange = useCallback((isOpen: boolean) => {
+      setFocused(isOpen);
+    }, []);
+    return <>
+        <DateRangePicker {...args} customAnchorEl={<IconButton icon={<DSIcon is="datePickerOutlined20" />} focused={focused} />} onOpenChange={handleOpenChange} />
+      </>;
+  }
+};
+```
+
+### Solo And Cropped
+
+```tsx
+export const SoloAndCropped = {
+  render: args => {
+    return <div className="w-[100px]">
+        <DateRangePicker {...args}></DateRangePicker>
+      </div>;
+  }
+};
+```
+
+### Disable Removable
+
+```tsx
+export const DisableRemovable = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args,
+    removable: false
+  }
+};
+```
+
+
+# Dialog
+
+The Dialog component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: NormalComponent,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Dialog } from "@appier/aiqua-design-system/Dialog";
+
+<Dialog />
+```
+
+## Examples
+
+### Area
+
+```tsx
+export const Area = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Click here
+      </Button>
+      <Dialog size="600" height={200} header="You could change this header" open={open} content="Hi this is body area for you to put your content" footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close (action button 3)
+          </Button>, <Button key="2">action button 2</Button>, <Button key="3">action button 1</Button>]} />
+    </>;
+};
+```
+
+### Area With Scrollable
+
+```tsx
+export const AreaWithScrollable = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Click here
+      </Button>
+      <Dialog size="600" height={400} header="You could change this header" open={open} content={<BigContent />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close (action button 3)
+          </Button>, <Button key="2">action button 2</Button>, <Button key="3">action button 1</Button>]} />
+    </>;
+};
+```
+
+### Size
+
+```tsx
+export const Size = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Size with number: 600
+      </Button>
+      <Dialog size="600" height={400} header="Title" open={open} content={<BigContent />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Size With Full Width
+
+```tsx
+export const SizeWithFullWidth = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Size with: fullWidth
+      </Button>
+      <Dialog size="fullWidth" height={400} header="Title" open={open} content={<BigContent />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Background Color With Primary
+
+```tsx
+export const BackgroundColorWithPrimary = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Primary background
+      </Button>
+      <Dialog size="400" height={400} backgroundColor="primary" header="Title" open={open} content={<Content />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Background Color With Secondary
+
+```tsx
+export const BackgroundColorWithSecondary = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Secondary background
+      </Button>
+      <Dialog size="400" height={400} backgroundColor="secondary" header="Title" open={open} content={<Content />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Background Color With Tertiary
+
+```tsx
+export const BackgroundColorWithTertiary = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Tertiary background
+      </Button>
+      <Dialog size="400" height={400} backgroundColor="tertiary" header="Title" open={open} content={<Content />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Background Color With Quaternary
+
+```tsx
+export const BackgroundColorWithQuaternary = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        Quaternary background
+      </Button>
+      <Dialog size="400" height={400} backgroundColor="quaternary" header="Title" open={open} content={<Content />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Height With Fixed Height
+
+```tsx
+export const HeightWithFixedHeight = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        fixed height: 400
+      </Button>
+      <Dialog size="600" height={400} header="Title" open={open} content={<Content />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+### Height With Full Height
+
+```tsx
+export const HeightWithFullHeight = () => {
+  const [open, setOpen] = React.useState(false);
+  return <>
+      <Button variant="secondary" onClick={() => {
+      setOpen(true);
+    }}>
+        full height
+      </Button>
+      <Dialog size="600" height="fullHeight" header="Title" open={open} content={<BigContent />} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setOpen(false);
+    }}>
+            Close
+          </Button>]} />
+    </>;
+};
+```
+
+
+# Divider
+
+The Divider component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Divider } from "@aiqua/components/Divider";
+
+<Divider />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# DonutChart
+
+The DonutChart component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const _DonutChart = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { DonutChart } from "@appier/aiqua-design-system/DonutChart";
+
+<DonutChart />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `chartData` | `ChartDataInterface` |
+| `chartColorTheme` | `string[]` |
+| `chartTheme` | `THEME_TYPES` |
+| `customDataFormatter` | `(rows: {
+  name: RowData;
+  value: RowData;
+}[]) => void` |
+| `withTooltip` | `boolean` |
+
+## Examples
+
+### _ Donut Chart With Zero Sum
+
+```tsx
+export const _DonutChartWithZeroSum = {
+  render: Template,
+  args: {
+    ..._DonutChart.args,
+    chartData: DONUT_CHART_TEST_DATA_WITH_ZERO_SUM
+  }
+};
+```
+
+
+# Drawer
+
+The Drawer component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl || args.open);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return <>
+        <Button variant="secondary" onClick={handleClick}>
+          Click here
+        </Button>
+        <Drawer {...args} open={open} onClose={handleClose} anchorEl={anchorEl}>
+          <Content />
+        </Drawer>
+      </>;
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { Drawer } from "@appier/aiqua-design-system/Drawer";
+
+<Drawer />
+```
+
+
+# DrillDownMenu
+
+The DrillDownMenu component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { DrillDownMenu } from "@appier/aiqua-design-system/DrillDownMenu";
+
+<DrillDownMenu />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `title` | `ReactNode` |
+
+## Examples
+
+### With Menu Item Category
+
+```tsx
+export const WithMenuItemCategory = {
+  render: Template,
+  args: {
+    ...Normal.args,
+    children: [<MenuItemCategory title={'Category 1'}>
+        <MenuItem>Item 1</MenuItem>
+        <MenuItem>Item 2</MenuItem>
+        <MenuDivider />
+      </MenuItemCategory>, <MenuItem submenu={{
+      items: [<MenuItemCategory title={'Category Test'}>
+              <MenuItem>Test Item 3-1</MenuItem>
+              <MenuItem>Test Item 3-2</MenuItem>
+              <MenuDivider />
+            </MenuItemCategory>, <MenuItem>Item 3-1</MenuItem>]
+    }}>
+        Item 3
+      </MenuItem>]
+  }
+};
+```
+
+### Search Menu
+
+```tsx
+export const SearchMenu = {
+  render: Template,
+  args: {
+    ...Normal.args,
+    search: true,
+    searchInputPlaceholder: 'placeholder',
+    noSearchResultLabel: 'noSearchResultLabel',
+    children: [<MenuItem keywords={['Item 1']} submenu={{
+      items: [<MenuItem key={'1-1'}>Item 1-1</MenuItem>, <MenuItem key={'1-2'}>Item 1-2</MenuItem>]
+    }} key={1}>
+        Item 1
+      </MenuItem>, <MenuItem search keywords={['Item 2']} submenu={{
+      items: Array.from({
+        length: 20
+      }, (_, i) => i + 1).map(item => <MenuItem keywords={[`Item 2-${item}`]} key={`2-${item}`}>
+              {`Item 2-${item}`}
+            </MenuItem>),
+      noSearchResultLabel: 'noSearchResultsLabel item 2'
+    }} key={2}>
+        Item 2
+      </MenuItem>, <MenuItem keywords={['Item 3']} submenu={{
+      items: [<MenuItem search submenu={{
+        items: [<MenuItem keywords={['Item 3-1-1']} key={'3-1-1'}>
+                    Item 3-1-1
+                  </MenuItem>, <MenuItem keywords={['Item 3-1-2']} key={'3-1-2'}>
+                    Item 3-1-2
+                  </MenuItem>],
+        hint: `(1) will be the latest event, (2) will be the 2nd latest event...etc`
+      }} key={'3-1'}>
+              Item 3-1
+            </MenuItem>, <MenuItem key={'3-2'}>Item 3-2</MenuItem>]
+    }} key={3}>
+        Item 3
+      </MenuItem>]
+  }
+};
+```
+
+
+# Dropzone
+
+The Dropzone component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Default = Template.bind({});
+```
+
+## Usage
+
+```tsx
+import { Dropzone } from "@appier/aiqua-design-system/Dropzone";
+
+<Dropzone />
+```
+
+## Examples
+
+### Handle File Upload
+
+```tsx
+export const HandleFileUpload = () => {
+  const [files, setFiles] = useState<FileInfo[]>([]);
+  const handleDrop: DropzoneProps['onDrop'] = acceptedFiles => {
+    const newFiles = acceptedFiles.map(file => ({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      isLoading: true
+    }));
+    setFiles(prevFiles => [...prevFiles, ...newFiles]);
+    acceptedFiles.forEach(async file => {
+      const url = await uploadFile(file);
+      setFiles(prevFiles => prevFiles.map(f => f.name === file.name ? {
+        ...f,
+        isLoading: false,
+        url
+      } : f));
+    });
+  };
+  const handleDelete: DropzoneProps['onDelete'] = index => {
+    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+  };
+  return <Dropzone files={files} onDrop={handleDrop} onDelete={handleDelete} accept={{
+    'image/*': ['.gif', '.jpeg', '.jpg', '.png', '.svg', '.webp'],
+    'video/*': ['.mp4']
+  }} />;
+};
+```
+
+### All File Types
+
+```tsx
+export const AllFileTypes = () => {
+  const [files, setFiles] = useState<FileInfo[]>(mockFiles);
+  const handleDelete: DropzoneProps['onDelete'] = index => {
+    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+  };
+  return <Dropzone files={files} onDelete={handleDelete} accept={{
+    'image/*': ['.gif', '.jpeg', '.jpg', '.png', '.svg', '.webp'],
+    'video/*': ['.mp4'],
+    'application/pdf': ['.pdf'],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+  }} />;
+};
+```
+
+### Disabled State
+
+```tsx
+export const DisabledState = () => {
+  const [files, setFiles] = useState<FileInfo[]>(mockFiles);
+  const handleDelete: DropzoneProps['onDelete'] = index => {
+    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+  };
+  return <Dropzone files={files} onDelete={handleDelete} disabled accept={{
+    'image/*': ['.gif', '.jpeg', '.jpg', '.png', '.svg', '.webp'],
+    'video/*': ['.mp4'],
+    'application/pdf': ['.pdf'],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+  }} />;
+};
+```
+
+### Warning State
+
+```tsx
+export const WarningState = () => {
+  return <Dropzone files={[]} warn="This is a warning message." variant="card" iconTooltipProps={{
+    content: 'This is a warning message.'
+  }} onDelete={() => {}} />;
+};
+```
+
+### Error State
+
+```tsx
+export const ErrorState = () => {
+  return <Dropzone files={[]} error="This is an error message." variant="card" onDelete={() => {}} iconTooltipProps={{
+    content: 'This is an error message.'
+  }} />;
+};
+```
+
+### File With Warning And Error State
+
+```tsx
+export const FileWithWarningAndErrorState = () => {
+  const filesWithWarningsAndErrors: FileInfo[] = [{
+    name: 'large-video.mp4',
+    type: 'video/mp4',
+    size: 9_999_999_999_999,
+    warning: 'Upload failed. File exceeds size limit.'
+  }, {
+    name: 'large-video.mp4',
+    type: 'video/mp4',
+    size: 9_999_999_999_999,
+    error: 'Upload failed. File exceeds size limit.'
+  }];
+  const handleDelete: DropzoneProps['onDelete'] = index => {
+    // Handle delete logic here
+  };
+  return <Dropzone files={filesWithWarningsAndErrors} onDelete={handleDelete} variant="card" />;
+};
+```
+
+### Subtitle Variants
+
+```tsx
+export const SubtitleVariants = () => {
+  const filesWithSubtitles: FileInfo[] = [{
+    name: 'file-with-size.jpg',
+    type: 'image/jpeg',
+    size: 1024 * 1024,
+    // 1MB
+    url: 'https://dummyimage.com/600x400/6e5cc8/fff.jpeg'
+  }, {
+    name: 'file-with-custom-subtitle.jpg',
+    type: 'image/jpeg',
+    url: 'https://dummyimage.com/600x400/6e5cc8/fff.jpeg',
+    subtitle: 'Last updated: 2024/01/20'
+  }, {
+    name: 'file-with-long-subtitle.jpg',
+    type: 'image/jpeg',
+    url: 'https://dummyimage.com/600x400/6e5cc8/fff.jpeg'
+  }];
+  return <Dropzone files={filesWithSubtitles} onDelete={() => {}} onPreview={() => {}} variant="card" />;
+};
+```
+
+### Long File Name
+
+```tsx
+export const LongFileName = () => {
+  const filesWithLongNames: FileInfo[] = [{
+    name: 'This-is-a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-file-name.jpg',
+    type: 'image/jpeg',
+    size: 1024 * 1024,
+    url: 'https://dummyimage.com/600x400/6e5cc8/fff.jpeg'
+  }, {
+    name: 'Regular-file-name.jpg',
+    type: 'image/jpeg',
+    size: 512 * 1024,
+    url: 'https://dummyimage.com/600x400/6e5cc8/fff.jpeg'
+  }];
+  return <div style={{
+    width: '300px'
+  }}>
+      <Dropzone files={filesWithLongNames} onDelete={() => {}} variant="card" />
+    </div>;
+};
+```
+
+
+# EditColumnConfig
+
+The EditColumnConfig component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const WithVirtualizedTable = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { EditColumnConfig } from "@appier/aiqua-design-system/EditColumnConfig";
+
+<EditColumnConfig />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `open` | `boolean` |
+| `onClose` | `() => void` |
+| `columnConfig` | `Columns<T>` |
+| `stickyColumnCount` | `number` |
+| `filteredColumnConfig` | `Columns<T>` |
+| `onApply` | `(newFilterConfig: Columns<T>) => void` |
+| `noColumnsSelectedTooltip` | `string` |
+| `header` | `string` |
+
+## Examples
+
+### With Custom Sticky Columns
+
+```tsx
+export const WithCustomStickyColumns = {
+  render: Template,
+  args: {
+    stickyColumnCount: 2
+  }
+};
+```
+
+### With Initial Filters
+
+```tsx
+export const WithInitialFilters = {
+  render: Template,
+  args: {
+    filteredColumnConfig: columns.filter(col => ['id', 'firstName', 'lastName'].includes(col.field))
+  }
+};
+```
+
+
+# ErrorMessage
+
+The ErrorMessage component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { ErrorMessage } from "@aiqua/components/ErrorMessage";
+
+<ErrorMessage />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Filter
+
+The Filter component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Filter } from "@aiqua/components/Filter";
+
+<Filter />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# fixture
+
+The fixture component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { fixture } from "@aiqua/components/fixture";
+
+<fixture />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# FrequencyMonthPicker
+
+The FrequencyMonthPicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [selectedDays, setSelectedDays] = useState([1, 2, 3]);
+  const handleSelectedDaysChange = useCallback((selectedDays: number[]) => {
+    setSelectedDays(selectedDays);
+  }, []);
+  return <Container>
+      <ItemWrapper>
+        <div>Controlled</div>
+        <FrequencyMonthPicker selectedDays={selectedDays} onSelectedDaysChange={handleSelectedDaysChange} />
+        <div>Uncontrolled</div>
+        <FrequencyMonthPicker defaultSelectedDays={[1, 2, 3]} />
+      </ItemWrapper>
+    </Container>;
+};
+```
+
+## Usage
+
+```tsx
+import { FrequencyMonthPicker } from "@appier/aiqua-design-system/FrequencyMonthPicker";
+
+<FrequencyMonthPicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `selectedDays` | `number[]` |
+| `defaultSelectedDays` | `number[]` |
+| `onSelectedDaysChange` | `(selectedDays: number[]) => void` |
+
+
+# FrequencyWeekPicker
+
+The FrequencyWeekPicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [selectedDays, setSelectedDays] = useState(DEFAULT_SELECTED_DAYS);
+  const handleSelectedDaysChange = useCallback((selectedDays: WEEK_DAYS[]) => {
+    setSelectedDays(selectedDays);
+  }, []);
+  return <Container>
+      <ItemWrapper>
+        <div>Controlled</div>
+        <FrequencyWeekPicker labelMapping={DEFAULT_LABEL_MAPPING} selectedDays={selectedDays} onSelectedDaysChange={handleSelectedDaysChange} />
+      </ItemWrapper>
+      <ItemWrapper>
+        <div>Uncontrolled</div>
+        <FrequencyWeekPicker labelMapping={DEFAULT_LABEL_MAPPING} defaultSelectedDays={DEFAULT_SELECTED_DAYS} />
+      </ItemWrapper>
+    </Container>;
+};
+```
+
+## Usage
+
+```tsx
+import { FrequencyWeekPicker } from "@appier/aiqua-design-system/FrequencyWeekPicker";
+
+<FrequencyWeekPicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `labelMapping` | `Record<WEEK_DAYS, string>` |
+| `selectedDays` | `WEEK_DAYS[]` |
+| `defaultSelectedDays` | `WEEK_DAYS[]` |
+| `onSelectedDaysChange` | `(selectedDays: WEEK_DAYS[]) => void` |
+
+
+# Header
+
+The Header component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  args: {
+    heading: <Breadcrumb>
+        <BreadcrumbItem href="https://tw.yahoo.com/">Yahoo</BreadcrumbItem>
+        <BreadcrumbItem href="https://www.google.com/">Google</BreadcrumbItem>
+        <BreadcrumbItem href="https://www.appier.com/zh-tw/">
+          Appier
+        </BreadcrumbItem>
+        <BreadcrumbItem editable editableDefaultValue="AIQUA">
+          AIQUA
+        </BreadcrumbItem>
+      </Breadcrumb>,
+    actions: [<Button variant="primary" startIcon={<AddIcon />}>
+        Add widget
+      </Button>]
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { Header } from "@appier/aiqua-design-system/Header";
+
+<Header />
+```
+
+
+# Hint
+
+The Hint component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Hint } from "@appier/aiqua-design-system/Hint";
+
+<Hint />
+```
+
+## Examples
+
+### Primary And Secondary Text
+
+```tsx
+export const PrimaryAndSecondaryText = {
+  render: args => {
+    return <>
+        <Hint type={HINT_TYPE.INFO} primaryText="Info primary text" />
+        <Hint type={HINT_TYPE.WARNING} secondaryText="warning secondary text" />
+      </>;
+  }
+};
+```
+
+### Type
+
+```tsx
+export const Type = {
+  render: args => {
+    return <>
+        <Hint type={HINT_TYPE.SUCCESS} primaryText="Success information" />
+        <Hint type={HINT_TYPE.WARNING} primaryText="Warning information" />
+        <Hint type={HINT_TYPE.ERROR} primaryText="Error information" />
+        <Hint type={HINT_TYPE.INFO} primaryText="Info information" />
+        <Hint type={HINT_TYPE.INFO_SECONDARY} primaryText="Info secondary information" />
+      </>;
+  }
+};
+```
+
+### Closable
+
+```tsx
+export const Closable = {
+  render: args => {
+    return <>
+        <Hint type={HINT_TYPE.SUCCESS} primaryText="Success information" closable />
+        <Hint type={HINT_TYPE.INFO} primaryText="Info primary text" secondaryText="info secondary text" closable />
+      </>;
+  }
+};
+```
+
+### Custom Icon
+
+```tsx
+export const CustomIcon = {
+  render: args => {
+    return <Hint type={HINT_TYPE.SUCCESS} primaryText="Success type with info icon" customIcon={<DSIcon is="infoSolid20" />} />;
+  }
+};
+```
+
+
+# hooks
+
+The hooks component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { hooks } from "@aiqua/components/hooks";
+
+<hooks />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# HtmlBlock
+
+The HtmlBlock component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { HtmlBlock } from "@aiqua/components/HtmlBlock";
+
+<HtmlBlock />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Image
+
+The Image component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Image } from "@aiqua/components/Image";
+
+<Image />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# images
+
+The images component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { images } from "@aiqua/components/images";
+
+<images />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# InfiniteLoadingDots
+
+The InfiniteLoadingDots component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { InfiniteLoadingDots } from "@appier/aiqua-design-system/InfiniteLoadingDots";
+
+<InfiniteLoadingDots />
+```
+
+## Examples
+
+### Larger Icons
+
+```tsx
+export const LargerIcons = {
+  render: Template,
+  args: {
+    size: 16
+  }
+};
+```
+
+### Black Icons
+
+```tsx
+export const BlackIcons = {
+  render: Template,
+  args: {
+    colorTokenKey: 'color.content.low'
+  }
+};
+```
+
+
+# InfiniteLoadingSpinner
+
+The InfiniteLoadingSpinner component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { InfiniteLoadingSpinner } from "@appier/aiqua-design-system/InfiniteLoadingSpinner";
+
+<InfiniteLoadingSpinner />
+```
+
+
+# Input
+
+The Input component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Input } from "@aiqua/components/Input";
+
+<Input />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# InputBar
+
+The InputBar component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { InputBar } from "@aiqua/components/InputBar";
+
+<InputBar />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# LikeDislikeButton
+
+The LikeDislikeButton component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {
+  render: Template,
+  tags: ['!autodocs'],
+  args: {
+    likeTooltipContent: 'Satisfied',
+    dislikeTooltipContent: 'Not satisfied'
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { LikeDislikeButton } from "@appier/aiqua-design-system/LikeDislikeButton";
+
+<LikeDislikeButton />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [value, setValue] = useState<'like' | 'dislike' | null>('like');
+  return <LikeDislikeButton value={value} likeTooltipContent="Satisfied" dislikeTooltipContent="Not satisfied" onLikeClick={() => {
+    setValue('like');
+  }} onDislikeClick={() => {
+    setValue('dislike');
+  }} />;
+};
+```
+
+### Tooltip
+
+```tsx
+export const Tooltip = Template.bind({});
+```
+
+
+# LineChart
+
+The LineChart component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const _LineChart = {
+  render: Template,
+  args: {
+    chartData: RESP_TEST,
+    chartDimensions: CHART_DIMENSIONS,
+    chartMetrics: CHART_METRIC,
+    chartTimestamp: CHART_TIMESTAMP,
+    timezone: 'Asia/Taipei',
+    chartAxisDateFormat: 'MMM D, YYYY',
+    chartTheme: 'light',
+    // chartColorTheme: ['#444888','#555aaa','#777eee','#f08080','#8e4585'],
+    chartTooltipDateFormat: 'MMM D, YYYY',
+    chartOptions: {
+      metric: [{
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    }
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { LineChart } from "@appier/aiqua-design-system/LineChart";
+
+<LineChart />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `chartMetrics` | `LineChartMetrics` |
+| `chartSummaryMetrics` | `LineChartBenchmarkMetrics` |
+| `chartTimestamp` | `ChartFieldConfig` |
+| `chartSummaryColorTheme` | `BasicChartProps['chartColorTheme']` |
+| `chartTooltipOptions` | `LineChartTooltipOptions` |
+| `chartOptions` | `LineChartUiMetricsInterface` |
+| `isThumbnail` | `boolean` |
+| `displayGradientArea` | `boolean` |
+
+## Examples
+
+### _ Line Chart Multiple Metrics
+
+```tsx
+export const _LineChartMultipleMetrics = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: MULTIPLE_METRICS_DATA,
+    chartDimensions: [],
+    chartMetrics: MULTIPLE_CHART_METRIC,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'sent',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }, {
+        appliedMetric: 'clicks',
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    }
+  }
+};
+```
+
+### _ Line Chart Multiple Type Metrics
+
+```tsx
+export const _LineChartMultipleTypeMetrics = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: MULTIPLE_METRICS_DATA_DIFFERENT_TYPE,
+    chartDimensions: [],
+    chartMetrics: MULTIPLE_CHART_METRIC_DIFFERENT_TYPE,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'rate',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }, {
+        appliedMetric: 'profit',
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.FULL_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    }
+  }
+};
+```
+
+### _ Line Chart Multiple Type Metrics With Gradient Area
+
+```tsx
+export const _LineChartMultipleTypeMetricsWithGradientArea = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: MULTIPLE_METRICS_DATA_DIFFERENT_TYPE,
+    chartDimensions: [],
+    chartMetrics: MULTIPLE_CHART_METRIC_DIFFERENT_TYPE,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'rate',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }, {
+        appliedMetric: 'profit',
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.FULL_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    displayGradientArea: true
+  }
+};
+```
+
+### _ Line Chart Triple Type Metrics
+
+```tsx
+export const _LineChartTripleTypeMetrics = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: TRIPLE_METRICS_DATA_DIFFERENT_TYPE,
+    chartDimensions: [],
+    chartMetrics: TRIPLE_CHART_METRIC_DIFFERENT_TYPE,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'rate',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.FULL_NUMBER,
+        yAxisSplitNumber: 3
+      }, {
+        appliedMetric: 'profit',
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    }
+  }
+};
+```
+
+### _ Line Chart Comparison Mode
+
+```tsx
+export const _LineChartComparisonMode = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: COMPARISON_DATA,
+    chartDimensions: [],
+    chartMetrics: CHART_METRIC_COMPARISON,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'Hello1',
+      tooltipComparisonSubtitle: 'Hello2',
+      showTooltipSubtitleBreakline: false
+    }
+  }
+};
+```
+
+### _ Line Chart Comparison Mode With Gradient Area
+
+```tsx
+export const _LineChartComparisonModeWithGradientArea = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: COMPARISON_DATA,
+    chartDimensions: [],
+    chartMetrics: CHART_METRIC_COMPARISON,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'Hello1',
+      tooltipComparisonSubtitle: 'Hello2',
+      showTooltipSubtitleBreakline: false
+    },
+    displayGradientArea: true
+  }
+};
+```
+
+### _ Line Chart Multi Metric Multi Dimension
+
+```tsx
+export const _LineChartMultiMetricMultiDimension = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: MULTI_METRICS_MULTI_DIMENSION_DATA,
+    chartDimensions: MULTI_METRICS_MULTI_DIMENSIONS_DIMENSION,
+    chartMetrics: MULTI_METRIC_MULTI_DIMENSIONS_METRIC,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'rate',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.FULL_NUMBER,
+        yAxisSplitNumber: 3
+      }, {
+        appliedMetric: 'profit',
+        decimalPlaces: 0,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'Hello1',
+      tooltipComparisonSubtitle: 'Hello2',
+      showTooltipSubtitleBreakline: false
+    }
+  }
+};
+```
+
+### _ Line Chart Multi Metric Multi Dimension Comparison
+
+```tsx
+export const _LineChartMultiMetricMultiDimensionComparison = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: COMPARISON_DATA_MULTI_DIMENSION,
+    chartTimestamp: CHART_TIMESTAMP_COMPARISON_MULTI_DIMENSION,
+    chartDimensions: COMPARISON_MULTI_DIMENSION_DIEMSION,
+    chartMetrics: CHART_METRIC_COMPARISON_MULTI_DIMENSION,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'Hello1',
+      tooltipComparisonSubtitle: 'Hello2',
+      showTooltipSubtitleBreakline: false
+    }
+  }
+};
+```
+
+### _ Line Chart Multi Metric Multi Dimension Comparison With Gradient Area
+
+```tsx
+export const _LineChartMultiMetricMultiDimensionComparisonWithGradientArea = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    chartData: COMPARISON_DATA_MULTI_DIMENSION,
+    chartTimestamp: CHART_TIMESTAMP_COMPARISON_MULTI_DIMENSION,
+    chartDimensions: COMPARISON_MULTI_DIMENSION_DIEMSION,
+    chartMetrics: CHART_METRIC_COMPARISON_MULTI_DIMENSION,
+    chartOptions: {
+      ..._LineChart.args.chartOptions,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'Hello1',
+      tooltipComparisonSubtitle: 'Hello2',
+      showTooltipSubtitleBreakline: false
+    },
+    displayGradientArea: true
+  }
+};
+```
+
+### _ Line Chart Benchamrk
+
+```tsx
+export const _LineChartBenchamrk = {
+  render: Template,
+  args: {
+    chartData: BENCHMARK_CHART_DATA,
+    chartTimestamp: BENCHMARK_CHART_TIMESTAMP,
+    chartDimensions: BENCHMARK_CHART_DIMENSIONS,
+    chartMetrics: BENCHMARK_CHART_METRIC,
+    chartSummaryMetrics: BENCHMARK_CHART_METRIC_FOR_BENCHMARK,
+    chartOptions: {
+      hasSummary: true,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'CTR',
+      showTooltipSubtitleBreakline: true
+    }
+  }
+};
+```
+
+### _ Line Chart Benchamrk Single Row
+
+```tsx
+export const _LineChartBenchamrkSingleRow = {
+  render: Template,
+  args: {
+    chartData: BENCHMARK_CHART_SINGLE_LINE_DATA,
+    chartTimestamp: BENCHMARK_CHART_TIMESTAMP,
+    chartDimensions: BENCHMARK_CHART_DIMENSIONS,
+    chartMetrics: BENCHMARK_CHART_METRIC,
+    chartSummaryMetrics: BENCHMARK_CHART_METRIC_FOR_BENCHMARK,
+    chartOptions: {
+      hasSummary: true,
+      metric: [{
+        appliedMetric: 'conversion_value_overall',
+        decimalPlaces: 3,
+        displayNotation: ChartUiOptionsDisplayNotationEnum.AUTO_SHORTENED_NUMBER,
+        yAxisSplitNumber: 3
+      }]
+    },
+    chartTooltipOptions: {
+      tooltipSubtitle: 'CTR',
+      showTooltipSubtitleBreakline: true
+    }
+  }
+};
+```
+
+### _ Line Chart Thumbnail
+
+```tsx
+export const _LineChartThumbnail = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    isThumbnail: true
+  }
+};
+```
+
+### _ Line Chart Thumbnail With Gradient Area
+
+```tsx
+export const _LineChartThumbnailWithGradientArea = {
+  render: Template,
+  args: {
+    ..._LineChart.args,
+    isThumbnail: true,
+    displayGradientArea: true
+  }
+};
+```
+
+
+# Link
+
+The Link component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Link } from "@appier/aiqua-design-system/Link";
+
+<Link />
+```
+
+
+# Loader
+
+The Loader component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Loader } from "@appier/aiqua-design-system/Loader";
+
+<Loader />
+```
+
+
+# Loading
+
+The Loading component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Loading } from "@aiqua/components/Loading";
+
+<Loading />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# LoadingSpinner
+
+The LoadingSpinner component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { LoadingSpinner } from "@aiqua/components/LoadingSpinner";
+
+<LoadingSpinner />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# LoadingTooltip
+
+The LoadingTooltip component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { LoadingTooltip } from "@appier/aiqua-design-system/LoadingTooltip";
+
+<LoadingTooltip />
+```
+
+## Examples
+
+### With Description
+
+```tsx
+export const WithDescription = {
+  render: Template,
+  args: {
+    description: 'Description is here.'
+  }
+};
+```
+
+
+# Menu
+
+The Menu component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Menu } from "@appier/aiqua-design-system/Menu";
+
+<Menu />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `maxHeight` | `number` |
+| `maxWidth` | `number` |
+| `minWidth` | `number` |
+| `search` | `boolean` |
+| `searchInputPlaceholder` | `string` |
+| `noSearchResultLabel` | `string` |
+| `truncateLines` | `number` |
+| `hint` | `ReactNode` |
+| `autoFocus` | `boolean` |
+| `isDrillDownMenu` | `boolean` |
+| `title` | `string` |
+| `searchProps` | `MenuSearchBarProps` |
+| `onKeyboardEnter` | `(activeIndex: number) => void` |
+| `selectAllLabel` | `string` |
+| `clearAllLabel` | `string` |
+| `onSelectAll` | `() => void` |
+| `onClearAll` | `() => void` |
+| `disableInternalSearchFilter` | `boolean` |
+| `zIndex` | `number` |
+| `useDismissProps` | `UseDismissProps` |
+
+
+# MessageBubble
+
+The MessageBubble component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { MessageBubble } from "@aiqua/components/MessageBubble";
+
+<MessageBubble />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# MultiSelectFilter
+
+The MultiSelectFilter component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template,
+  args: {
+    label: 'Label',
+    options: FAKE_OPTIONS
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { MultiSelectFilter } from "@appier/aiqua-design-system/MultiSelectFilter";
+
+<MultiSelectFilter />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `options` | `T extends 'menu' ? MenuOptionProps[] : OptionProps[]` |
+| `value` | `string[]` |
+| `defaultValue` | `string[]` |
+| `defaultDisplayedValue` | `string` |
+| `isSearchable` | `boolean` |
+| `fuseConfig` | `Fuse.IFuseOptions<MenuOption \| OptionProps>` |
+| `searchPlaceholder` | `string` |
+| `searchInputProps` | `React.InputHTMLAttributes<HTMLInputElement>` |
+| `selectAllLabel` | `string` |
+| `clearAllLabel` | `string` |
+| `applyLabel` | `string` |
+| `cancelLabel` | `string` |
+| `noOptionsView` | `React.ReactNode` |
+| `scrollableAreaMinHeight` | `number` |
+| `showActionFooter` | `boolean` |
+| `listType` | `T` |
+| `showCheckbox` | `boolean` |
+| `onApply` | `(selectedOptions: FilterOptionProps[]) => void` |
+| `onCancel` | `() => void` |
+| `onSearch` | `(searchTerm: string) => void` |
+| `onBlur` | `() => void` |
+
+## Examples
+
+### With Tree
+
+```tsx
+export const WithTree = {
+  name: 'Tree (Controlled and Uncontrolled)',
+  render: () => <TreeControlledAndUncontrolled />
+} as unknown as StoryFn;
+```
+
+### With Menu
+
+```tsx
+export const WithMenu = {
+  name: 'Menu (Controlled and Uncontrolled)',
+  render: () => <MenuControlledAndUncontrolled />
+} as unknown as StoryFn;
+```
+
+### With Optional Actions
+
+```tsx
+export const WithOptionalActions = {
+  render: Template,
+  args: {
+    label: 'Label',
+    defaultDisplayedValue: 'All',
+    isSearchable: true,
+    selectAllLabel: 'Select all',
+    clearAllLabel: 'Clear',
+    scrollableAreaMinHeight: '130',
+    searchPlaceholder: 'Search Text...',
+    noOptionsView: <div style={{
+      height: '130px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'rgba(0, 10, 58, 0.40)'
+    }}>
+        No matching results found
+      </div>,
+    options: [{
+      label: 'Label 1',
+      value: '1'
+    }, {
+      label: 'Disabled label',
+      value: '7',
+      disabled: true
+    }, {
+      label: 'Long label with custom label clamp value Long label with custom label clamp value Long label with custom label clamp value Long label with custom label clamp value',
+      value: '7',
+      labelClamp: 3
+    }, {
+      label: 'Label with tooltip',
+      value: '8',
+      tooltipProps: {
+        content: 'This is the tooltip content'
+      }
+    }, {
+      label: 'Label with number badge',
+      value: '9',
+      badgeProps: {
+        variant: 'number',
+        content: 3
+      }
+    }, {
+      label: 'Label with text badge',
+      value: '10',
+      badgeProps: {
+        variant: 'text',
+        content: 'Test'
+      }
+    }]
+  }
+};
+```
+
+### With Menu Optional Actions
+
+```tsx
+export const WithMenuOptionalActions = {
+  render: MenuTemplate,
+  args: {
+    listType: 'menu',
+    label: 'Label',
+    defaultDisplayedValue: 'All',
+    isSearchable: true,
+    selectAllLabel: 'Select all',
+    clearAllLabel: 'Clear',
+    scrollableAreaMinHeight: '130',
+    searchPlaceholder: 'Search Text...',
+    showCheckbox: true,
+    noOptionsView: <div style={{
+      height: '130px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'rgba(0, 10, 58, 0.40)'
+    }}>
+        No matching results found
+      </div>,
+    options: [{
+      label: 'Label 1',
+      value: '1'
+    }, {
+      label: 'diver',
+      value: 'diver-1',
+      renderComponent: () => <MenuDivider />
+    }, {
+      label: 'Disabled label',
+      value: '7',
+      disabled: true
+    }, {
+      label: 'Label with tooltip',
+      value: '8',
+      tooltipProps: {
+        content: 'This is the tooltip content'
+      }
+    }, {
+      label: 'Label with icon',
+      value: '9',
+      renderComponent: (props: Parameters<NonNullable<MenuOptionProps['renderComponent']>>[0]) => {
+        const {
+          menuProps
+        } = props;
+        return <MenuIconItem icon={<DSIcon is="flagSolid16" />} {...menuProps} />;
+      }
+    }, {
+      label: 'Label with text',
+      value: '10',
+      renderComponent: (props: Parameters<NonNullable<MenuOptionProps['renderComponent']>>[0]) => {
+        const {
+          menuProps,
+          options
+        } = props;
+        return <MenuLabelItem {...menuProps} label={`L${options.value}`} />;
+      }
+    }]
+  }
+};
+```
+
+
+# NavBar
+
+The NavBar component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { NavBar } from "@aiqua/components/NavBar";
+
+<NavBar />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# NestMenu
+
+The NestMenu component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { NestMenu } from "@appier/aiqua-design-system/NestMenu";
+
+<NestMenu />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `menuItemProps` | `Omit<MenuItemProps, 'children'>` |
+| `options` | `MenuOption[]` |
+| `multiple` | `boolean` |
+| `onMenuSelected` | `(selectedItem: MenuOption[] \| MenuOption) => void` |
+
+## Examples
+
+### With Divider
+
+```tsx
+export const WithDivider = {
+  render: Template,
+  args: {
+    ...Normal.args,
+    options: [{
+      title: 'Item 1',
+      value: '1',
+      children: [{
+        title: 'Item 1-1',
+        value: '1-1'
+      }, {
+        title: 'Item 1-2',
+        value: '1-2',
+        children: [{
+          title: 'Item 1-2-1',
+          value: '1-2-1'
+        }, {
+          title: 'Item 1-2-2',
+          value: '1-2-2'
+        }]
+      }]
+    }, {
+      title: 'Item 2',
+      value: '2'
+    }, {
+      title: 'Item 3',
+      value: '3'
+    }, {
+      value: 'diver-1',
+      renderComponent: () => <MenuDivider />
+    }, {
+      title: 'Item 4',
+      value: '4'
+    }, {
+      title: 'Item 5',
+      value: '5'
+    }, {
+      title: 'Item 6',
+      value: '6'
+    }, {
+      value: 'diver-2',
+      renderComponent: () => <MenuDivider />
+    }, {
+      title: 'Item 7',
+      value: '7'
+    }, {
+      title: 'Item 8',
+      value: '8'
+    }, {
+      title: 'Item 9',
+      value: '9'
+    }]
+  }
+};
+```
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    ...Normal.args,
+    options: [{
+      title: 'Item 1',
+      value: '1',
+      children: [{
+        title: 'Item 1-1',
+        value: '1-1',
+        renderComponent: props => {
+          const {
+            menuProps,
+            options
+          } = props;
+          return <MenuLabelItem label={`L-${options.value}`} {...menuProps} />;
+        }
+      }, {
+        title: 'Item 1-2',
+        value: '1-2',
+        children: [{
+          title: 'Item 1-2-1',
+          value: '1-2-1'
+        }, {
+          title: 'Item 1-2-2',
+          value: '1-2-2'
+        }]
+      }],
+      renderComponent: props => {
+        const {
+          menuProps,
+          options
+        } = props;
+        return <MenuLabelItem label={`L-${options.value}`} {...menuProps} />;
+      }
+    }, {
+      title: 'Item 2',
+      value: '2',
+      renderComponent: props => {
+        const {
+          menuProps,
+          options
+        } = props;
+        return <MenuLabelItem label={`L-${options.value}`} {...menuProps} />;
+      }
+    }, {
+      title: 'Item 3',
+      value: '3',
+      renderComponent: props => {
+        const {
+          menuProps,
+          options
+        } = props;
+        return <MenuLabelItem label={`L-${options.value}`} {...menuProps} />;
+      }
+    }, {
+      title: 'Item 4',
+      value: '4',
+      renderComponent: props => {
+        const {
+          menuProps,
+          options
+        } = props;
+        return <MenuLabelItem label={`L-${options.value}`} {...menuProps} />;
+      }
+    }]
+  }
+};
+```
+
+
+# Pagination
+
+The Pagination component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Pagination } from "@appier/aiqua-design-system/Pagination";
+
+<Pagination />
+```
+
+
+# PaginationTable
+
+The PaginationTable component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { PaginationTable } from "@appier/aiqua-design-system/PaginationTable";
+
+<PaginationTable />
+```
+
+## Examples
+
+### With Empty State
+
+```tsx
+export const WithEmptyState = {
+  render: Template,
+  args: {
+    rows: [],
+    isEmpty: true,
+    totalItemCount: 0,
+    renderEmptyView: () => <EmptyContentWrapper>
+        <BoxIcon size={48} />
+        <EmptyMessage>No data yet</EmptyMessage>
+      </EmptyContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Footer
+
+```tsx
+export const WithFooter = {
+  render: Template,
+  args: {
+    columns: columnsWitFooter,
+    rows: rowsWithFooter,
+    totalItemCount: rowsWithFooter.length,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Footer And Actions
+
+```tsx
+export const WithFooterAndActions = {
+  render: Template,
+  args: {
+    columns: columnsWitFooter,
+    rows: rowsWithFooter,
+    totalItemCount: rowsWithFooter.length,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true,
+    actionHeaderContent: <ActionHeaderContentWrapper className="flex-wrap">
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report1
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report2
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report3
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report4
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report5
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report6
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<DSIcon is="addOutlined20" />}>
+          Add Report7
+        </Button>
+      </ActionHeaderContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Loading
+
+```tsx
+export const WithLoading = {
+  render: Template,
+  args: {
+    columns: columnsWitFooter,
+    rows: rowsWithFooter,
+    totalItemCount: rowsWithFooter.length,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true,
+    isLoading: true,
+    isPaginationLoading: true,
+    actionHeaderContent: <Skeleton width="100%" height="100%" shape="RECT" theme={THEME_TYPES.LIGHT} />
+  }
+};
+```
+
+### With Highlighter
+
+```tsx
+export const WithHighlighter = {
+  render: Template,
+  args: {
+    columns: columns.map(column => column.field === 'age' ? {
+      ...column,
+      highlighter: (data: rowType) => data.age && data.age < 40
+    } : {
+      ...column,
+      highlighter: rowData => rowData.highlighted ? 'var(--color-compBg-grayLite)' : false
+    }),
+    rows: rows.map((row, idx) => idx < 3 ? {
+      ...row,
+      highlighted: true
+    } : row)
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Checkboxs
+
+```tsx
+export const WithCheckboxs = {
+  render: (args, {
+    globals: {
+      theme
+    }
+  }) => {
+    const [checkedValue, setCheckedValue] = useState<number[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentItemsPerPage, setCurrentItemsPerPage] = useState(FAKE_ITEMS_PER_PAGE_OPTIONS[0]);
+    const handlePageNavigate = (newPage: number) => {
+      args.onPageNavigate?.(newPage);
+
+      // NOTE: by spec, when page chenge, the select all checkbox should be unchecked
+      // while the checked value should remain.
+      setCurrentPage(newPage);
+    };
+    const handleItemsPerPageChange = (newItemsPerPage: number) => {
+      args.onItemsPerPageChange?.(newItemsPerPage);
+      setCurrentItemsPerPage(newItemsPerPage);
+    };
+    const paginatedRows = useMemo(() => {
+      const {
+        totalItemCount,
+        rows
+      } = args;
+      if (totalItemCount === undefined) {
+        return [];
+      }
+      let end = totalItemCount;
+      if (currentItemsPerPage < totalItemCount) {
+        end = currentItemsPerPage * currentPage;
+        if (end > totalItemCount) {
+          end = totalItemCount;
+        }
+      }
+      const start = totalItemCount ? (currentPage - 1) * currentItemsPerPage : 0;
+      return rows.slice(start, end);
+    }, [args, currentItemsPerPage, currentPage]);
+    const handleSetCheckboxValue = () => {
+      console.log('checked value:', checkedValue);
+    };
+    const handleResetCheckboxValue = () => {
+      setCheckedValue([]);
+    };
+    return <>
+        <StyledButton variant="primary" size="normal" onClick={handleResetCheckboxValue}>
+          Reset value
+        </StyledButton>
+        <StyledButton variant="primary" size="normal" onClick={handleSetCheckboxValue}>
+          Show selected value
+        </StyledButton>
+        <PaginationTable {...args} currentPage={currentPage} onPageNavigate={handlePageNavigate} rowsPerPage={currentItemsPerPage} onItemsPerPageChange={handleItemsPerPageChange} rows={paginatedRows} selectValue={checkedValue} selectionType={SELECTION_TYPE.MULTIPLE as SELECTION_TYPE} selectionIdentifier="id" onSelectAllChange={(checked, currentPageValue) => {
+        const updatedData = checkedValue.filter(checkedValue => !currentPageValue.find(value => value.id === checkedValue));
+        setCheckedValue(prev => checked ? [...prev, ...currentPageValue.map(v => v.id)] : updatedData);
+      }} onSelectChange={data => {
+        setCheckedValue(prev => {
+          if (prev?.includes(data.rowIdentifier)) {
+            return prev.filter(prevData => prevData !== data.rowIdentifier);
+          }
+          return [...prev, data.rowIdentifier];
+        });
+      }} theme={theme} />
+      </>;
+  }
+};
+```
+
+### With Radio Button
+
+```tsx
+export const WithRadioButton = {
+  render: (args, {
+    globals: {
+      theme
+    }
+  }) => {
+    const [checkedValue, setCheckedValue] = useState<number[] | null>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentItemsPerPage, setCurrentItemsPerPage] = useState(FAKE_ITEMS_PER_PAGE_OPTIONS[0]);
+    const handlePageNavigate = (newPage: number) => {
+      args.onPageNavigate?.(newPage);
+      setCurrentPage(newPage);
+    };
+    const handleItemsPerPageChange = (newItemsPerPage: number) => {
+      args.onItemsPerPageChange?.(newItemsPerPage);
+      setCurrentItemsPerPage(newItemsPerPage);
+    };
+    const paginatedRows = useMemo(() => {
+      const {
+        totalItemCount,
+        rows
+      } = args;
+      if (totalItemCount === undefined) {
+        return [];
+      }
+      let end = totalItemCount;
+      if (currentItemsPerPage < totalItemCount) {
+        end = currentItemsPerPage * currentPage;
+        if (end > totalItemCount) {
+          end = totalItemCount;
+        }
+      }
+      const start = totalItemCount ? (currentPage - 1) * currentItemsPerPage : 0;
+      return rows.slice(start, end);
+    }, [args, currentItemsPerPage, currentPage]);
+    const handleSetRadioValue = () => {
+      console.log('checked value:', checkedValue);
+    };
+    const handleResetRadioValue = () => {
+      setCheckedValue(null);
+    };
+    return <>
+        <StyledButton variant="primary" size="normal" onClick={handleResetRadioValue}>
+          Reset value
+        </StyledButton>
+        <StyledButton variant="primary" size="normal" onClick={handleSetRadioValue}>
+          Show selected value
+        </StyledButton>
+        <PaginationTable {...args} currentPage={currentPage} onPageNavigate={handlePageNavigate} rowsPerPage={currentItemsPerPage} onItemsPerPageChange={handleItemsPerPageChange} rows={paginatedRows} selectValue={checkedValue} selectionType={SELECTION_TYPE.SINGLE as SELECTION_TYPE} selectionIdentifier="id" onSelectAllChange={data => {
+        setCheckedValue(data);
+      }} onSelectChange={data => {
+        setCheckedValue(data.rowIdentifier);
+      }} theme={theme} />
+      </>;
+  }
+};
+```
+
+
+# PercentageStackedAreaChart
+
+The PercentageStackedAreaChart component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const _PercentageStackedAreaChart = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { PercentageStackedAreaChart } from "@appier/aiqua-design-system/PercentageStackedAreaChart";
+
+<PercentageStackedAreaChart />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `chartTimestamp` | `ChartFieldConfig` |
+| `chartOptions` | `PercentageStackedAreaChartUiMetricsInterface` |
+
+
+# Popover
+
+The Popover component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl || args.open);
+    const placement = args.placement || 'bottom';
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return <>
+        <Wrapper>
+          <Button variant="primary" size="normal" onClick={handleClick}>
+            click here
+          </Button>
+        </Wrapper>
+        <Popover anchorEl={anchorEl} onClose={handleClose} open={open} placement={placement}>
+          <ContentWrapper>Popover content on here</ContentWrapper>
+        </Popover>
+      </>;
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { Popover } from "@appier/aiqua-design-system/Popover";
+
+<Popover />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `anchorEl` | `HTMLElement \| null` |
+| `onClose` | `() => void` |
+| `open` | `boolean` |
+| `placement` | `Placement` |
+| `focusOrder` | `('reference' \| 'floating' \| 'content')[]` |
+| `triggerByHover` | `boolean` |
+| `isShowTooltipArrow` | `boolean` |
+| `tooltipClassName` | `string` |
+
+## Examples
+
+### With Arrow
+
+```tsx
+export const WithArrow = {
+  render: args => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl || args.open);
+    const placement = args.placement || 'bottom';
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return <>
+        <Wrapper>
+          <Button variant="primary" size="normal" onClick={handleClick}>
+            click here
+          </Button>
+        </Wrapper>
+        <StyledPopover anchorEl={anchorEl} onClose={handleClose} open={open} placement={placement} isShowTooltipArrow tooltipClassName="arrow-content">
+          <ContentWrapper>Popover content on here</ContentWrapper>
+        </StyledPopover>
+      </>;
+  }
+};
+```
+
+### Trigger By Hover
+
+```tsx
+export const TriggerByHover = args => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl || args.open);
+  const placement = args.placement || 'bottom';
+  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return <>
+      <Wrapper>
+        <Button variant="primary" size="normal" onMouseEnter={handleMouseEnter}>
+          click here
+        </Button>
+      </Wrapper>
+      <Popover anchorEl={anchorEl} onClose={handleClose} open={open} placement={placement} triggerByHover>
+        <ContentWrapper>Popover content: Trigger by hover</ContentWrapper>
+      </Popover>
+    </>;
+};
+```
+
+
+# ProductTour
+
+The ProductTour component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { ProductTour } from "@appier/aiqua-design-system/ProductTour";
+
+<ProductTour />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `show` | `boolean` |
+| `type` | `'regular' \| 'blue'` |
+| `title` | `string` |
+| `className` | `string` |
+| `zIndex` | `number` |
+| `content` | `React.ReactNode` |
+| `footer` | `React.ReactNode[]` |
+| `footerClassName` | `string` |
+| `placement` | `Placement` |
+| `fallbackPlacements` | `Placement[]` |
+| `shiftOptions` | `ShiftOptions` |
+| `indicatorClassName` | `string` |
+| `children` | `JSX.Element` |
+| `referenceClassName` | `string` |
+
+## Examples
+
+### Style
+
+```tsx
+export const Style = () => {
+  return <div className="flex h-[200px] items-center justify-center gap-spacing-20">
+      <ProductTour className="w-[240px]" title="Regular (default)">
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+      <ProductTour title="Blue" type="blue" className="w-[240px]">
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+    </div>;
+};
+```
+
+### Placement
+
+```tsx
+export const Placement = () => {
+  return <div className="grid h-[200px] place-items-center">
+      <ProductTour className="w-[240px]" title="On top or right-end" fallbackPlacements={['right-end']}>
+        <ProductTour className="w-[240px]" title="On left or bottom-start" placement="left" fallbackPlacements={['bottom-start']}>
+          <ContentPlaceholder />
+        </ProductTour>
+      </ProductTour>
+    </div>;
+};
+```
+
+### Shift
+
+```tsx
+export const Shift = () => {
+  return <div className="grid h-[200px] place-items-center">
+      <ProductTour className="w-[700px]" title="In men’s beauty, simplicity is key. Imagine a chatbot that personalizes recommendations in seconds, aligning products with unique preferences. No lengthy surveys—just tailored answers for skincare, grooming, and more. It’s efficient, modern, and hassle-free, bridging the gap between technology and men’s self-care with ease and accuracy." placement="top" fallbackPlacements={['top']} shiftOptions={{}}>
+        <ContentPlaceholder />
+      </ProductTour>
+    </div>;
+};
+```
+
+### Custom Indicator
+
+```tsx
+export const CustomIndicator = () => {
+  return <div className="grid h-[200px] place-items-center">
+      <ProductTour className="w-[300px]" title="Custom indicator position" indicatorClassName={tw`left-auto right-spacing-32`} fallbackPlacements={['bottom']}>
+        <ContentPlaceholder />
+      </ProductTour>
+    </div>;
+};
+```
+
+### Closable
+
+```tsx
+export const Closable = () => {
+  const [open, setOpen] = useState<boolean>(true);
+  return <div className="flex h-[200px] items-center justify-center gap-spacing-20">
+      <ProductTour className="w-[240px]" title="Closable (default)" onClose={() => {
+      setOpen(false);
+      console.log('on ProductTour close');
+    }} show={open} fallbackPlacements={[]}>
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+      <ProductTour className="w-[240px]" closable={false} title="Unclosable" fallbackPlacements={[]}>
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+    </div>;
+};
+```
+
+### With Custom Footer
+
+```tsx
+export const WithCustomFooter = () => {
+  return <div className="grid h-[300px] place-items-center">
+      <ProductTour title="Title" className="w-[400px]" footerClassName={tw`justify-between`} fallbackPlacements={['bottom']} footer={[<Checkbox label="Do not show this again" />, <Button size="normal" variant="primary">
+            Action 1
+          </Button>]}>
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+    </div>;
+};
+```
+
+### With Custom Content
+
+```tsx
+export const WithCustomContent = () => {
+  return <div className="grid h-[400px] place-items-center">
+      <ProductTour title="Title" className="w-[400px]" fallbackPlacements={['bottom']} content={<div>
+            <div className="px-spacing-24 pb-spacing-12">Content</div>
+            <Checkbox label="Do not show this again" />
+          </div>} footer={[<Button size="normal" variant="secondary">
+            Action 2
+          </Button>, <Button size="normal" variant="primary">
+            Action 1
+          </Button>]}>
+        <ContentPlaceholder className="h-[100px]" />
+      </ProductTour>
+    </div>;
+};
+```
+
+
+# QuantityInput
+
+The QuantityInput component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { QuantityInput } from "@appier/aiqua-design-system/QuantityInput";
+
+<QuantityInput />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [inputValue, setInputValue] = React.useState('123');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <QuantityInput label="Count (Uncontrolled)" defaultValue="123" />
+      <QuantityInput label="Count (Controlled)" value={inputValue} onChange={setInputValue} />
+    </div>;
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### With Unit
+
+```tsx
+export const WithUnit = {
+  args: {
+    unit: 'Sec'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+### With Decimal Places
+
+```tsx
+export const WithDecimalPlaces = {
+  args: {
+    decimalPlaces: 2
+  }
+};
+```
+
+### Min And Max
+
+```tsx
+export const MinAndMax = {
+  args: {
+    min: 0,
+    max: 99
+  }
+};
+```
+
+### With Icon
+
+```tsx
+export const WithIcon = {
+  args: {
+    prefixIcon: <DSIcon is="sizeHeightOutlined20" color={color.light.semantic.gray} />
+  }
+};
+```
+
+
+# QuickReply
+
+The QuickReply component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { QuickReply } from "@aiqua/components/QuickReply";
+
+<QuickReply />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `title` | `string` |
+| `onClick` | `() => void` |
+| `className` | `string` |
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Radio
+
+The Radio component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [checkedValues, setCheckedValues] = React.useState<string>('yes');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <RadioGroup direction="vertical" value={checkedValues} onChange={setCheckedValues}>
+        <Radio label="Yes" value="yes" />
+        <Radio label="No" value="no" />
+      </RadioGroup>
+    </div>;
+};
+```
+
+## Usage
+
+```tsx
+import { Radio } from "@appier/aiqua-design-system/Radio";
+
+<Radio />
+```
+
+## Examples
+
+### With Chip
+
+```tsx
+export const WithChip = {
+  render: args => <RadioGroup {...args} defaultValue="1">
+      <Radio label="Label" badgeProps={{
+      content: 'Label',
+      color: 'info'
+    }} value="1" />
+      <Radio label="Label" value="2" tooltipProps={{
+      content: 'Here is tooltip content',
+      placement: 'top'
+    }} />
+    </RadioGroup>
+};
+```
+
+### Vertical
+
+```tsx
+export const Vertical = {
+  render: DirectionTemplate,
+  args: {
+    direction: 'vertical'
+  }
+};
+```
+
+### Horizontal
+
+```tsx
+export const Horizontal = {
+  render: DirectionTemplate,
+  args: {
+    direction: 'horizontal'
+  }
+};
+```
+
+
+# RichTextarea
+
+The RichTextarea component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { RichTextarea } from "@aiqua/components/RichTextarea";
+
+<RichTextarea />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# ScrollBar
+
+The ScrollBar component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => {
+    return <Wrapper>
+        <ScrollBar key={String(args.autoHide)} {...args}>
+          {[...new Array(50)].map((x, i) => <Content key={i}>{i}</Content>)}
+        </ScrollBar>
+      </Wrapper>;
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { ScrollBar } from "@appier/aiqua-design-system/ScrollBar";
+
+<ScrollBar />
+```
+
+
+# Search
+
+The Search component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Search } from "@appier/aiqua-design-system/Search";
+
+<Search />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `disabled` | `boolean` |
+| `placeholder` | `string` |
+| `onChange` | `(value: string) => void` |
+| `value` | `string` |
+| `defaultValue` | `string` |
+| `inputProps` | `React.InputHTMLAttributes<HTMLInputElement>` |
+
+
+# SegmentedControl
+
+The SegmentedControl component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const WithIcon = {
+  args: {
+    variant: 'icon',
+    segments: [{
+      value: 'windows',
+      label: <WindowsSolidIcon size={20} />
+    }, {
+      value: 'iOS',
+      label: <IOSSolidIcon size={20} />
+    }, {
+      value: 'android',
+      label: <AndroidSolidIcon size={20} />
+    }]
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { SegmentedControl } from "@appier/aiqua-design-system/SegmentedControl";
+
+<SegmentedControl />
+```
+
+## Examples
+
+### With Text
+
+```tsx
+export const WithText = {
+  args: {
+    variant: 'text',
+    segments: [{
+      value: 0,
+      label: 'First Label'
+    }, {
+      value: 1,
+      label: 'Second Label'
+    }, {
+      value: 2,
+      label: 'Third Label'
+    }]
+  }
+};
+```
+
+
+# Select
+
+The Select component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Select } from "@aiqua/components/Select";
+
+<Select />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# SelectedColumnsPanel
+
+The SelectedColumnsPanel component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { SelectedColumnsPanel } from "@aiqua/components/SelectedColumnsPanel";
+
+<SelectedColumnsPanel />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `selectedColumns` | `Columns<T>` |
+| `onDragEnd` | `(result: DragEndEvent) => void` |
+| `onRemoveColumn` | `(field: string) => void` |
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# shared
+
+The shared component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { shared } from "@aiqua/components/shared";
+
+<shared />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# SingleSelectFilter
+
+The SingleSelectFilter component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { SingleSelectFilter } from "@appier/aiqua-design-system/SingleSelectFilter";
+
+<SingleSelectFilter />
+```
+
+## Examples
+
+### With Hierarchical Menu
+
+```tsx
+export const WithHierarchicalMenu = {
+  render: Template,
+  args: {
+    children: [<MenuItem submenu={{
+      items: [<MenuItemCategory title="Category 1">
+              <MenuItem value={'default'} keywords={['default']}>
+                Selected by default
+              </MenuItem>
+              <MenuIconItem value={'1-2'} keywords={['Item 1-2']} icon={<DSIcon is="infoOutlined20" />}>
+                Item 1-2
+              </MenuIconItem>
+            </MenuItemCategory>, <MenuItemCategory title="Category 2">
+              <MenuItem value={'Category 2 item 1'} keywords={['Category 2 item 1']}>
+                Category 2 item 1
+              </MenuItem>
+              <MenuIconItem value={'Category 2 item 2'} keywords={['Category 2 item 2']} icon={<DSIcon is="infoOutlined20" />}>
+                Category 2 item 2
+              </MenuIconItem>
+            </MenuItemCategory>]
+    }} key={1}>
+        Item 1
+      </MenuItem>, <MenuItem submenu={{
+      items: [<MenuItem key={'2-1'} value={'2-1'}>
+              Item 2-1
+            </MenuItem>, <MenuItem key={'2-2'} value={'2-2'}>
+              Item 2-2
+            </MenuItem>]
+    }} key={2}>
+        Item 2
+      </MenuItem>, <MenuItem submenu={{
+      items: [<MenuItem submenu={{
+        items: [<MenuItem key={'3-1-1'} value={'3-1-1'}>
+                    Item 3-1-1
+                  </MenuItem>, <MenuItem key={'3-1-2'} value={'3-1-2'}>
+                    Item 3-1-2
+                  </MenuItem>],
+        hint: `(1) will be the latest event, (2) will be the 2nd latest event...etc`
+      }} key={'3-1'}>
+              Item 3-1
+            </MenuItem>, <MenuItem key={'3-2'} value={'3-2'}>
+              Item 3-2
+            </MenuItem>]
+    }} key={3}>
+        Item 3
+      </MenuItem>]
+  }
+};
+```
+
+
+# Skeleton
+
+The Skeleton component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs'],
+  render: (args: SkeletonProps) => <Skeleton {...args} />
+};
+```
+
+## Usage
+
+```tsx
+import { Skeleton } from "@appier/aiqua-design-system/Skeleton";
+
+<Skeleton />
+```
+
+## Examples
+
+### Avatar
+
+```tsx
+export const Avatar = () => {
+  return <Skeleton className="h-spacing-48 w-spacing-48 rounded-radius-full" />;
+};
+```
+
+### Card
+
+```tsx
+export const Card = () => {
+  return <div className="grid grid-cols-1 gap-spacing-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {Array.from({
+      length: 10
+    }).map((_, index) => <div key={index} className="flex flex-col gap-spacing-8 pb-spacing-16">
+          <Skeleton className="h-[248px] rounded-radius-8" />
+          <Skeleton />
+          <Skeleton />
+        </div>)}
+    </div>;
+};
+```
+
+### Size
+
+```tsx
+export const Size = () => {
+  return <Skeleton width={280} height={100} />;
+};
+```
+
+### Shape
+
+```tsx
+export const Shape = () => {
+  return <Skeleton className="w-[100px]" shape="CIRCLE" />;
+};
+```
+
+
+# Slider
+
+The Slider component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {};
+```
+
+## Usage
+
+```tsx
+import { Slider } from "@appier/aiqua-design-system/Slider";
+
+<Slider />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `min` | `number` |
+| `max` | `number` |
+| `step` | `number` |
+| `value` | `number` |
+| `onChange` | `(value: number) => void` |
+| `defaultValue` | `number` |
+
+## Examples
+
+### Controlled
+
+```tsx
+export const Controlled = () => {
+  const [value, setValue] = useState<number>(15);
+  return <div className="flex flex-col gap-spacing-16">
+      Current value: {value}
+      <Slider value={value} onChange={setValue} />
+    </div>;
+};
+```
+
+### Uncontrolled
+
+```tsx
+export const Uncontrolled = () => {
+  return <Slider defaultValue={15} disabled />;
+};
+```
+
+### Step
+
+```tsx
+export const Step = () => {
+  return <Slider min={-200} max={200} defaultValue={100} step={100} />;
+};
+```
+
+### Style
+
+```tsx
+export const Style = {
+  render: args => {
+    return <Slider {...args} className="w-[300px]" />;
+  }
+};
+```
+
+
+# StackedBar
+
+The StackedBar component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {};
+```
+
+## Usage
+
+```tsx
+import { StackedBar } from "@appier/aiqua-design-system/StackedBar";
+
+<StackedBar />
+```
+
+## Examples
+
+### Size
+
+```tsx
+export const Size = () => {
+  return <div className="flex flex-col items-center gap-spacing-16">
+      <StackedBar size={SIZES.SMALL} stacks={stacks} />
+      <StackedBar size={SIZES.NORMAL} stacks={stacks} />
+    </div>;
+};
+```
+
+### Color Set Default
+
+```tsx
+export const ColorSetDefault = () => {
+  return <StackedBar stacks={[{
+    percentage: 1
+  }, {
+    percentage: 1
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 10
+  }, {
+    percentage: 18
+  }]} />;
+};
+```
+
+### Color Set Custom
+
+```tsx
+export const ColorSetCustom = () => {
+  return <StackedBar stacks={[{
+    percentage: 33,
+    color: STACKED_BAR_COLOR_SETS.gradient_gray_50
+  }, {
+    percentage: 33,
+    color: STACKED_BAR_COLOR_SETS.gradient_blue_50
+  }, {
+    percentage: 34,
+    color: STACKED_BAR_COLOR_SETS.gradient_azure_50
+  }]} />;
+};
+```
+
+
+# StackedColumnChart
+
+The StackedColumnChart component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const StackedColumnChartMultipleMetrics = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { StackedColumnChart } from "@appier/aiqua-design-system/StackedColumnChart";
+
+<StackedColumnChart />
+```
+
+
+# Status
+
+The Status component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {
+  render: Template,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Status } from "@appier/aiqua-design-system/Status";
+
+<Status />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `color` | `(typeof COLOR)[keyof typeof COLOR]` |
+| `text` | `React.ReactNode` |
+
+## Examples
+
+### Color
+
+```tsx
+export const Color = () => {
+  return <div className="flex flex-col items-center gap-spacing-8">
+      <Status color={COLOR.ERROR} text="Error" />
+      <Status color={COLOR.WARNING} text="Warning" />
+      <Status color={COLOR.OK} text="Ok" />
+      <Status color={COLOR.STAND_BY} text="Stand by" />
+      <Status color={COLOR.EXTRA} text="Extra" />
+      <Status color={COLOR.INACTIVE} text="Inactive" />
+      <Status color={COLOR.IN_PROGRESS} text="In progress" />
+    </div>;
+};
+```
+
+
+# Stepper
+
+The Stepper component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Stepper } from "@appier/aiqua-design-system/Stepper";
+
+<Stepper />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `steps` | `StepProps[]` |
+
+## Examples
+
+### Icon Only
+
+```tsx
+export const IconOnly = {
+  render: Template,
+  args: {
+    steps: [{
+      stepStatus: StepStatus.SUCCESS
+    }, {
+      stepStatus: StepStatus.WARNING
+    }, {
+      stepStatus: StepStatus.ERROR
+    }, {
+      stepStatus: StepStatus.CURRENT
+    }, {
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+### With Status
+
+```tsx
+export const WithStatus = {
+  render: Template,
+  args: {
+    steps: [{
+      title: 'Label 1',
+      stepStatus: StepStatus.SUCCESS,
+      onClick: () => {
+        console.log('clicked');
+      }
+    }, {
+      title: 'Label 2',
+      stepStatus: StepStatus.WARNING
+    }, {
+      title: 'Label 3',
+      stepStatus: StepStatus.ERROR
+    }, {
+      title: 'Label 4',
+      stepStatus: StepStatus.CURRENT
+    }, {
+      title: 'Label 5',
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+### With Tooltip
+
+```tsx
+export const WithTooltip = {
+  render: Template,
+  args: {
+    steps: [{
+      title: 'Label 1',
+      stepStatus: StepStatus.SUCCESS,
+      onClick: () => {
+        console.log('clicked');
+      }
+    }, {
+      title: 'Label 2',
+      stepStatus: StepStatus.SUCCESS,
+      tooltip: 'Completed'
+    }, {
+      title: 'Label 3',
+      stepStatus: StepStatus.ERROR,
+      tooltip: 'Fix the error to continue'
+    }, {
+      title: 'Label 4',
+      stepStatus: StepStatus.CURRENT
+    }, {
+      title: 'Label 5',
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+### With Long Name
+
+```tsx
+export const WithLongName = {
+  render: Template,
+  args: {
+    steps: [{
+      title: 'Label 1',
+      stepStatus: StepStatus.SUCCESS,
+      onClick: () => {
+        console.log('clicked');
+      }
+    }, {
+      title: 'Label 2 has long long long long names',
+      stepStatus: StepStatus.SUCCESS,
+      tooltip: 'Completed'
+    }, {
+      title: 'Label 3',
+      stepStatus: StepStatus.ERROR,
+      tooltip: 'Fix the error to continue'
+    }, {
+      title: 'A long long long long long long long long long long long Step 4',
+      stepStatus: StepStatus.CURRENT
+    }, {
+      title: 'Label 5',
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+### With Many Long Name
+
+```tsx
+export const WithManyLongName = {
+  render: Template,
+  args: {
+    steps: [{
+      title: 'Label 1',
+      stepStatus: StepStatus.SUCCESS,
+      onClick: () => {
+        console.log('clicked');
+      }
+    }, {
+      title: 'Label 2 has long long long long names',
+      stepStatus: StepStatus.WARNING,
+      tooltip: 'Completed'
+    }, {
+      title: 'Label 2 has super super suppppper long long long names',
+      stepStatus: StepStatus.ERROR,
+      tooltip: 'Fix the error to continue'
+    }, {
+      title: 'A long long long long long long long long long long long Step 4',
+      stepStatus: StepStatus.CURRENT
+    }, {
+      title: 'Label 5',
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+### With Custom Icon
+
+```tsx
+export const WithCustomIcon = {
+  render: Template,
+  args: {
+    steps: [{
+      title: 'Label 1',
+      stepStatus: StepStatus.SUCCESS,
+      onClick: () => {
+        console.log('clicked');
+      }
+    }, {
+      title: 'Label 2',
+      stepStatus: StepStatus.WARNING,
+      tooltip: 'Completed',
+      icon: <LockIcon size={22} />
+    }, {
+      title: 'Label 2 has super super suppppper long long long names',
+      stepStatus: StepStatus.ERROR,
+      tooltip: 'Fix the error to continue'
+    }, {
+      title: 'A long long long long long long long long long long long Step 4',
+      stepStatus: StepStatus.CURRENT,
+      icon: <SuggestionInfoIcon size={22} />
+    }, {
+      title: 'Label 5',
+      stepStatus: StepStatus.PENDING
+    }]
+  }
+};
+```
+
+
+# StepperInput
+
+The StepperInput component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { StepperInput } from "@appier/aiqua-design-system/StepperInput";
+
+<StepperInput />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [inputValue, setInputValue] = React.useState('0');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <StepperInput label="Step (Uncontrolled)" defaultValue="0" />
+      <StepperInput isFullWidth label="Step (Controlled)" value={inputValue} onChange={setInputValue} />
+    </div>;
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+### With Decimal Places
+
+```tsx
+export const WithDecimalPlaces = {
+  args: {
+    decimalPlaces: 2
+  }
+};
+```
+
+### Min And Max
+
+```tsx
+export const MinAndMax = {
+  args: {
+    min: 0,
+    max: 99
+  }
+};
+```
+
+
+# styles
+
+The styles component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { styles } from "@aiqua/components/styles";
+
+<styles />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Switch
+
+The Switch component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const NoTitle = {
+  render: DirectionTemplate
+};
+```
+
+## Usage
+
+```tsx
+import { Switch } from "@appier/aiqua-design-system/Switch";
+
+<Switch />
+```
+
+## Examples
+
+### Top Title
+
+```tsx
+export const TopTitle = {
+  render: DirectionTemplate,
+  args: {
+    titlePosition: 'top',
+    title: 'Title'
+  }
+};
+```
+
+### Left Title
+
+```tsx
+export const LeftTitle = {
+  render: DirectionTemplate,
+  args: {
+    titlePosition: 'left',
+    title: 'Title'
+  }
+};
+```
+
+
+# Table
+
+The Table component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Table } from "@aiqua/components/Table";
+
+<Table />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Tabs
+
+The Tabs component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = () => {
+  return <Tabs defaultValue={'template-1'}>
+      <TabList>
+        <Tab value="template-1" label="template-1" />
+        <Tab value="template-2" label="template-2" />
+        <Tab value="template-3" label="template-3" />
+        <Tab value="template-4" label="template-4" />
+      </TabList>
+      <TabPanel value="template-1">template-1</TabPanel>
+      <TabPanel value="template-2">template-2</TabPanel>
+      <TabPanel value="template-3">template-3</TabPanel>
+      <TabPanel value="template-4">template-4</TabPanel>
+    </Tabs>;
+};
+```
+
+## Usage
+
+```tsx
+import { Tabs } from "@appier/aiqua-design-system/Tabs";
+
+<Tabs />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [currentTab, setCurrentTab] = useState('tab-2');
+  return <div style={{
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px'
+  }}>
+      <Title>Tabs with Controlled</Title>
+      <Tabs value={currentTab} onChange={setCurrentTab}>
+        <TabList>
+          <Tab value="tab-1" label="Tab 1" />
+          <Tab value="tab-2" label="Tab 2" />
+          <Tab value="tab-3" label="Tab 3" />
+        </TabList>
+        <TabPanel value="tab-1">Tab 1</TabPanel>
+        <TabPanel value="tab-2">Tab 2</TabPanel>
+        <TabPanel value="tab-3">Tab 3</TabPanel>
+      </Tabs>
+      <Title>Tabs with Uncontrolled</Title>
+      <Tabs defaultValue="tab-1">
+        <TabList>
+          <Tab value="tab-1" label="Tab 1" />
+          <Tab value="tab-2" label="Tab 2" />
+          <Tab value="tab-3" label="Tab 3" />
+        </TabList>
+        <TabPanel value="tab-1">Tab 1</TabPanel>
+        <TabPanel value="tab-2">Tab 2</TabPanel>
+        <TabPanel value="tab-3">Tab 3</TabPanel>
+      </Tabs>
+    </div>;
+};
+```
+
+### Default Tab
+
+```tsx
+export const DefaultTab = {
+  render: Template
+};
+```
+
+### Contained Tab
+
+```tsx
+export const ContainedTab = {
+  render: Template,
+  args: {
+    variant: 'contained'
+  }
+};
+```
+
+### Scrollable
+
+```tsx
+export const Scrollable = () => <div style={{
+  width: '480px',
+  margin: 'auto'
+}}>
+    <Tabs scrollable variant="contained">
+      <TabList>
+        <Tab value="tab-1" label="Tab 1" />
+        <Tab value="tab-2" label="Tab 2" />
+        <Tab value="tab-3" label="Tab 3" />
+        <Tab value="tab-4" label="Tab 4" />
+        <Tab value="tab-5" label="Tab 5" />
+        <Tab value="tab-6" label="Tab 6" />
+        <Tab value="tab-7" label="Tab 7" />
+        <Tab value="tab-8" label="Tab 8" />
+        <Tab value="tab-9" label="Tab 9" />
+        <Tab value="tab-10" label="Tab 10" />
+        <Tab value="tab-11" label="Tab 11" />
+        <Tab value="tab-12" label="Tab 12" />
+      </TabList>
+    </Tabs>
+  </div>;
+```
+
+### Label
+
+```tsx
+export const Label = () => <div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4px'
+}}>
+    <Tabs defaultValue="tab-1">
+      <TabList>
+        <Tab value="tab-1" label="Tab 1" />
+        <Tab value="tab-2" label="Tab 2" />
+      </TabList>
+    </Tabs>
+    <Tabs variant="contained" defaultValue="tab-1">
+      <TabList>
+        <Tab value="tab-1" label="Tab 1" />
+        <Tab value="tab-2" label="Tab 2" />
+      </TabList>
+    </Tabs>
+  </div>;
+```
+
+### With Badge
+
+```tsx
+export const WithBadge = {
+  render: args => {
+    return <Tabs defaultValue="tab-1" variant="contained">
+        <TabList>
+          <Tab value="tab-1" label="Tab 1" badgeProps={{
+          content: 0,
+          variant: 'number'
+        }} />
+          <Tab value="tab-2" label="Tab 2" badgeProps={{
+          content: 20,
+          variant: 'number',
+          color: 'primary'
+        }} />
+          <Tab value="tab-3" label="Tab 3" badgeProps={{
+          content: 'info',
+          variant: 'text',
+          color: 'info'
+        }} />
+        </TabList>
+      </Tabs>;
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  render: args => {
+    return <Tabs defaultValue="tab-1">
+        <TabList>
+          <Tab value="tab-1" label="Tab 1" badgeProps={{
+          content: 0,
+          variant: 'number'
+        }} error />
+          <Tab value="tab-2" label="Tab 2" badgeProps={{
+          content: 20,
+          variant: 'number',
+          color: 'primary'
+        }} error />
+          <Tab value="tab-3" label="Tab 3" badgeProps={{
+          content: 'info',
+          variant: 'text',
+          color: 'info'
+        }} error />
+        </TabList>
+      </Tabs>;
+  }
+};
+```
+
+### Warning
+
+```tsx
+export const Warning = {
+  render: args => {
+    return <Tabs defaultValue="tab-1">
+        <TabList>
+          <Tab value="tab-1" label="Tab 1" badgeProps={{
+          content: 19,
+          variant: 'number'
+        }} withWarning />
+          <Tab value="tab-2" label="Tab 2" badgeProps={{
+          content: 20,
+          variant: 'number',
+          color: 'primary'
+        }} withWarning error />
+          <Tab value="tab-3" label="Tab 3" badgeProps={{
+          content: 'info',
+          variant: 'text',
+          color: 'info'
+        }} withWarning />
+        </TabList>
+      </Tabs>;
+  }
+};
+```
+
+### With Icon
+
+```tsx
+export const WithIcon = {
+  render: args => {
+    return <Tabs defaultValue="tab-1">
+        <TabList>
+          <Tab tabIcon={<DSIcon is="questionSolid20" />} value="tab-1" label="Tab 1" badgeProps={{
+          content: 19,
+          variant: 'number'
+        }} withWarning />
+          <Tab tabIcon={<DSIcon is="questionSolid20" />} value="tab-2" label="Tab 2" badgeProps={{
+          content: 20,
+          variant: 'number',
+          color: 'primary'
+        }} withWarning error />
+          <Tab tabIcon={<DSIcon is="questionSolid20" />} value="tab-3" label="Tab 3" badgeProps={{
+          content: 'info',
+          variant: 'text',
+          color: 'info'
+        }} withWarning />
+        </TabList>
+      </Tabs>;
+  }
+};
+```
+
+
+# Tag
+
+The Tag component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const NonClickableTag = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Tag } from "@appier/aiqua-design-system/Tag";
+
+<Tag />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `clickable` | `boolean` |
+| `editable` | `boolean` |
+| `removable` | `boolean` |
+| `error` | `boolean` |
+| `tooltipContent` | `string \| React.ReactNode` |
+| `disabled` | `boolean` |
+| `onClose` | `(e: React.MouseEvent<HTMLOrSVGElement>) => void` |
+| `onClick` | `(e: React.MouseEvent<TagElement>) => void` |
+
+## Examples
+
+### Removable With Non Clickable Tag
+
+```tsx
+export const RemovableWithNonClickableTag = {
+  render: Template,
+  args: {
+    removable: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['clickable', 'removable']
+    }
+  }
+};
+```
+
+### Clickable Tag
+
+```tsx
+export const ClickableTag = {
+  render: Template,
+  args: {
+    clickable: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['removable', 'clickable']
+    }
+  }
+};
+```
+
+### Clickable With Removable Tag
+
+```tsx
+export const ClickableWithRemovableTag = {
+  render: Template,
+  args: {
+    ...RemovableWithNonClickableTag.args,
+    ...ClickableTag.args
+  },
+  parameters: {
+    controls: {
+      exclude: ['removable', 'clickable']
+    }
+  }
+};
+```
+
+
+# TagInput
+
+The TagInput component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { TagInput } from "@appier/aiqua-design-system/TagInput";
+
+<TagInput />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [currTags, setCurrTags] = React.useState<string[]>(['Tag01', 'Tag02']);
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <TagInput label="Tags (Uncontrolled)" width={300} defaultValue={['Tag01', 'Tag02']} />
+      <TagInput label="Tags (Controlled)" value={currTags} onChange={setCurrTags} width={300} />
+    </div>;
+};
+```
+
+### Type Of Value
+
+```tsx
+export const TypeOfValue = () => {
+  const [tags, setTags] = React.useState<string[]>(['Tag01', 'Tag02']);
+  const [tagInfos, seTagInfos] = React.useState<TagInfo[]>([{
+    value: 'Error Tag',
+    key: 'tag01',
+    error: true
+  }, {
+    value: 'Tag02',
+    key: 'tag02'
+  }]);
+  return <div className="flex gap-spacing-8">
+      <TagInput label="With type: string[]" value={tags} onChange={setTags} width={300} />
+      <TagInput label="With type: TagInfo[]" value={tagInfos} onChange={tags => {
+      seTagInfos(tags.map(tag => ({
+        value: tag,
+        key: tag,
+        error: tag.toLowerCase().startsWith('error')
+      })));
+    }} error={tagInfos.some(({
+      error
+    }) => error)} width={300} />
+    </div>;
+};
+```
+
+### With Separator
+
+```tsx
+export const WithSeparator = {
+  args: {
+    separator: 'or'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Editable
+
+```tsx
+export const Editable = () => {
+  const [currTags, setCurrTags] = React.useState<TagInfo[]>([{
+    value: 'Label',
+    key: 'tag01',
+    error: 'duplicate label',
+    editable: true
+  }, {
+    value: 'Label',
+    key: 'tag02',
+    error: 'duplicate label',
+    editable: true
+  }, {
+    value: 'Label2',
+    key: 'tag03',
+    editable: true
+  }]);
+  const checkDuplicate = (tagValue: string, tagIdx: number, tags: string[]) => {
+    const isDuplicated = tags.filter(tag => tag === tagValue).length > 1;
+    if (isDuplicated) {
+      return 'duplicate label';
+    }
+  };
+  const handleChange = (newTags: string[]) => {
+    setCurrTags(newTags.map((tag, idx) => ({
+      value: tag,
+      key: tag,
+      editable: true,
+      error: checkDuplicate(tag, idx, newTags)
+    })));
+  };
+  return <TagInput value={currTags} onChange={handleChange} />;
+};
+```
+
+### Error
+
+```tsx
+export const Error = () => {
+  const [currTags, setCurrTags] = React.useState<string[]>(['Label', 'Label', 'Label02']);
+  const handleChange = (newTags: string[]) => {
+    setCurrTags(newTags);
+  };
+  const onTagsValueValidate = (tag: string, tagIdx: number, tags: string[]) => {
+    const isDuplicated = tags.filter(tagValue => tagValue === tag).length > 1;
+    if (isDuplicated) {
+      return 'duplicate label';
+    }
+  };
+  return <TagInput onTagsValueValidate={onTagsValueValidate} value={currTags} onChange={handleChange} />;
+};
+```
+
+### Height
+
+```tsx
+export const Height = () => {
+  return <div style={{
+    display: 'flex',
+    gap: '8px',
+    flexDirection: 'column'
+  }}>
+      <TagInput defaultValue={['Label', 'Label']} height={32} />
+      <TagInput defaultValue={['Label', 'Label', 'Label', 'Label']} height={60} />
+      <TagInput defaultValue={['Label', 'Label', 'Label', 'Label', 'Label', 'Label']} height={88} />
+      <TagInput defaultValue={['Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label']} height={116} />
+      <TagInput defaultValue={['Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label']} height={148} />
+    </div>;
+};
+```
+
+### Add Tag With Menu
+
+```tsx
+export const AddTagWithMenu = () => {
+  const [currTags, setCurrTags] = React.useState<string[]>(['Tag01', 'Tag02']);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [inputValue, setInputValue] = React.useState('');
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickMenuItem = (e: MouseEvent<HTMLLIElement>) => {
+    const newTags = [...currTags, e.currentTarget.dataset.value || ''];
+    setCurrTags(newTags);
+  };
+  const searchedMenuItems = useMenuSearch({
+    menuItems: ['Tag03', 'Tag04', 'Tag05'].filter(item => !currTags.includes(item)).map(name => <MenuItem value={name} onClick={handleClickMenuItem} keywords={[name]} key={name}>
+          {name}
+        </MenuItem>),
+    searchTerm: inputValue
+  });
+  return <>
+      <TagInput value={currTags} onChange={setCurrTags} onInputValueChange={setInputValue} width={300} onClick={handleClick} avoidFocusLossArea={['.appier-ds-Menu']} />
+      <Menu open={open} anchorEl={anchorEl} onClose={handleClose} autoFocus={false}>
+        <MenuItemCategory title="Category">
+          {searchedMenuItems}
+        </MenuItemCategory>
+      </Menu>
+    </>;
+};
+```
+
+### Virtualized With Thousands Tags
+
+```tsx
+export const VirtualizedWithThousandsTags = () => {
+  const generateRandomString = () => {
+    const length = Math.floor(Math.random() * (20 - 10 + 1)) + 10; // Random length between 10 and 20
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters[randomIndex];
+    }
+    return result;
+  };
+
+  // Generate 10,000 tags
+  const generateTags = () => {
+    const tags: TagInfo[] = [];
+    for (let i = 1; i <= 10_000; i++) {
+      tags.push({
+        value: generateRandomString(),
+        key: `tag-${i}`,
+        editable: true
+      });
+    }
+    return tags;
+  };
+  const [tags, setTags] = React.useState<TagInfo[]>(generateTags());
+  const handleChange = (newTags: string[]) => {
+    setTags(newTags.map((tag, idx) => ({
+      value: tag,
+      key: tag,
+      editable: true
+    })));
+  };
+  return <div style={{
+    width: '100%',
+    maxWidth: '600px'
+  }}>
+      <h3>Virtualized TagInput with 10,000 tags</h3>
+      <p style={{
+      marginBottom: '1rem'
+    }}>
+        This input contains 10,000 tags but maintains smooth performance through
+        virtualization. Try scrolling through the tags!
+      </p>
+      <TagInput value={tags} onChange={handleChange} isFullWidth virtualizedConfig={{
+      enable: true
+    }} />
+      <div style={{
+      marginTop: '1rem'
+    }}>
+        <strong>Total tags:</strong> {tags.length}
+      </div>
+    </div>;
+};
+```
+
+
+# TagSelect
+
+The TagSelect component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Solo = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { TagSelect } from "@appier/aiqua-design-system/TagSelect";
+
+<TagSelect />
+```
+
+## Examples
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    label: 'label'
+  },
+  parameters: {
+    controls: {
+      exclude: ['hint']
+    }
+  }
+};
+```
+
+### With Hint
+
+```tsx
+export const WithHint = {
+  render: Template,
+  args: {
+    hint: 'hint'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args
+  }
+};
+```
+
+### With Separator
+
+```tsx
+export const WithSeparator = {
+  render: Template,
+  args: {
+    separator: 'or'
+  }
+};
+```
+
+### With Single Tag Error
+
+```tsx
+export const WithSingleTagError = {
+  render: args => {
+    const [currentSelects, setCurrentSelects] = useState<string[]>(['item-01', 'item-02', 'item-02-long-long-long-long']);
+    const handleChange = (newValue: string[]) => {
+      setCurrentSelects(newValue);
+    };
+    return <TagSelect {...args} onChange={handleChange} value={currentSelects} onTagsValueValidate={onTagsValueValidate}>
+        <MenuItem value="item-01">item 01</MenuItem>
+        <MenuItem value="item-02-long-long-long-long">
+          item 02 long long long long
+        </MenuItem>
+        <MenuItem value="item-02">item 02</MenuItem>
+        <MenuItem value="item-03">item 03</MenuItem>
+      </TagSelect>;
+  }
+};
+```
+
+### With Custom Menu
+
+```tsx
+export const WithCustomMenu = () => {
+  const [currentSelects, setCurrentSelects] = useState<string[]>(['item-01', 'item-02']);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  return <>
+      <TagSelect onChange={setCurrentSelects} value={currentSelects} isMenuOpen={isDialogOpen} onClick={() => {
+      setDialogOpen(true);
+    }} />
+      <Dialog size="400" height={200} backgroundColor="quaternary" header="Custom selector" open={isDialogOpen} content={<CheckboxGroup direction="vertical" value={currentSelects} onChange={setCurrentSelects}>
+            <Checkbox label="Item 01" value="item-01" />
+            <Checkbox label="Item 02" value="item-02" />
+            <Checkbox label="Item 03" value="item-03" />
+          </CheckboxGroup>} footer={[<Button key="1" variant="secondary" onClick={() => {
+      setDialogOpen(false);
+    }}>
+            Done
+          </Button>]} />
+    </>;
+};
+```
+
+### Render Display Content
+
+```tsx
+export const RenderDisplayContent = args => {
+  const [currentSelects, setCurrentSelects] = useState<string[]>(['item-01']);
+  const renderDisplayContent: TagSelectProps['renderDisplayContent'] = value => {
+    switch (value) {
+      case 'today':
+        {
+          return format(new Date(), 'PP');
+        }
+      case 'yesterday':
+        {
+          return format(startOfYesterday(), 'PP');
+        }
+      default:
+        {
+          return value;
+        }
+    }
+  };
+  return <TagSelect {...args} value={currentSelects} onChange={setCurrentSelects} renderDisplayContent={renderDisplayContent}>
+      <MenuItem value="item-01">item 01</MenuItem>
+      <MenuItem value="today">Today</MenuItem>
+      <MenuItem value="yesterday">Yesterday</MenuItem>
+    </TagSelect>;
+};
+```
+
+
+# Text
+
+The Text component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Text } from "@aiqua/components/Text";
+
+<Text />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Textarea
+
+The Textarea component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Textarea } from "@appier/aiqua-design-system/Textarea";
+
+<Textarea />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [textareaValue, setTextareaValue] = React.useState('Type your message');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <Textarea label="Message (Uncontrolled)" defaultValue="Type your message" width={300} />
+      <Textarea label="Message (Controlled)" value={textareaValue} onChange={setTextareaValue} width={300} />
+    </div>;
+};
+```
+
+### With Content Actions
+
+```tsx
+export const WithContentActions = {
+  render: args => {
+    return <Textarea {...args} contentActions={<div style={{
+      display: 'flex',
+      gap: '8px',
+      alignItems: 'center'
+    }}>
+            <span>3/20</span>
+            <EmojiIcon size={16} />
+            <Button size="small" variant="secondary" startIcon={<DSIcon is="insightOutlined20" />}>
+              Try example
+            </Button>
+          </div>} />;
+  }
+};
+```
+
+### One Line Layout
+
+```tsx
+export const OneLineLayout = () => {
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <Textarea placeholder="default layout" contentActions={<div style={{
+      display: 'flex',
+      gap: '8px'
+    }}>
+            <span>3/20</span>
+            <EmojiIcon size={16} />
+          </div>} width={300} />
+      <Textarea oneLineLayout placeholder="one line layout" contentActions={<div style={{
+      display: 'flex',
+      gap: '8px'
+    }}>
+            <span>3/20</span>
+            <EmojiIcon size={16} />
+          </div>} width={300} />
+    </div>;
+};
+```
+
+### Min And Max Rows
+
+```tsx
+export const MinAndMaxRows = {
+  args: {
+    minRows: 2,
+    maxRows: 4
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+### Clearable
+
+```tsx
+export const Clearable = {
+  args: {
+    clearable: true
+  }
+};
+```
+
+
+# TextareaWithReplaceRule
+
+The TextareaWithReplaceRule component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: args => {
+    const [value, setValue] = React.useState(DEFAULT_VALUE);
+    const ref = React.useRef<RichTextareaRef>(null);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl || args.open);
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const handleMenuOpen = e => {
+      e.stopPropagation();
+      setAnchorEl(e.currentTarget);
+    };
+    const handleChange = newValue => {
+      setValue(newValue);
+    };
+    const handleMenuClick = e => {
+      const content = e.currentTarget.dataset.content;
+      ref.current?.insertText(content);
+    };
+    return <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '8px',
+      alignItems: 'start'
+    }}>
+        {<TextareaWithReplaceRule {...args} ref={ref} replaceRules={replaceRules} width={300} maxRows={4} onChange={handleChange} defaultValue={value} clearable avoidFocusLossArea={['.appier-ds-Menu']} disableEnforceFocus contentActions={<div style={{
+        display: 'flex',
+        gap: '8px'
+      }} className="123">
+                <span>3/20</span>
+                <EmojiIcon size={16} onClick={handleMenuOpen} />
+              </div>} />}
+        {<Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
+            <MenuItem data-content="{{123}}" onClick={handleMenuClick}>{`{{123}}`}</MenuItem>
+            <MenuItem data-content="{{456}}" onClick={handleMenuClick}>{`{{456}}`}</MenuItem>
+            <MenuItem data-content="{{789}}" onClick={handleMenuClick}>{`{{789}}`}</MenuItem>
+            <MenuItem data-content="{{3345678}}" onClick={handleMenuClick}>{`{{3345678}}`}</MenuItem>
+          </Menu>}
+      </div>;
+  }
+};
+```
+
+## Usage
+
+```tsx
+import { TextareaWithReplaceRule } from "@appier/aiqua-design-system/TextareaWithReplaceRule";
+
+<TextareaWithReplaceRule />
+```
+
+
+# TextButton
+
+The TextButton component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = Template.bind({});
+```
+
+## Usage
+
+```tsx
+import { TextButton } from "@appier/aiqua-design-system/TextButton";
+
+<TextButton />
+```
+
+## Examples
+
+### Variant
+
+```tsx
+export const Variant = () => {
+  return <Layout>
+      <TextButton>Label</TextButton>
+      <TextButton variant="secondary">Label</TextButton>
+    </Layout>;
+};
+```
+
+### With Icon
+
+```tsx
+export const WithIcon = () => {
+  return <Layout>
+      <TextButton startIcon={<DSIcon is="addOutlined20" />}>Label</TextButton>
+      <TextButton endIcon={<DSIcon is="directionalTriangleArrowDownSolid20" />}>
+        Label
+      </TextButton>
+      <TextButton startIcon={<DSIcon is="addOutlined20" />} endIcon={<DSIcon is="directionalTriangleArrowDownSolid20" />}>
+        Label
+      </TextButton>
+    </Layout>;
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = () => {
+  return <Layout>
+      <TextButton disabled>Label</TextButton>
+      <TextButton disabled variant="secondary">
+        Label
+      </TextButton>
+    </Layout>;
+};
+```
+
+
+# TextInput
+
+The TextInput component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { TextInput } from "@appier/aiqua-design-system/TextInput";
+
+<TextInput />
+```
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [inputValue, setInputValue] = React.useState('Placeholder');
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <TextInput label="Title (Uncontrolled)" defaultValue="Placeholder" />
+      <TextInput label="Title (Controlled)" value={inputValue} onChange={setInputValue} />
+    </div>;
+};
+```
+
+### With Content Actions
+
+```tsx
+export const WithContentActions = {
+  render: args => {
+    return <TextInput {...args} contentActions={<div style={{
+      display: 'flex',
+      gap: '8px'
+    }}>
+            <span>3/20</span>
+            <EmojiIcon size={16} />
+          </div>} />;
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'Hint',
+    label: 'Label'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+### Is Summary
+
+```tsx
+export const IsSummary = {
+  args: {
+    isSummary: true
+  }
+};
+```
+
+### With Prefix Icon
+
+```tsx
+export const WithPrefixIcon = {
+  args: {
+    prefixIcon: <DSIcon is="sizeHeightOutlined20" color={color.light.semantic.gray} />
+  }
+};
+```
+
+### With Suffix Icon
+
+```tsx
+export const WithSuffixIcon = {
+  args: {
+    suffixIcon: <DSIcon is="sizeHeightOutlined20" color={color.light.semantic.gray} />
+  }
+};
+```
+
+### With Both Prefix And Suffix Icon
+
+```tsx
+export const WithBothPrefixAndSuffixIcon = {
+  args: {
+    prefixIcon: <DSIcon is="sizeHeightOutlined20" color={color.light.semantic.gray} />,
+    suffixIcon: <DSIcon is="sizeHeightOutlined20" color={color.light.semantic.gray} />
+  }
+};
+```
+
+### Padding Size
+
+```tsx
+export const PaddingSize = {
+  render: args => {
+    return <div style={{
+      display: 'flex',
+      gap: '8px'
+    }}>
+        <TextInput {...args} paddingSize="normal" />
+        <TextInput {...args} paddingSize="small" />
+      </div>;
+  }
+};
+```
+
+
+# TextSelect
+
+The TextSelect component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { TextSelect } from "@appier/aiqua-design-system/TextSelect";
+
+<TextSelect />
+```
+
+## Examples
+
+### Controlled With Value
+
+```tsx
+export const ControlledWithValue = (args: {
+  size: 'small' | 'default' | undefined;
+}) => {
+  const [selectValue, setSelectValue] = useState<string>('2');
+  const handleChange = (currString: string) => {
+    setSelectValue(currString);
+  };
+  return <div style={{
+    display: 'flex',
+    gap: '8px'
+  }}>
+      <TextSelect size={args.size} value={selectValue} onChange={handleChange}>
+        <MenuItem value="1">Controlled options 1</MenuItem>
+        <MenuItem value="2">Controlled options 2</MenuItem>
+      </TextSelect>
+
+      <TextSelect size={args.size} defaultValue="1">
+        <MenuItem value="1">UnControlled options 1</MenuItem>
+        <MenuItem value="2">UnControlled options 2</MenuItem>
+      </TextSelect>
+    </div>;
+};
+```
+
+### Controlled With Open
+
+```tsx
+export const ControlledWithOpen = (args: {
+  size: 'small' | 'default' | undefined;
+}) => {
+  const [open, setOpen] = useState(false);
+  const handleOpenChange = (isOpen: boolean, e?: React.MouseEvent<HTMLElement>) => {
+    if (e && !e.currentTarget) {
+      return;
+    }
+    if (e?.currentTarget.getAttribute('role') !== 'menuitem') {
+      setOpen(isOpen);
+    }
+  };
+  return <TextSelect size={args.size} defaultValue="1" open={open} onOpenChange={handleOpenChange}>
+      <SingleSelectionMenuItem value="1">Radio 1</SingleSelectionMenuItem>
+      <SingleSelectionMenuItem value="2">Radio 2</SingleSelectionMenuItem>
+    </TextSelect>;
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  args: {
+    hint: 'hint',
+    label: 'label'
+  }
+};
+```
+
+### With Icon
+
+```tsx
+export const WithIcon = {
+  args: {
+    icon: <DSIcon is="wineOutlined20" />
+  }
+};
+```
+
+### With Badge
+
+```tsx
+export const WithBadge = {
+  args: {
+    badgeProps: {
+      variant: 'text',
+      content: 'Label',
+      color: 'error'
+    },
+    defaultValue: ''
+  }
+};
+```
+
+### Render Display Content
+
+```tsx
+export const RenderDisplayContent = (args: {
+  size: 'small' | 'default' | undefined;
+}) => {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const handleOpenChange = (isOpen: boolean, e?: React.MouseEvent<HTMLElement>) => {
+    if (e && !e.currentTarget) {
+      return;
+    }
+    if (e?.currentTarget.getAttribute('role') !== 'menuitem') {
+      setOpen(isOpen);
+    }
+  };
+  const renderDisplayContent = (value: any) => {
+    return value === 'datePicker' ? formatDisplayDate(date) : 'custom display content';
+  };
+  return <TextSelect size={args.size} renderDisplayContent={renderDisplayContent} open={open} onOpenChange={handleOpenChange} defaultValue="datePicker">
+      <SingleSelectionMenuItem value="default">
+        Selected by default
+      </SingleSelectionMenuItem>
+      <SingleSelectionMenuItem value="datePicker">
+        <DatePicker placeholder="Select a date" value={date} onChange={setDate} />
+      </SingleSelectionMenuItem>
+    </TextSelect>;
+};
+```
+
+### Multiple
+
+```tsx
+export const Multiple = {
+  args: {
+    multiple: true,
+    defaultValue: ['2', '3']
+  }
+};
+```
+
+### With Hierarchical Menu
+
+```tsx
+export const WithHierarchicalMenu = {
+  args: {
+    children: [<MenuItem submenu={{
+      items: [<MenuItemCategory title="Category 1">
+              <MenuItem value={'default'} keywords={['default']}>
+                Selected by default
+              </MenuItem>
+              <MenuIconItem value={'1-2'} keywords={['Item 1-2']} icon={<DSIcon is="infoOutlined20" />}>
+                Item 1-2
+              </MenuIconItem>
+            </MenuItemCategory>, <MenuItemCategory title="Category 2">
+              <MenuItem value={'Category 2 item 1'} keywords={['Category 2 item 1']}>
+                Category 2 item 1
+              </MenuItem>
+              <MenuIconItem value={'Category 2 item 2'} keywords={['Category 2 item 2']} icon={<DSIcon is="infoOutlined20" />}>
+                Category 2 item 2
+              </MenuIconItem>
+            </MenuItemCategory>]
+    }} key={1}>
+        Item 1
+      </MenuItem>, <MenuItem submenu={{
+      items: [<MenuItem key={'2-1'} value={'2-1'}>
+              Item 2-1
+            </MenuItem>, <MenuItem key={'2-2'} value={'2-2'}>
+              Item 2-2
+            </MenuItem>]
+    }} key={2}>
+        Item 2
+      </MenuItem>, <MenuItem submenu={{
+      items: [<MenuItem submenu={{
+        items: [<MenuItem key={'3-1-1'} value={'3-1-1'}>
+                    Item 3-1-1
+                  </MenuItem>, <MenuItem key={'3-1-2'} value={'3-1-2'}>
+                    Item 3-1-2
+                  </MenuItem>],
+        hint: `(1) will be the latest event, (2) will be the 2nd latest event...etc`
+      }} key={'3-1'}>
+              Item 3-1
+            </MenuItem>, <MenuItem key={'3-2'} value={'3-2'}>
+              Item 3-2
+            </MenuItem>]
+    }} key={3}>
+        Item 3
+      </MenuItem>]
+  }
+};
+```
+
+### With Drill Down Menu
+
+```tsx
+export const WithDrillDownMenu = {
+  args: {
+    ...WithHierarchicalMenu.args,
+    isDrillDown: true,
+    drillDownTitle: 'Drill Down Menu'
+  }
+};
+```
+
+### With Virtualized Menu
+
+```tsx
+export const WithVirtualizedMenu = {
+  args: {
+    children: Array.from({
+      length: 100
+    }, (_, i) => ({
+      id: `item${i}`,
+      name: `Item ${i}`
+    })).map(menu => <MenuItem key={menu.id} keywords={[menu.name]} value={menu.id}>
+        {menu.name}
+      </MenuItem>),
+    search: true,
+    virtualized: true,
+    defaultValue: [],
+    menuProps: {
+      zIndex: 1555
+    }
+  }
+};
+```
+
+### With Virtualized Multiple Menu
+
+```tsx
+export const WithVirtualizedMultipleMenu = {
+  args: {
+    children: WithVirtualizedMenu.args.children,
+    search: true,
+    multiple: true,
+    virtualized: true,
+    defaultValue: []
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+};
+```
+
+### Error
+
+```tsx
+export const Error = {
+  args: {
+    error: 'Error text'
+  }
+};
+```
+
+### Loading
+
+```tsx
+export const Loading = {
+  args: {
+    loading: true
+  }
+};
+```
+
+### Search
+
+```tsx
+export const Search = {
+  args: {
+    search: true
+  }
+};
+```
+
+### Is Summary
+
+```tsx
+export const IsSummary = {
+  args: {
+    isSummary: true,
+    badgeProps: {
+      variant: 'text',
+      content: 'Label',
+      color: 'error'
+    },
+    icon: <DSIcon is="wineOutlined20" />
+  }
+};
+```
+
+### With Menu Category
+
+```tsx
+export const WithMenuCategory = {
+  args: {
+    children: [<MenuItemCategory title="Category 1">
+        <MenuItem value={'default'} keywords={['default']}>
+          Selected by default
+        </MenuItem>
+        <MenuIconItem value={'1-2'} keywords={['Item 1-2']} icon={<DSIcon is="infoOutlined20" />}>
+          Item 1-2
+        </MenuIconItem>
+      </MenuItemCategory>, <MenuItemCategory title="Category 2">
+        <MenuItem value={'Category 2 item 1'} keywords={['Category 2 item 1']}>
+          Category 2 item 1
+        </MenuItem>
+        <MenuIconItem value={'Category 2 item 2'} keywords={['Category 2 item 2']} icon={<DSIcon is="infoOutlined20" />}>
+          Category 2 item 2
+        </MenuIconItem>
+      </MenuItemCategory>]
+  }
+};
+```
+
+### Is Small
+
+```tsx
+export const IsSmall = {
+  args: {
+    size: 'small'
+  }
+};
+```
+
+
+# TimePicker
+
+The TimePicker component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Simple = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { TimePicker } from "@appier/aiqua-design-system/TimePicker";
+
+<TimePicker />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `onBlur` | `(v?: string) => void` |
+| `minHour` | `number` |
+| `maxHour` | `number` |
+| `hourStep` | `number` |
+| `minuteStep` | `number` |
+| `allowInput` | `boolean` |
+
+## Examples
+
+### With Label
+
+```tsx
+export const WithLabel = {
+  render: Template,
+  args: {
+    label: 'label'
+  },
+  parameters: {
+    controls: {
+      exclude: ['hint']
+    }
+  }
+};
+```
+
+### With Hint
+
+```tsx
+export const WithHint = {
+  render: Template,
+  args: {
+    hint: 'hint'
+  }
+};
+```
+
+### With Label And Hint
+
+```tsx
+export const WithLabelAndHint = {
+  render: Template,
+  args: {
+    ...WithHint.args,
+    ...WithLabel.args
+  }
+};
+```
+
+### With Hour Step
+
+```tsx
+export const WithHourStep = {
+  render: Template,
+  args: {
+    hourStep: 3
+  }
+};
+```
+
+### With Minute Step
+
+```tsx
+export const WithMinuteStep = {
+  render: Template,
+  args: {
+    minuteStep: 15
+  }
+};
+```
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [inputValue, setInputValue] = React.useState<string>('11:20');
+  const handleChange = (newValue?: string) => {
+    setInputValue(newValue ?? '');
+  };
+  return <TimePickerWrapper>
+      <TimePicker value={inputValue} onChange={handleChange}></TimePicker>
+    </TimePickerWrapper>;
+};
+```
+
+### Has Error
+
+```tsx
+export const HasError = {
+  render: Template,
+  args: {
+    error: 'here is an error'
+  }
+};
+```
+
+### Allow Input
+
+```tsx
+export const AllowInput = {
+  render: Template,
+  args: {
+    allowInput: false
+  }
+};
+```
+
+### Custom Hour Range
+
+```tsx
+export const CustomHourRange = {
+  render: Template,
+  args: {
+    minHour: 1,
+    maxHour: 24,
+    minuteStep: 60
+  }
+};
+```
+
+
+# Timestamp
+
+The Timestamp component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Timestamp } from "@aiqua/components/Timestamp";
+
+<Timestamp />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Toast
+
+The Toast component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { Toast } from "@appier/aiqua-design-system/Toast";
+
+<Toast />
+```
+
+## Examples
+
+### Type
+
+```tsx
+export const Type = {
+  render: args => {
+    return <>
+        <Toast {...args} type={TOAST_TYPE.INFO} />
+        <Toast {...args} type={TOAST_TYPE.SUCCESS} />
+        <Toast {...args} type={TOAST_TYPE.WARNING} />
+        <Toast {...args} type={TOAST_TYPE.ERROR} />
+        <Toast {...args} type={TOAST_TYPE.LOADING} />
+      </>;
+  }
+};
+```
+
+### Closable
+
+```tsx
+export const Closable = {
+  render: args => {
+    return <>
+        <Toast {...args} />
+        <Toast {...args} closable={false} />
+      </>;
+  }
+};
+```
+
+### With Action Button
+
+```tsx
+export const WithActionButton = {
+  render: Template,
+  args: {
+    ...Normal.args,
+    onButtonAction: () => {
+      console.log('Action button clicked!!');
+    },
+    actionButtonLabel: 'Action Button'
+  }
+};
+```
+
+### With Hooks
+
+```tsx
+export const WithHooks = {
+  render: args => {
+    const {
+      toast,
+      toastRenderer
+    } = useToast();
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, placement) => {
+      toast({
+        type: args.type,
+        placement,
+        title: 'Title',
+        onButtonAction: () => {
+          console.log('Action button clicked!!');
+        },
+        actionButtonLabel: 'Action Button',
+        description: 'This is the description of the toast. This is the description of the toast. This is the description of the toast.'
+      });
+    };
+    return <>
+        {['top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'].map(placement => <StyledButton variant="secondary" size="normal" onClick={e => {
+        handleClick(e, placement);
+      }}>
+            Open {placement} toast
+          </StyledButton>)}
+        {toastRenderer}
+      </>;
+  }
+};
+```
+
+### Auto Hide Duration
+
+```tsx
+export const AutoHideDuration = {
+  render: args => {
+    const {
+      toast,
+      toastRenderer
+    } = useToast();
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, placement, autoHideDuration) => {
+      toast({
+        type: args.type,
+        placement,
+        autoHideDuration,
+        title: 'Title'
+      });
+    };
+    return <>
+        {[6000, 8000].map(autoHideDuration => <StyledButton variant="secondary" size="normal" onClick={e => {
+        handleClick(e, 'bottom', autoHideDuration);
+      }}>
+            Open {autoHideDuration} ms toast
+          </StyledButton>)}
+        {toastRenderer}
+      </>;
+  }
+};
+```
+
+### Is Continuously Displayed With Hooks
+
+```tsx
+export const IsContinuouslyDisplayedWithHooks = {
+  render: args => {
+    const {
+      toast,
+      toastRenderer
+    } = useToast();
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, placement) => {
+      toast({
+        type: TOAST_TYPE.LOADING,
+        placement,
+        title: 'Loading',
+        isContinuouslyDisplayed: true
+      });
+    };
+    return <>
+        <StyledButton variant="secondary" size="normal" onClick={e => {
+        handleClick(e, 'bottom');
+      }}>
+          Open bottom toast
+        </StyledButton>
+        {toastRenderer}
+      </>;
+  }
+};
+```
+
+### Close By Event
+
+```tsx
+export const CloseByEvent = {
+  render: args => {
+    const {
+      toast,
+      toastRenderer
+    } = useToast();
+    const toastRef = useRef<ToastRef>(null);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, placement) => {
+      toast({
+        ref: toastRef,
+        type: TOAST_TYPE.LOADING,
+        placement,
+        title: 'Loading',
+        isContinuouslyDisplayed: true
+      });
+    };
+    const handleClickToClose = () => {
+      toastRef.current?.close();
+    };
+    return <>
+        <StyledButton variant="secondary" size="normal" onClick={e => {
+        handleClick(e, 'top');
+      }}>
+          Open toast
+        </StyledButton>
+        <StyledButton variant="secondary" size="normal" onClick={e => {
+        handleClickToClose();
+      }}>
+          Close toast
+        </StyledButton>
+        {toastRenderer}
+      </>;
+  }
+};
+```
+
+
+# ToggleButton
+
+The ToggleButton component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = () => {
+  return <ToggleButtonGroup defaultValue="2">
+      <ToggleButton value="1" label="All" />
+      <ToggleButton value="2" label="Android" />
+      <ToggleButton value="3" label="iOS" />
+      <ToggleButton value="4" label="Web" />
+    </ToggleButtonGroup>;
+};
+```
+
+## Usage
+
+```tsx
+import { ToggleButton } from "@appier/aiqua-design-system/ToggleButton";
+
+<ToggleButton />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `icon` | `React.ReactNode` |
+| `label` | `React.ReactNode` |
+| `value` | `string` |
+| `className` | `string` |
+| `disabled` | `boolean` |
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [value, setValue] = useState('2');
+  return <div className="flex gap-spacing-16">
+      <div>
+        <div className="m-spacing-8 text-content-high headline-5">
+          ToggleButton with Controlled
+        </div>
+        <ToggleButtonGroup value={value} onChange={setValue}>
+          <ToggleButton value="1" label="Label1" />
+          <ToggleButton value="2" label="Label2" />
+          <ToggleButton value="3" label="Label3" />
+        </ToggleButtonGroup>
+      </div>
+
+      <div>
+        <div className="m-spacing-8 text-content-high headline-5">
+          ToggleButton with UnControlled
+        </div>
+        <ToggleButtonGroup defaultValue="3">
+          <ToggleButton value="1" label="Label1" />
+          <ToggleButton value="2" label="Label2" />
+          <ToggleButton value="3" label="Label3" />
+        </ToggleButtonGroup>
+      </div>
+    </div>;
+};
+```
+
+### With Icon
+
+```tsx
+export const WithIcon = () => {
+  return <ToggleButtonGroup defaultValue="2">
+      <ToggleButton value="1" label="Label1" icon={<DSIcon is="wineOutlined20" />} />
+      <ToggleButton value="2" label="Label2" icon={<DSIcon is="wineOutlined20" />} />
+      <ToggleButton value="3" label="Label3" icon={<DSIcon is="wineOutlined20" />} />
+    </ToggleButtonGroup>;
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = () => {
+  return <ToggleButtonGroup defaultValue="2">
+      <ToggleButton value="1" label="Label1" disabled />
+      <ToggleButton value="2" label="Label2" disabled icon={<DSIcon is="wineOutlined20" />} />
+    </ToggleButtonGroup>;
+};
+```
+
+
+# Tooltip
+
+The Tooltip component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  tags: ['!autodocs'],
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Tooltip } from "@appier/aiqua-design-system/Tooltip";
+
+<Tooltip />
+```
+
+## Props
+
+| Prop | Type |
+|------|------|
+| `placement` | `Placement` |
+| `withInfoIcon` | `boolean` |
+| `title` | `React.ReactNode` |
+| `content` | `React.ReactNode` |
+| `fallbackPlacements` | `Placement[]` |
+| `children` | `React.ReactNode` |
+| `disableHoverListener` | `boolean` |
+| `enterDelay` | `number` |
+| `defaultOpen` | `boolean` |
+| `isOpen` | `boolean` |
+| `onOpenChange` | `(isOpen: boolean) => void` |
+| `ignoreSafePolygonTriangle` | `boolean` |
+
+## Examples
+
+### Controlled And Uncontrolled
+
+```tsx
+export const ControlledAndUncontrolled = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return <div style={{
+    display: 'flex',
+    gap: '40px'
+  }}>
+      <Tooltip defaultOpen={true} content="Description goes here">
+        <Button>Uncontrolled</Button>
+      </Tooltip>
+      <Tooltip onOpenChange={setIsOpen} isOpen={isOpen} content="Description goes here">
+        <Button>Controlled</Button>
+      </Tooltip>
+    </div>;
+};
+```
+
+### Placement And Fallback Placements
+
+```tsx
+export const PlacementAndFallbackPlacements = () => {
+  return <div>
+      <div style={{
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+        <Tooltip placement="top-start" content="tooltip">
+          <Button variant="minimal">top start</Button>
+        </Tooltip>
+        <Tooltip placement="top" content="tooltip">
+          <Button variant="minimal">top</Button>
+        </Tooltip>
+        <Tooltip placement="top-end" content="tooltip">
+          <Button variant="minimal">top end</Button>
+        </Tooltip>
+      </div>
+      <div style={{
+      display: 'flex',
+      width: '100%'
+    }}>
+        <div style={{
+        display: 'flex',
+        flexFlow: 'column',
+        flex: 1,
+        alignItems: 'center'
+      }}>
+          <Tooltip placement="left-start" content="tooltip">
+            <Button variant="minimal">left start</Button>
+          </Tooltip>
+          <Tooltip placement="left" content="tooltip">
+            <Button variant="minimal">left</Button>
+          </Tooltip>
+          <Tooltip placement="left-end" content="tooltip">
+            <Button variant="minimal">left end</Button>
+          </Tooltip>
+        </div>
+        <div style={{
+        flex: 1,
+        display: 'flex',
+        flexFlow: 'column',
+        alignItems: 'center'
+      }}>
+          <Tooltip placement="right-start" content="tooltip">
+            <Button variant="minimal">right start</Button>
+          </Tooltip>
+          <Tooltip placement="right" content="tooltip">
+            <Button variant="minimal">right</Button>
+          </Tooltip>
+          <Tooltip placement="right-end" content="tooltip">
+            <Button variant="minimal">right end</Button>
+          </Tooltip>
+        </div>
+      </div>
+
+      <div style={{
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+        <Tooltip placement="bottom-start" content="tooltip">
+          <Button variant="minimal">bottom start</Button>
+        </Tooltip>
+        <Tooltip placement="bottom" content="tooltip">
+          <Button variant="minimal">bottom</Button>
+        </Tooltip>
+        <Tooltip placement="bottom-end" content="tooltip">
+          <Button variant="minimal">bottom end</Button>
+        </Tooltip>
+      </div>
+    </div>;
+};
+```
+
+### Title And Info Icon
+
+```tsx
+export const TitleAndInfoIcon = Template.bind({});
+```
+
+### Enter Delay
+
+```tsx
+export const EnterDelay = {
+  render: Template,
+  args: {
+    enterDelay: 2000
+  }
+};
+```
+
+
+# Tooltips
+
+The Tooltips component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { Tooltips } from "@aiqua/components/Tooltips";
+
+<Tooltips />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# TriggerButton
+
+The TriggerButton component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Basic = {
+  render: Template,
+  tags: ['!autodocs']
+};
+```
+
+## Usage
+
+```tsx
+import { TriggerButton } from "@appier/aiqua-design-system/TriggerButton";
+
+<TriggerButton />
+```
+
+## Examples
+
+### Compact
+
+```tsx
+export const Compact = {
+  render: Template,
+  args: {
+    variant: 'compact'
+  }
+};
+```
+
+### Disabled
+
+```tsx
+export const Disabled = () => <Layout>
+    <TriggerButton variant="normal" disabled>
+      Copilot
+    </TriggerButton>
+    <TriggerButton variant="compact" disabled>
+      Copilot
+    </TriggerButton>
+  </Layout>;
+```
+
+
+# types
+
+The types component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { types } from "@aiqua/components/types";
+
+<types />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# Upload
+
+The Upload component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { Upload } from "@appier/aiqua-design-system/Upload";
+
+<Upload />
+```
+
+
+# utils
+
+The utils component is a key part of the Aiqua Design System.
+
+## Usage
+
+```tsx
+import { utils } from "@aiqua/components/utils";
+
+<utils />
+```
+
+> **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
+
+# VirtualizedTable
+
+The VirtualizedTable component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { VirtualizedTable } from "@appier/aiqua-design-system/VirtualizedTable";
+
+<VirtualizedTable />
+```
+
+## Examples
+
+### With Border Bottom
+
+```tsx
+export const WithBorderBottom = {
+  render: Template,
+  args: {
+    columns: columnsWithBorder
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Highlighter
+
+```tsx
+export const WithHighlighter = {
+  render: Template,
+  args: {
+    columns: columns.map(column => column.field === 'age' ? {
+      ...column,
+      highlighter: (data: rowType) => data.age && data.age < 40
+    } : {
+      ...column,
+      highlighter: rowData => rowData.highlighted ? 'var(--color-compBg-grayLite)' : false
+    }),
+    rows: rows.map((row, idx) => idx < 3 ? {
+      ...row,
+      highlighted: true
+    } : row)
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Dynamic Height
+
+```tsx
+export const WithDynamicHeight = {
+  render: Template,
+  args: {
+    supportDynamicRowHeight: true,
+    columns: columnsWithDynamicHeight
+  }
+};
+```
+
+### With Skeleton
+
+```tsx
+export const WithSkeleton = {
+  render: Template,
+  args: {
+    isLoading: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Empty State
+
+```tsx
+export const WithEmptyState = {
+  render: Template,
+  args: {
+    rows: [],
+    isEmpty: true,
+    renderEmptyView: () => <EmptyContentWrapper>
+        <BoxIcon size={48} />
+        <EmptyMessage>No data yet</EmptyMessage>
+      </EmptyContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Empty State And Loading
+
+```tsx
+export const WithEmptyStateAndLoading = {
+  render: Template,
+  args: {
+    rows: [],
+    isEmpty: true,
+    isLoading: true,
+    renderEmptyView: () => <EmptyContentWrapper>
+        <BoxIcon size={48} />
+        <EmptyMessage>No data yet</EmptyMessage>
+      </EmptyContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Empty State And Summary
+
+```tsx
+export const WithEmptyStateAndSummary = {
+  render: Template,
+  args: {
+    rows: [],
+    isEmpty: true,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      firstName: '-',
+      lastName: '-',
+      age: 0,
+      fullName: '-',
+      nickname: '-',
+      gender: '-',
+      hobby: '-',
+      birthday: '-'
+    },
+    summaryRowPosition: 'bottom',
+    renderEmptyView: () => <EmptyContentWrapper>
+        <BoxIcon size={48} />
+        <EmptyMessage>No data yet</EmptyMessage>
+      </EmptyContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Initial Sort By
+
+```tsx
+export const WithInitialSortBy = {
+  render: Template,
+  args: {
+    sortDirection: 'asc',
+    sortBy: 'firstName'
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Summary
+
+```tsx
+export const WithSummary = {
+  render: Template,
+  args: {
+    columns: columnsWitSummary,
+    rows: rowsWithSummary,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### Summary Row With Full Table Height
+
+```tsx
+export const SummaryRowWithFullTableHeight = {
+  render: TemplateWithFullHeight,
+  args: {
+    height: '100%',
+    columns: columnsWitSummary,
+    rows: rowsWithSummary,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Actions
+
+```tsx
+export const WithActions = {
+  render: Template,
+  args: {
+    actionHeaderContent: <ActionHeaderContentWrapper>
+        <Button variant="primary" size="normal" startIcon={<AddIcon />}>
+          Add Report
+        </Button>
+        <Button variant="primary" size="normal" startIcon={<AddIcon />}>
+          Add Report
+        </Button>
+      </ActionHeaderContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### With Summary And Actions
+
+```tsx
+export const WithSummaryAndActions = {
+  render: Template,
+  args: {
+    columns: columnsWitSummary,
+    rows: rowsWithSummary,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom',
+    fillUpWithBlankCol: true,
+    actionHeaderContent: <ActionHeaderContentWrapper className="flex-wrap">
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report1
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report2
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report3
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report4
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report5
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report6
+        </Button>
+        <Button variant="primary" size="normal" className="mb-spacing-4" startIcon={<AddIcon />}>
+          Add Report7
+        </Button>
+      </ActionHeaderContentWrapper>
+  },
+  parameters: {
+    controls: {
+      exclude: ['isLoading']
+    }
+  }
+};
+```
+
+### Loading With Actions And Summary
+
+```tsx
+export const LoadingWithActionsAndSummary = {
+  render: Template,
+  args: {
+    isLoading: true,
+    actionHeaderContent: <Skeleton className="w-full" />,
+    summaryRows: {
+      campaign_channel: 'Grand total',
+      impressions: 100_000,
+      clicks: 50_000
+    },
+    summaryRowPosition: 'bottom'
+  }
+};
+```
+
+### With Radio Buttons
+
+```tsx
+export const WithRadioButtons = {
+  render: (args, {
+    globals: {
+      theme
+    }
+  }) => {
+    const [radioValue, setRadioValue] = useState<number | null>(3);
+    const handleSetRadioValue = () => {
+      console.log('checked value:', radioValue);
+    };
+    const handleResetRadioValue = () => {
+      setRadioValue(null);
+    };
+    return <>
+        <StyledButton variant="primary" size="normal" onClick={handleResetRadioValue}>
+          Reset value
+        </StyledButton>
+        <StyledButton variant="primary" size="normal" onClick={handleSetRadioValue}>
+          Show selected value
+        </StyledButton>
+        <VirtualizedTable {...args} selectValue={radioValue} selectionIdentifier="id" onSelectChange={data => {
+        setRadioValue(data.rowIdentifier);
+      }} theme={theme} />
+      </>;
+  }
+};
+```
+
+### With Checkboxs
+
+```tsx
+export const WithCheckboxs = {
+  render: (args, {
+    globals: {
+      theme
+    }
+  }) => {
+    const [checkedValue, setCheckedValue] = useState<number[]>([]);
+    const handleSetCheckboxValue = () => {
+      console.log('checked value:', checkedValue);
+    };
+    const handleResetCheckboxValue = () => {
+      setCheckedValue([]);
+    };
+    return <>
+        <StyledButton variant="primary" size="normal" onClick={handleResetCheckboxValue}>
+          Reset value
+        </StyledButton>
+        <StyledButton variant="primary" size="normal" onClick={handleSetCheckboxValue}>
+          Show selected value
+        </StyledButton>
+        <VirtualizedTable {...args} selectValue={checkedValue} selectionType={SELECTION_TYPE.MULTIPLE as SELECTION_TYPE} selectionIdentifier={'id'} onSelectAllChange={(checked, currentPageValue) => {
+        const updatedData = checkedValue.filter(checkedValue => !currentPageValue.find(value => value.id === checkedValue));
+        setCheckedValue(prev => checked ? [...prev, ...currentPageValue.map(v => v.id)] : updatedData);
+      }} onSelectChange={data => {
+        setCheckedValue(prev => {
+          if (prev?.includes(data.rowIdentifier)) {
+            return prev.filter(prevData => prevData !== data.rowIdentifier);
+          }
+          return [...(prev ?? []), data.rowIdentifier];
+        });
+      }} theme={theme} />
+      </>;
+  }
+};
+```
+
+### With Rv Table Props
+
+```tsx
+export const WithRvTableProps = {
+  render: Template,
+  args: {
+    rvTableProps: {
+      onRowClick: ({
+        rowData
+      }) => {
+        console.log(rowData);
+      }
+    }
+  }
+};
+```
+
+
+# WidgetCard
+
+The WidgetCard component is a key part of the Aiqua Design System.
+
+## Main Example
+
+```tsx
+export const Normal = {
+  render: Template
+};
+```
+
+## Usage
+
+```tsx
+import { WidgetCard } from "@appier/aiqua-design-system/WidgetCard";
+
+<WidgetCard />
+```
+
+## Examples
+
+### With Drag Icon
+
+```tsx
+export const WithDragIcon = {
+  render: Template,
+  args: {
+    showDrag: true
+  }
+};
+```
+
+
