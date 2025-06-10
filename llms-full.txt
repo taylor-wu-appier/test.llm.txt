@@ -39,21 +39,21 @@ export const Basic = {
 ## Usage
 
 ```tsx
-import { AddFilter } from "@appier/aiqua-design-system/AddFilter";
+import { AddFilter } from "@appier/aiqua-design-system
 
 <AddFilter />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `onChange` | `(selectedFilters: string[]) => void` |
-| `children` | `ReactNode` |
-| `label` | `string` |
-| `value` | `string[]` |
-| `menuProps` | `Partial<Omit<MenuProps, 'open' \| 'anchorEl' \| 'onClose'>>` |
-| `disabled` | `boolean` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `onChange` | `(selectedFilters: string[]) => void` | Yes | Callback function called when selected filters change |
+| `children` | `ReactNode` | Yes | Menu items to be rendered as filter options |
+| `label` | `string` | No | Label of the filter |
+| `value` | `string[]` | No | Currently selected filter values |
+| `menuProps` | `Partial<Omit<MenuProps, 'open' \| 'anchorEl' \| 'onClose'>>` | No | Props to customize the Menu component |
+| `disabled` | `boolean` | No | Whether the component is disabled. Will be combined with internal logic (no options = disabled) |
 
 ## Examples
 
@@ -259,7 +259,9 @@ export const WithMixedFilterTypes = {
 
 # AffixInput
 
-The AffixInput component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=16831-128638&t=AJpHD5HQ2KyonQSH-0)
+
+Enhance user input in form text fields with AffixInput, which enables the use of prefixes and suffixes. These visual elements, such as symbols or abbreviations, provide contextual cues to guide users in entering the appropriate type of information.
 
 ## Main Example
 
@@ -272,7 +274,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { AffixInput } from "@appier/aiqua-design-system/AffixInput";
+import { AffixInput } from "@appier/aiqua-design-system
 
 <AffixInput />
 ```
@@ -359,21 +361,21 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Avatar } from "@appier/aiqua-design-system/Avatar";
+import { Avatar } from "@appier/aiqua-design-system
 
 <Avatar />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `size` | `(typeof SIZES)[keyof typeof SIZES]` |
-| `shape` | `(typeof SHAPES)[keyof typeof SHAPES]` |
-| `color` | `(typeof COLORS)[keyof typeof COLORS]` |
-| `name` | `string` |
-| `abbr` | `string` |
-| `src` | `string` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `size` | `(typeof SIZES)[keyof typeof SIZES]` | No | Defines the size of the Avatar. The Avatar will take the default size if the value is `undefined`. |
+| `shape` | `(typeof SHAPES)[keyof typeof SHAPES]` | No | Defines the shape of the Avatar. The Avatar will take the default shape if the value is `undefined`. |
+| `color` | `(typeof COLORS)[keyof typeof COLORS]` | No | Defines the color of the Avatar. The Avatar will use pre-define color sets if the value is `undefined`. |
+| `name` | `string` | No | Defines the name of the Avatar. The Avatar will auto-generates an abbreviation of the initials of the name. Will set the auto-generates abbreviation to src for alt. |
+| `abbr` | `string` | No | The abbreviation can also be set manually. |
+| `src` | `string` | No | The image source of the Avatar. |
 
 ## Examples
 
@@ -437,7 +439,9 @@ export const Shape = () => {
 
 # Badge
 
-The Badge component is a key part of the Aiqua Design System.
+Version `v2.0.1` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?type=design&node-id=14908-48748&mode=design&t=fLAiqPfT1lWqC02M-0)
+
+The Badge component is a small informational label used to display statuses, highlight new features, or indicate notifications within a user interface, often featuring bold colors and concise icons to attract immediate attention.
 
 ## Main Example
 
@@ -450,7 +454,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Badge } from "@appier/aiqua-design-system/Badge";
+import { Badge } from "@appier/aiqua-design-system
 
 <Badge />
 ```
@@ -552,17 +556,10 @@ The BasicChartComponent component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { BasicChartComponent } from "@aiqua/components/BasicChartComponent";
+import { BasicChartComponent } from "@appier/aiqua-design-system";
 
 <BasicChartComponent />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `chartBasicOptions` | `echarts.EChartsCoreOption` |
-| `eChartTheme` | `Object` |
 
 > **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
 
@@ -588,7 +585,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Breadcrumb } from "@appier/aiqua-design-system/Breadcrumb";
+import { Breadcrumb } from "@appier/aiqua-design-system
 
 <Breadcrumb />
 ```
@@ -646,7 +643,22 @@ export const WithEditableCurrentPageAndDefaultValue = {
 
 # Button
 
-The Button component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=1-107648&mode=design&t=GQfItnp8WhGUB2u3-0)
+
+IconButton facilitates actions through a singular icon, offering a minimalist approach compared to the standard Button.
+
+## Usage
+#### Import
+
+```tsx
+import { IconButton } from "@appier/aiqua-design-system/components";
+//or
+import { IconButton } from "@appier/aiqua-design-system";
+```
+
+## Props
+
+Also support all valid `HTMLButtonElement` props
 
 ## Main Example
 
@@ -659,10 +671,23 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Button } from "@appier/aiqua-design-system/Button";
+import { Button } from "@appier/aiqua-design-system
 
 <Button />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `as` | `ElementType` | No | The HTML tag or React Element (e.g. `RouterLink`) to use for the wrapper element. @default 'button' |
+| `variant` | `(typeof VARIANT)[keyof typeof VARIANT]` | No | Defines the variant of the button. The button will take the default variant if the value is `undefined`. |
+| `size` | `(typeof SIZES)[keyof typeof SIZES]` | No | Defines the size of the button. The button will take the default size if the value is undefined. |
+| `isOnlyIcon` | `boolean` | No | If `true`, only show `startIcon` component in button. |
+| `disabled` | `boolean` | No | If `true`, the button will be disabled. |
+| `isLoading` | `boolean` | No | If `true`, will show loading icon. |
+| `startIcon` | `React.ReactNode` | No | Icon at the start of the button. |
+| `endIcon` | `React.ReactNode` | No | Icon at the end of the button. |
 
 ## Examples
 
@@ -727,7 +752,9 @@ export const Tooltip = {
 
 # Card
 
-The Card component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=1-107797&mode=dev)
+
+Cards group information into flexible containers to let users to browse a collection of related items and actions. They are used to organize and present content in a visually appealing manner, making it easy for users to scan, understand, and interact with the information.
 
 ## Main Example
 
@@ -741,7 +768,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Card } from "@appier/aiqua-design-system/Card";
+import { Card } from "@appier/aiqua-design-system
 
 <Card />
 ```
@@ -798,7 +825,7 @@ The Chart component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Chart } from "@aiqua/components/Chart";
+import { Chart } from "@appier/aiqua-design-system";
 
 <Chart />
 ```
@@ -812,7 +839,7 @@ The Chat component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Chat } from "@aiqua/components/Chat";
+import { Chat } from "@appier/aiqua-design-system";
 
 <Chat />
 ```
@@ -826,7 +853,7 @@ The Chatroom component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Chatroom } from "@aiqua/components/Chatroom";
+import { Chatroom } from "@appier/aiqua-design-system";
 
 <Chatroom />
 ```
@@ -835,7 +862,9 @@ import { Chatroom } from "@aiqua/components/Chatroom";
 
 # Checkbox
 
-The Checkbox component is a key part of the Aiqua Design System.
+Version `v2.0.1` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=15679-118037&t=AJpHD5HQ2KyonQSH-0)
+
+CheckboxTree
 
 ## Main Example
 
@@ -889,7 +918,7 @@ export const Value = () => {
 ## Usage
 
 ```tsx
-import { Checkbox } from "@appier/aiqua-design-system/Checkbox";
+import { Checkbox } from "@appier/aiqua-design-system
 
 <Checkbox />
 ```
@@ -919,7 +948,68 @@ export const Disabled = {
 
 # ColorPicker
 
-The ColorPicker component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=1-117380&t=9hYhCr6LJkO8hNV0-4)
+
+Allow user to select colors through Hex and RGBA interfaces along with Alpha adjustment. Eyedropper and preset color group are also provided to enhance color manipulations.
+
+### Color Format
+
+##### Input
+The input color format supports both Hex string and RGBA string. If Hex string is provided, the value for alpha will be set to 1 as default.
+
+```tsx
+const exampleHexInputColor = "#ffffff"
+// or
+const exampleRgbaInputColor = "rgba(255, 255, 255, 1)"
+```
+
+##### Output
+
+The output color format and type are shown as below. The Hex format of the color can be used directly and
+the RGBA format should be used along with the exported util function `toRgbaString`.
+
+```tsx
+// type
+type Color = {
+hex: string;
+rgb: {
+r: number;
+g: number;
+b: number;
+};
+alpha: number;
+};
+
+// example
+const exampleOutputColor = {
+hex: '#ffffff',
+rgb: {
+r: 255,
+g: 255,
+b: 255,
+},
+alpha: 1,
+}
+
+// using RGBA color
+const rgbaString = toRgbaString({
+...exampleColor.rgb,
+alpha: exampleColor.alpha,
+});
+
+// using Hex color with Alpha
+const hexWithAlpha = combineHexWithAlpha({
+hex: exampleColor.hex,
+alpha: exampleColor.alpha,
+});
+```
+
+### Preset Colors
+
+#### Adding / Deleting
+Each preset color can be:
+- added by clicking the add button
+- removed by hovering on the color square for 1 second and clicking the delete button on the displayed menu
 
 ## Main Example
 
@@ -933,23 +1023,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { ColorPicker } from "@appier/aiqua-design-system/ColorPicker";
+import { ColorPicker } from "@appier/aiqua-design-system
 
 <ColorPicker />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `color` | `InputColor` |
-| `defaultColor` | `InputColor` |
-| `onColorChange` | `(color: Color) => void` |
-| `presetColors` | `InputColor[]` |
-| `defaultPresetColors` | `InputColor[]` |
-| `onPresetColorsChange` | `(presetColors: Color[]) => void` |
-| `disablePresetColors` | `boolean` |
-| `deleteLabel` | `string` |
 
 ## Examples
 
@@ -1027,17 +1104,10 @@ export const _ColumnChart = {
 ## Usage
 
 ```tsx
-import { ColumnChart } from "@appier/aiqua-design-system/ColumnChart";
+import { ColumnChart } from "@appier/aiqua-design-system
 
 <ColumnChart />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `chartMetrics` | `Metric[]` |
-| `chartTooltipOptions` | `BasicChartTooltipOptions` |
 
 ## Examples
 
@@ -1136,18 +1206,18 @@ The ColumnItem component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { ColumnItem } from "@aiqua/components/ColumnItem";
+import { ColumnItem } from "@appier/aiqua-design-system";
 
 <ColumnItem />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `id` | `string` |
-| `headerName` | `string` |
-| `onRemove` | `() => void` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `string` | Yes | - |
+| `headerName` | `string` | Yes | - |
+| `onRemove` | `() => void` | No | - |
 
 > **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
 
@@ -1158,20 +1228,20 @@ The ColumnSelectionPanel component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { ColumnSelectionPanel } from "@aiqua/components/ColumnSelectionPanel";
+import { ColumnSelectionPanel } from "@appier/aiqua-design-system";
 
 <ColumnSelectionPanel />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `availableColumns` | `Columns<T>` |
-| `selectedColumns` | `Columns<T>` |
-| `searchQuery` | `string` |
-| `onSearchChange` | `(value: string) => void` |
-| `onColumnToggle` | `(value: string[]) => void` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `availableColumns` | `Columns<T>` | Yes | - |
+| `selectedColumns` | `Columns<T>` | Yes | - |
+| `searchQuery` | `string` | Yes | - |
+| `onSearchChange` | `(value: string) => void` | Yes | - |
+| `onColumnToggle` | `(value: string[]) => void` | Yes | - |
 
 > **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
 
@@ -1182,7 +1252,7 @@ The common component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { common } from "@aiqua/components/common";
+import { common } from "@appier/aiqua-design-system";
 
 <common />
 ```
@@ -1196,7 +1266,7 @@ The components component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { components } from "@aiqua/components/components";
+import { components } from "@appier/aiqua-design-system";
 
 <components />
 ```
@@ -1205,7 +1275,9 @@ import { components } from "@aiqua/components/components";
 
 # ConnectorCard
 
-The ConnectorCard component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/design/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?node-id=24908-145711&t=IdLVtSXHNkOjlC6x-1)
+
+Card display setting
 
 ## Main Example
 
@@ -1221,16 +1293,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { ConnectorCard } from "@appier/aiqua-design-system/ConnectorCard";
+import { ConnectorCard } from "@appier/aiqua-design-system
 
 <ConnectorCard />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `as` | `T` |
 
 ## Examples
 
@@ -1322,7 +1388,7 @@ The constants component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { constants } from "@aiqua/components/constants";
+import { constants } from "@appier/aiqua-design-system";
 
 <constants />
 ```
@@ -1346,21 +1412,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { ContentAssistant } from "@appier/aiqua-design-system/ContentAssistant";
+import { ContentAssistant } from "@appier/aiqua-design-system
 
 <ContentAssistant />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `buttonContent` | `React.ReactNode` |
-| `assistantHeader` | `React.ReactNode` |
-| `assistantContent` | `React.ReactNode` |
-| `assistantFooter` | `React.ReactNode[]` |
-| `isCollapse` | `boolean` |
-| `toggleCollapse` | `() => void` |
 
 ## Examples
 
@@ -1389,7 +1444,7 @@ The Context component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Context } from "@aiqua/components/Context";
+import { Context } from "@appier/aiqua-design-system";
 
 <Context />
 ```
@@ -1403,7 +1458,7 @@ The Date component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Date } from "@aiqua/components/Date";
+import { Date } from "@appier/aiqua-design-system";
 
 <Date />
 ```
@@ -1425,20 +1480,10 @@ export const Solo = {
 ## Usage
 
 ```tsx
-import { DatePicker } from "@appier/aiqua-design-system/DatePicker";
+import { DatePicker } from "@appier/aiqua-design-system
 
 <DatePicker />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `dateInputPlaceholder` | `string` |
-| `todayLabel` | `string` |
-| `customAnchorEl` | `React.ReactNode` |
-| `onOpenChange` | `(isOpen: boolean) => void` |
-| `defaultInputDate` | `Date` |
 
 ## Examples
 
@@ -1537,22 +1582,10 @@ export const Solo = {
 ## Usage
 
 ```tsx
-import { DateQuickSelectionPicker } from "@appier/aiqua-design-system/DateQuickSelectionPicker";
+import { DateQuickSelectionPicker } from "@appier/aiqua-design-system
 
 <DateQuickSelectionPicker />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `quickSelectionRanges` | `QuickSelectionRanges` |
-| `onQuickSelectionSelectedChange` | `(currentSelection?: CustomQuickSelectionOption \| BasicQuickSelectionOption) => void` |
-| `customSelectionLabel` | `string` |
-| `allTimeSelectionLabel` | `string` |
-| `disableAllTimeSelectionOptions` | `boolean` |
-| `defaultQuickSelectionKey` | `string` |
-| `quickSelectionAreaClassName` | `string` |
 
 ## Examples
 
@@ -1729,25 +1762,10 @@ export const Solo = {
 ## Usage
 
 ```tsx
-import { DateRangePicker } from "@appier/aiqua-design-system/DateRangePicker";
+import { DateRangePicker } from "@appier/aiqua-design-system
 
 <DateRangePicker />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `dateStartInputPlaceholder` | `string` |
-| `dateEndInputPlaceholder` | `string` |
-| `applyLabel` | `string` |
-| `cancelLabel` | `string` |
-| `customAnchorEl` | `React.ReactNode` |
-| `onOpenChange` | `(isOpen: boolean) => void` |
-| `onDateSelect` | `(newValue?: (Date \| undefined)[]) => void` |
-| `defaultStartDate` | `Date` |
-| `removable` | `boolean` |
-| `footerInfo` | `string` |
 
 ## Examples
 
@@ -1847,7 +1865,9 @@ export const DisableRemovable = {
 
 # Dialog
 
-The Dialog component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?node-id=1%3A59&mode=dev)
+
+Dialogs are overlay components that display relevant data, actions, or processes above the main user interface. These elements demand immediate user engagement and can, depending on their type, restrict further interactions with the background interface until they are responded to or dismissed.
 
 ## Main Example
 
@@ -1861,7 +1881,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Dialog } from "@appier/aiqua-design-system/Dialog";
+import { Dialog } from "@appier/aiqua-design-system
 
 <Dialog />
 ```
@@ -2076,7 +2096,7 @@ The Divider component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Divider } from "@aiqua/components/Divider";
+import { Divider } from "@appier/aiqua-design-system";
 
 <Divider />
 ```
@@ -2098,23 +2118,10 @@ export const _DonutChart = {
 ## Usage
 
 ```tsx
-import { DonutChart } from "@appier/aiqua-design-system/DonutChart";
+import { DonutChart } from "@appier/aiqua-design-system
 
 <DonutChart />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `chartData` | `ChartDataInterface` |
-| `chartColorTheme` | `string[]` |
-| `chartTheme` | `THEME_TYPES` |
-| `customDataFormatter` | `(rows: {
-  name: RowData;
-  value: RowData;
-}[]) => void` |
-| `withTooltip` | `boolean` |
 
 ## Examples
 
@@ -2133,7 +2140,9 @@ export const _DonutChartWithZeroSum = {
 
 # Drawer
 
-The Drawer component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification]()
+
+The Drawer component is a panel that slides out from the edge of the screen. It can be useful when you need users to complete a task or view some details without leaving the current page.
 
 ## Main Example
 
@@ -2163,7 +2172,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Drawer } from "@appier/aiqua-design-system/Drawer";
+import { Drawer } from "@appier/aiqua-design-system
 
 <Drawer />
 ```
@@ -2184,16 +2193,16 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { DrillDownMenu } from "@appier/aiqua-design-system/DrillDownMenu";
+import { DrillDownMenu } from "@appier/aiqua-design-system
 
 <DrillDownMenu />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `title` | `ReactNode` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `title` | `ReactNode` | No | - |
 
 ## Examples
 
@@ -2276,7 +2285,7 @@ export const Default = Template.bind({});
 ## Usage
 
 ```tsx
-import { Dropzone } from "@appier/aiqua-design-system/Dropzone";
+import { Dropzone } from "@appier/aiqua-design-system
 
 <Dropzone />
 ```
@@ -2441,7 +2450,18 @@ export const LongFileName = () => {
 
 # EditColumnConfig
 
-The EditColumnConfig component is a key part of the Aiqua Design System.
+EditColumnConfig is a dialog component that allows users to customize table column visibility and configuration.
+
+Usage:
+1. Trigger via an IconButton with edit column icon
+2. Select/deselect columns to show/hide in the table
+3. Configure sticky columns for horizontal scrolling
+4. Apply changes to update the table view
+
+Key features:
+- Column visibility toggle
+- Sticky columns configuration
+- Persistent column settings
 
 ## Main Example
 
@@ -2454,23 +2474,23 @@ export const WithVirtualizedTable = {
 ## Usage
 
 ```tsx
-import { EditColumnConfig } from "@appier/aiqua-design-system/EditColumnConfig";
+import { EditColumnConfig } from "@appier/aiqua-design-system
 
 <EditColumnConfig />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `open` | `boolean` |
-| `onClose` | `() => void` |
-| `columnConfig` | `Columns<T>` |
-| `stickyColumnCount` | `number` |
-| `filteredColumnConfig` | `Columns<T>` |
-| `onApply` | `(newFilterConfig: Columns<T>) => void` |
-| `noColumnsSelectedTooltip` | `string` |
-| `header` | `string` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `open` | `boolean` | Yes | Controls whether the dialog is open |
+| `onClose` | `() => void` | Yes | Callback function when the dialog is closed |
+| `columnConfig` | `Columns<T>` | Yes | Complete column configuration |
+| `stickyColumnCount` | `number` | No | Number of columns to be fixed on the left side of the table |
+| `filteredColumnConfig` | `Columns<T>` | Yes | Currently filtered column configuration |
+| `onApply` | `(newFilterConfig: Columns<T>) => void` | Yes | Callback function when user clicks apply, receives the new column configuration |
+| `noColumnsSelectedTooltip` | `string` | No | Tooltip text shown when no columns are selected |
+| `header` | `string` | No | Dialog title |
 
 ## Examples
 
@@ -2504,7 +2524,7 @@ The ErrorMessage component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { ErrorMessage } from "@aiqua/components/ErrorMessage";
+import { ErrorMessage } from "@appier/aiqua-design-system";
 
 <ErrorMessage />
 ```
@@ -2518,7 +2538,7 @@ The Filter component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Filter } from "@aiqua/components/Filter";
+import { Filter } from "@appier/aiqua-design-system";
 
 <Filter />
 ```
@@ -2532,7 +2552,7 @@ The fixture component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { fixture } from "@aiqua/components/fixture";
+import { fixture } from "@appier/aiqua-design-system";
 
 <fixture />
 ```
@@ -2541,7 +2561,9 @@ import { fixture } from "@aiqua/components/fixture";
 
 # FrequencyMonthPicker
 
-The FrequencyMonthPicker component is a key part of the Aiqua Design System.
+Version `v2.0.3` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=8410-132133&mode=dev)
+
+A frequency month picker allows users to select days of the month to indicate the frequency of events occurring within a month.
 
 ## Main Example
 
@@ -2565,23 +2587,17 @@ export const ControlledAndUncontrolled = () => {
 ## Usage
 
 ```tsx
-import { FrequencyMonthPicker } from "@appier/aiqua-design-system/FrequencyMonthPicker";
+import { FrequencyMonthPicker } from "@appier/aiqua-design-system
 
 <FrequencyMonthPicker />
 ```
 
-## Props
-
-| Prop | Type |
-|------|------|
-| `selectedDays` | `number[]` |
-| `defaultSelectedDays` | `number[]` |
-| `onSelectedDaysChange` | `(selectedDays: number[]) => void` |
-
 
 # FrequencyWeekPicker
 
-The FrequencyWeekPicker component is a key part of the Aiqua Design System.
+Version `v2.0.3` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=8410-132133&mode=dev)
+
+A frequency week picker allows users to select weekdays to indicate the frequency of events occurring within a week.
 
 ## Main Example
 
@@ -2607,19 +2623,10 @@ export const ControlledAndUncontrolled = () => {
 ## Usage
 
 ```tsx
-import { FrequencyWeekPicker } from "@appier/aiqua-design-system/FrequencyWeekPicker";
+import { FrequencyWeekPicker } from "@appier/aiqua-design-system
 
 <FrequencyWeekPicker />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `labelMapping` | `Record<WEEK_DAYS, string>` |
-| `selectedDays` | `WEEK_DAYS[]` |
-| `defaultSelectedDays` | `WEEK_DAYS[]` |
-| `onSelectedDaysChange` | `(selectedDays: WEEK_DAYS[]) => void` |
 
 
 # Header
@@ -2651,7 +2658,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Header } from "@appier/aiqua-design-system/Header";
+import { Header } from "@appier/aiqua-design-system
 
 <Header />
 ```
@@ -2659,7 +2666,21 @@ import { Header } from "@appier/aiqua-design-system/Header";
 
 # Hint
 
-The Hint component is a key part of the Aiqua Design System.
+Version `v2.1.0` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=10145-130128&t=REhQXgoEx8s9ktQ0-0)
+
+A hint displays a concise and significant message that effectively grabs the user's attention without causing interruptions to their ongoing tasks.
+
+## Usage
+#### Import
+
+```tsx
+import { Hint } from "@appier/aiqua-design-system/components";
+// or
+import { Hint } from "@appier/aiqua-design-system";
+```
+## Props
+
+Also support all valid HTMLElement props
 
 ## Main Example
 
@@ -2672,7 +2693,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Hint } from "@appier/aiqua-design-system/Hint";
+import { Hint } from "@appier/aiqua-design-system
 
 <Hint />
 ```
@@ -2739,7 +2760,7 @@ The hooks component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { hooks } from "@aiqua/components/hooks";
+import { hooks } from "@appier/aiqua-design-system";
 
 <hooks />
 ```
@@ -2753,7 +2774,7 @@ The HtmlBlock component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { HtmlBlock } from "@aiqua/components/HtmlBlock";
+import { HtmlBlock } from "@appier/aiqua-design-system";
 
 <HtmlBlock />
 ```
@@ -2767,7 +2788,7 @@ The Image component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Image } from "@aiqua/components/Image";
+import { Image } from "@appier/aiqua-design-system";
 
 <Image />
 ```
@@ -2781,7 +2802,7 @@ The images component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { images } from "@aiqua/components/images";
+import { images } from "@appier/aiqua-design-system";
 
 <images />
 ```
@@ -2790,7 +2811,16 @@ import { images } from "@aiqua/components/images";
 
 # InfiniteLoadingDots
 
-The InfiniteLoadingDots component is a key part of the Aiqua Design System.
+Version `v2.1.0` | [Figma specification](https://www.figma.com/file/uiTKtAEyVgwZfm84Ov2mCY/%5BCampaign%5D-AIQUA-2.0-Campaign-list-enhancement?node-id=873%3A672786&mode=dev)
+
+## Usage
+### Import
+
+```jsx
+import { InfiniteLoadingDots } from '@appier/aiqua-design-system/components';
+// or
+import { InfiniteLoadingDots } from '@appier/aiqua-design-system';
+```
 
 ## Main Example
 
@@ -2804,7 +2834,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { InfiniteLoadingDots } from "@appier/aiqua-design-system/InfiniteLoadingDots";
+import { InfiniteLoadingDots } from "@appier/aiqua-design-system
 
 <InfiniteLoadingDots />
 ```
@@ -2849,7 +2879,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { InfiniteLoadingSpinner } from "@appier/aiqua-design-system/InfiniteLoadingSpinner";
+import { InfiniteLoadingSpinner } from "@appier/aiqua-design-system
 
 <InfiniteLoadingSpinner />
 ```
@@ -2862,7 +2892,7 @@ The Input component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Input } from "@aiqua/components/Input";
+import { Input } from "@appier/aiqua-design-system";
 
 <Input />
 ```
@@ -2876,7 +2906,7 @@ The InputBar component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { InputBar } from "@aiqua/components/InputBar";
+import { InputBar } from "@appier/aiqua-design-system";
 
 <InputBar />
 ```
@@ -2885,7 +2915,9 @@ import { InputBar } from "@aiqua/components/InputBar";
 
 # LikeDislikeButton
 
-The LikeDislikeButton component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/design/v8AjTv6zlRwLWeGQtkTfEQ/AI-Copilot-%7C-Library%2C-Spec?node-id=1554-3391&t=SyhcO7kUVMHSf65K-4)
+
+Button group for giving feedback. Contain a toggle selection for like and dislike buttons.
 
 ## Main Example
 
@@ -2903,10 +2935,17 @@ export const Basic = {
 ## Usage
 
 ```tsx
-import { LikeDislikeButton } from "@appier/aiqua-design-system/LikeDislikeButton";
+import { LikeDislikeButton } from "@appier/aiqua-design-system
 
 <LikeDislikeButton />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `isSelected` | `boolean` | Yes | Define the selected status of the ToggleButton, which is used to decide whether the ToggleButton is selected or not. |
+| `tooltipContent` | `string` | No | The text to display on tooltip and accessibility label. Also serves as the flag for displaying tooltip. |
 
 ## Examples
 
@@ -2963,23 +3002,23 @@ export const _LineChart = {
 ## Usage
 
 ```tsx
-import { LineChart } from "@appier/aiqua-design-system/LineChart";
+import { LineChart } from "@appier/aiqua-design-system
 
 <LineChart />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `chartMetrics` | `LineChartMetrics` |
-| `chartSummaryMetrics` | `LineChartBenchmarkMetrics` |
-| `chartTimestamp` | `ChartFieldConfig` |
-| `chartSummaryColorTheme` | `BasicChartProps['chartColorTheme']` |
-| `chartTooltipOptions` | `LineChartTooltipOptions` |
-| `chartOptions` | `LineChartUiMetricsInterface` |
-| `isThumbnail` | `boolean` |
-| `displayGradientArea` | `boolean` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `chartMetrics` | `LineChartMetrics` | Yes | - |
+| `chartSummaryMetrics` | `LineChartBenchmarkMetrics` | No | Defining the summary column of the linechart |
+| `chartTimestamp` | `ChartFieldConfig` | No | Defining the timestamp of the chart, will be the identifier of date range |
+| `chartSummaryColorTheme` | `BasicChartProps['chartColorTheme']` | No | this defines the color of "summary field" like ctr in recommendation performance the color will be set for the series accords to the order. |
+| `chartTooltipOptions` | `LineChartTooltipOptions` | No | Defines the tooltip options for the chart. Include the tooltipSubtitle, each time dimension dataRangeTitle |
+| `chartOptions` | `LineChartUiMetricsInterface` | No | Other property that will be used for configuring the chart. Including the axis timeDimensions,notation, decimal places, coloring order as well as the split number. appliedMetric: matching the chartMetric field to see which metric to apply the format to.  note: if you have multiple metrics, the metrics inside chartOptions will need one from for the left yaxis and one for the right. if you provide chartOptions for the same side, then the other will fall back to default setting. |
+| `isThumbnail` | `boolean` | No | Defining whether the chart is a thumbnail If true, will override existing settings and hide the following from chart: - X axis - Y axis - Split lines - Legend - Tooltips |
+| `displayGradientArea` | `boolean` | No | Defining whether to show a gradient background under the chart lines |
 
 ## Examples
 
@@ -3342,7 +3381,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Link } from "@appier/aiqua-design-system/Link";
+import { Link } from "@appier/aiqua-design-system
 
 <Link />
 ```
@@ -3363,7 +3402,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Loader } from "@appier/aiqua-design-system/Loader";
+import { Loader } from "@appier/aiqua-design-system
 
 <Loader />
 ```
@@ -3376,7 +3415,7 @@ The Loading component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Loading } from "@aiqua/components/Loading";
+import { Loading } from "@appier/aiqua-design-system";
 
 <Loading />
 ```
@@ -3390,7 +3429,7 @@ The LoadingSpinner component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { LoadingSpinner } from "@aiqua/components/LoadingSpinner";
+import { LoadingSpinner } from "@appier/aiqua-design-system";
 
 <LoadingSpinner />
 ```
@@ -3412,7 +3451,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { LoadingTooltip } from "@appier/aiqua-design-system/LoadingTooltip";
+import { LoadingTooltip } from "@appier/aiqua-design-system
 
 <LoadingTooltip />
 ```
@@ -3446,35 +3485,35 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Menu } from "@appier/aiqua-design-system/Menu";
+import { Menu } from "@appier/aiqua-design-system
 
 <Menu />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `maxHeight` | `number` |
-| `maxWidth` | `number` |
-| `minWidth` | `number` |
-| `search` | `boolean` |
-| `searchInputPlaceholder` | `string` |
-| `noSearchResultLabel` | `string` |
-| `truncateLines` | `number` |
-| `hint` | `ReactNode` |
-| `autoFocus` | `boolean` |
-| `isDrillDownMenu` | `boolean` |
-| `title` | `string` |
-| `searchProps` | `MenuSearchBarProps` |
-| `onKeyboardEnter` | `(activeIndex: number) => void` |
-| `selectAllLabel` | `string` |
-| `clearAllLabel` | `string` |
-| `onSelectAll` | `() => void` |
-| `onClearAll` | `() => void` |
-| `disableInternalSearchFilter` | `boolean` |
-| `zIndex` | `number` |
-| `useDismissProps` | `UseDismissProps` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `maxHeight` | `number` | No | Define the max height of the menu |
+| `maxWidth` | `number` | No | Define the max width of the menu |
+| `minWidth` | `number` | No | Define the min width of the menu |
+| `search` | `boolean` | No | Define whether the menu is searchable |
+| `searchInputPlaceholder` | `string` | No | Define the placeholder for the search input |
+| `noSearchResultLabel` | `string` | No | Define the label for no search result |
+| `truncateLines` | `number` | No | Define the number of lines to truncate |
+| `hint` | `ReactNode` | No | Define the hint for the menu |
+| `autoFocus` | `boolean` | No | Auto focus on the first item |
+| `isDrillDownMenu` | `boolean` | No | Drill down menu type |
+| `title` | `string` | No | Define the title for the menu |
+| `searchProps` | `MenuSearchBarProps` | No | Define the props for the search input |
+| `onKeyboardEnter` | `(activeIndex: number) => void` | No | Get the active index when the keyboard `Enter` key is pressed |
+| `selectAllLabel` | `string` | No | Define the label for the `Select All` action button |
+| `clearAllLabel` | `string` | No | Define the label for the `Clear` action button |
+| `onSelectAll` | `() => void` | No | Callback function when the `Select All` action button is clicked |
+| `onClearAll` | `() => void` | No | Callback function when the `Clear` action button is clicked |
+| `disableInternalSearchFilter` | `boolean` | No | Disable internal search |
+| `zIndex` | `number` | No | Define the zIndex for the menu |
+| `useDismissProps` | `UseDismissProps` | No | Define the props for the useDismiss hook |
 
 
 # MessageBubble
@@ -3484,7 +3523,7 @@ The MessageBubble component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { MessageBubble } from "@aiqua/components/MessageBubble";
+import { MessageBubble } from "@appier/aiqua-design-system";
 
 <MessageBubble />
 ```
@@ -3510,36 +3549,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { MultiSelectFilter } from "@appier/aiqua-design-system/MultiSelectFilter";
+import { MultiSelectFilter } from "@appier/aiqua-design-system
 
 <MultiSelectFilter />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `options` | `T extends 'menu' ? MenuOptionProps[] : OptionProps[]` |
-| `value` | `string[]` |
-| `defaultValue` | `string[]` |
-| `defaultDisplayedValue` | `string` |
-| `isSearchable` | `boolean` |
-| `fuseConfig` | `Fuse.IFuseOptions<MenuOption \| OptionProps>` |
-| `searchPlaceholder` | `string` |
-| `searchInputProps` | `React.InputHTMLAttributes<HTMLInputElement>` |
-| `selectAllLabel` | `string` |
-| `clearAllLabel` | `string` |
-| `applyLabel` | `string` |
-| `cancelLabel` | `string` |
-| `noOptionsView` | `React.ReactNode` |
-| `scrollableAreaMinHeight` | `number` |
-| `showActionFooter` | `boolean` |
-| `listType` | `T` |
-| `showCheckbox` | `boolean` |
-| `onApply` | `(selectedOptions: FilterOptionProps[]) => void` |
-| `onCancel` | `() => void` |
-| `onSearch` | `(searchTerm: string) => void` |
-| `onBlur` | `() => void` |
 
 ## Examples
 
@@ -3692,7 +3705,7 @@ The NavBar component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { NavBar } from "@aiqua/components/NavBar";
+import { NavBar } from "@appier/aiqua-design-system";
 
 <NavBar />
 ```
@@ -3714,19 +3727,19 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { NestMenu } from "@appier/aiqua-design-system/NestMenu";
+import { NestMenu } from "@appier/aiqua-design-system
 
 <NestMenu />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `menuItemProps` | `Omit<MenuItemProps, 'children'>` |
-| `options` | `MenuOption[]` |
-| `multiple` | `boolean` |
-| `onMenuSelected` | `(selectedItem: MenuOption[] \| MenuOption) => void` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `menuItemProps` | `Omit<MenuItemProps, 'children'>` | Yes | Define the props for the menu item |
+| `options` | `MenuOption[]` | Yes | Define the options for the menu |
+| `multiple` | `boolean` | No | Define whether the menu is multiple |
+| `onMenuSelected` | `(selectedItem: MenuOption[] \| MenuOption) => void` | Yes | When options on the menu is selected, this function will be called |
 
 ## Examples
 
@@ -3878,7 +3891,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Pagination } from "@appier/aiqua-design-system/Pagination";
+import { Pagination } from "@appier/aiqua-design-system
 
 <Pagination />
 ```
@@ -3899,7 +3912,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { PaginationTable } from "@appier/aiqua-design-system/PaginationTable";
+import { PaginationTable } from "@appier/aiqua-design-system
 
 <PaginationTable />
 ```
@@ -4197,17 +4210,10 @@ export const _PercentageStackedAreaChart = {
 ## Usage
 
 ```tsx
-import { PercentageStackedAreaChart } from "@appier/aiqua-design-system/PercentageStackedAreaChart";
+import { PercentageStackedAreaChart } from "@appier/aiqua-design-system
 
 <PercentageStackedAreaChart />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `chartTimestamp` | `ChartFieldConfig` |
-| `chartOptions` | `PercentageStackedAreaChartUiMetricsInterface` |
 
 
 # Popover
@@ -4245,23 +4251,23 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Popover } from "@appier/aiqua-design-system/Popover";
+import { Popover } from "@appier/aiqua-design-system
 
 <Popover />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `anchorEl` | `HTMLElement \| null` |
-| `onClose` | `() => void` |
-| `open` | `boolean` |
-| `placement` | `Placement` |
-| `focusOrder` | `('reference' \| 'floating' \| 'content')[]` |
-| `triggerByHover` | `boolean` |
-| `isShowTooltipArrow` | `boolean` |
-| `tooltipClassName` | `string` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `anchorEl` | `HTMLElement \| null` | No | Define anchor element for popover reference |
+| `onClose` | `() => void` | No | Callback function fired when popover be closed |
+| `open` | `boolean` | Yes | Define the open or not for popover |
+| `placement` | `Placement` | Yes | Define the default placement strategy. |
+| `focusOrder` | `('reference' \| 'floating' \| 'content')[]` | No | Defines the focus order when cycling through tabbale contents of the floating element |
+| `triggerByHover` | `boolean` | No | Defines whether the component should be triggered by hover |
+| `isShowTooltipArrow` | `boolean` | No | Define the arrow reference element |
+| `tooltipClassName` | `string` | No | Define the arrow reference element |
 
 ## Examples
 
@@ -4322,7 +4328,17 @@ export const TriggerByHover = args => {
 
 # ProductTour
 
-The ProductTour component is a key part of the Aiqua Design System.
+Version `v2.0.0`  | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?type=design&node-id=12915-11710)
+
+The product tour is designed to onboard users by providing essential knowledge and guidance.
+
+## Uasge
+### Import
+```jsx
+import { ProductTour } from '@appier/aiqua-design-system/components';
+// or
+import { ProductTour } from '@appier/aiqua-design-system';
+```
 
 ## Main Example
 
@@ -4335,29 +4351,10 @@ export const Basic = {
 ## Usage
 
 ```tsx
-import { ProductTour } from "@appier/aiqua-design-system/ProductTour";
+import { ProductTour } from "@appier/aiqua-design-system
 
 <ProductTour />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `show` | `boolean` |
-| `type` | `'regular' \| 'blue'` |
-| `title` | `string` |
-| `className` | `string` |
-| `zIndex` | `number` |
-| `content` | `React.ReactNode` |
-| `footer` | `React.ReactNode[]` |
-| `footerClassName` | `string` |
-| `placement` | `Placement` |
-| `fallbackPlacements` | `Placement[]` |
-| `shiftOptions` | `ShiftOptions` |
-| `indicatorClassName` | `string` |
-| `children` | `JSX.Element` |
-| `referenceClassName` | `string` |
 
 ## Examples
 
@@ -4469,7 +4466,20 @@ export const WithCustomContent = () => {
 
 # QuantityInput
 
-The QuantityInput component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=33401-453169&t=AJpHD5HQ2KyonQSH-0)
+
+QuantityInput is a numeric input field with an **type="number"** attribute. It allows users to control the quantity using intuitive icon buttons for incrementing and decrementing the value.
+
+## Usage
+### Import
+```jsx
+import { QuantityInput } from '@appier/aiqua-design-system/components';
+// or
+import { QuantityInput } from '@appier/aiqua-design-system';
+```
+## Props
+
+Also support all valid `HTMLInputElement` props
 
 ## Main Example
 
@@ -4482,7 +4492,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { QuantityInput } from "@appier/aiqua-design-system/QuantityInput";
+import { QuantityInput } from "@appier/aiqua-design-system
 
 <QuantityInput />
 ```
@@ -4584,24 +4594,27 @@ The QuickReply component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { QuickReply } from "@aiqua/components/QuickReply";
+import { QuickReply } from "@appier/aiqua-design-system";
 
 <QuickReply />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `title` | `string` |
-| `onClick` | `() => void` |
-| `className` | `string` |
 
 > **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
 
 # Radio
 
-The Radio component is a key part of the Aiqua Design System.
+Version `v2.0.1` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=19447-303453&t=AJpHD5HQ2KyonQSH-0)
+
+The RadioGroup component allows users to groups radio buttons and select a single option.
+Ensure proper selection functionality by assigning a unique value prop to each individual radio component.
+
+## Usage
+
+```jsx
+import { RadioGroup } from '@appier/aiqua-design-system/components';
+// or
+import { RadioGroup } from '@appier/aiqua-design-system';
+```
 
 ## Main Example
 
@@ -4623,7 +4636,7 @@ export const ControlledAndUncontrolled = () => {
 ## Usage
 
 ```tsx
-import { Radio } from "@appier/aiqua-design-system/Radio";
+import { Radio } from "@appier/aiqua-design-system
 
 <Radio />
 ```
@@ -4677,7 +4690,7 @@ The RichTextarea component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { RichTextarea } from "@aiqua/components/RichTextarea";
+import { RichTextarea } from "@appier/aiqua-design-system";
 
 <RichTextarea />
 ```
@@ -4705,10 +4718,22 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { ScrollBar } from "@appier/aiqua-design-system/ScrollBar";
+import { ScrollBar } from "@appier/aiqua-design-system
 
 <ScrollBar />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `size` | `(typeof SIZES)[keyof typeof SIZES]` | No | Defines the size of the scroll bar. The scroll bar will take the default size if the value is `undefined`. |
+| `height` | `number \| string` | No | Defines the height of the scroll area, could set any string of css height attribute |
+| `width` | `number \| string` | No | Defines the width of the scroll area, could set any string of css width attribute |
+| `maxHeight` | `number \| string` | No | Defines the max height of the scroll area, could set any string of css max-height attribute |
+| `maxWidth` | `number \| string` | No | Defines the max width of the scroll area, could set any string of css max-width attribute |
+| `autoHide` | `boolean` | No | You can make the scrollbar always visible by setting the autoHide option to false. The scrollbar will take the default value if the value is `undefined`. |
+| `scrollableNodeRef` | `React.RefObject<HTMLDivElement>` | No | Apply ref to inner scrollableNode |
 
 
 # Search
@@ -4726,21 +4751,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Search } from "@appier/aiqua-design-system/Search";
+import { Search } from "@appier/aiqua-design-system
 
 <Search />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `disabled` | `boolean` |
-| `placeholder` | `string` |
-| `onChange` | `(value: string) => void` |
-| `value` | `string` |
-| `defaultValue` | `string` |
-| `inputProps` | `React.InputHTMLAttributes<HTMLInputElement>` |
 
 
 # SegmentedControl
@@ -4770,7 +4784,7 @@ export const WithIcon = {
 ## Usage
 
 ```tsx
-import { SegmentedControl } from "@appier/aiqua-design-system/SegmentedControl";
+import { SegmentedControl } from "@appier/aiqua-design-system
 
 <SegmentedControl />
 ```
@@ -4805,7 +4819,7 @@ The Select component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Select } from "@aiqua/components/Select";
+import { Select } from "@appier/aiqua-design-system";
 
 <Select />
 ```
@@ -4819,18 +4833,18 @@ The SelectedColumnsPanel component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { SelectedColumnsPanel } from "@aiqua/components/SelectedColumnsPanel";
+import { SelectedColumnsPanel } from "@appier/aiqua-design-system";
 
 <SelectedColumnsPanel />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `selectedColumns` | `Columns<T>` |
-| `onDragEnd` | `(result: DragEndEvent) => void` |
-| `onRemoveColumn` | `(field: string) => void` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `selectedColumns` | `Columns<T>` | Yes | - |
+| `onDragEnd` | `(result: DragEndEvent) => void` | Yes | - |
+| `onRemoveColumn` | `(field: string) => void` | Yes | - |
 
 > **Note:** This is a scaffold file. To generate full, rich examples, please create a `*.stories.tsx` file for this component.
 
@@ -4841,7 +4855,7 @@ The shared component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { shared } from "@aiqua/components/shared";
+import { shared } from "@appier/aiqua-design-system";
 
 <shared />
 ```
@@ -4863,7 +4877,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { SingleSelectFilter } from "@appier/aiqua-design-system/SingleSelectFilter";
+import { SingleSelectFilter } from "@appier/aiqua-design-system
 
 <SingleSelectFilter />
 ```
@@ -4925,7 +4939,10 @@ export const WithHierarchicalMenu = {
 
 # Skeleton
 
-The Skeleton component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/design/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?node-id=1-386639&t=IISXicuMFVoTdsYp-1)
+
+When designing user interfaces with repetitive patterns that require data loading, such as tables, card views, or widgets.
+To ensure proper sizing and shaping of skeletons, it’s recommended to define their dimensions using Tailwind CSS classes or by allowing the parent container to dictate their size.
 
 ## Main Example
 
@@ -4939,7 +4956,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Skeleton } from "@appier/aiqua-design-system/Skeleton";
+import { Skeleton } from "@appier/aiqua-design-system
 
 <Skeleton />
 ```
@@ -4989,7 +5006,18 @@ export const Shape = () => {
 
 # Slider
 
-The Slider component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?type=design&node-id=1-382244&mode=design&t=RbrtjaJVejBv9hFr-4)
+
+When the user needs to adjust something quick and easy, you can use the slider.
+
+## Usage
+<br />
+#### Import
+```tsx
+import { Slider } from "@appier/aiqua-design-system/components";
+// or
+import { Slider } from "@appier/aiqua-design-system";
+```
 
 ## Main Example
 
@@ -5000,21 +5028,10 @@ export const Basic = {};
 ## Usage
 
 ```tsx
-import { Slider } from "@appier/aiqua-design-system/Slider";
+import { Slider } from "@appier/aiqua-design-system
 
 <Slider />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `min` | `number` |
-| `max` | `number` |
-| `step` | `number` |
-| `value` | `number` |
-| `onChange` | `(value: number) => void` |
-| `defaultValue` | `number` |
 
 ## Examples
 
@@ -5059,7 +5076,22 @@ export const Style = {
 
 # StackedBar
 
-The StackedBar component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/b6vo0neB2gcr0LyDoeN3m0/%5BRegular%5D-Push-Campaign-experiment?node-id=284%3A197040&mode=dev)
+
+The StackedBar component is a graphical tool for visualizing segmented data in a compact, stacked bar format. It is primarily used to represent different data segments within a single bar, showcasing comparative metrics in an intuitive and visually distinct manner.
+
+## Usage
+#### Import
+
+```tsx
+import { StackedBar } from "@appier/aiqua-design-system/components";
+// or
+import { StackedBar } from "@appier/aiqua-design-system";
+```
+
+## Props
+
+Also support all valid `HTMLDivElement` props
 
 ## Main Example
 
@@ -5070,10 +5102,17 @@ export const Normal = {};
 ## Usage
 
 ```tsx
-import { StackedBar } from "@appier/aiqua-design-system/StackedBar";
+import { StackedBar } from "@appier/aiqua-design-system
 
 <StackedBar />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `stacks` | `Stack[]` | Yes | Defines the stacks of the StackedBar. It should be set as an array of objects with the following properties: `percentage` (required), `color`, `label`. |
+| `size` | `(typeof SIZES)[keyof typeof SIZES]` | No | Defines the size of the StackedBar. The StackedBar will take the default size if the value is undefined. |
 
 ## Examples
 
@@ -5151,7 +5190,7 @@ export const StackedColumnChartMultipleMetrics = {
 ## Usage
 
 ```tsx
-import { StackedColumnChart } from "@appier/aiqua-design-system/StackedColumnChart";
+import { StackedColumnChart } from "@appier/aiqua-design-system
 
 <StackedColumnChart />
 ```
@@ -5159,7 +5198,9 @@ import { StackedColumnChart } from "@appier/aiqua-design-system/StackedColumnCha
 
 # Status
 
-The Status component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/design/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-%7C-Spec?node-id=5677-55088&m=dev)
+
+Status Component is used to display the status of different operations or processes in the application so that users can clearly understand the current status of each operation or process.
 
 ## Main Example
 
@@ -5173,17 +5214,10 @@ export const Basic = {
 ## Usage
 
 ```tsx
-import { Status } from "@appier/aiqua-design-system/Status";
+import { Status } from "@appier/aiqua-design-system
 
 <Status />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `color` | `(typeof COLOR)[keyof typeof COLOR]` |
-| `text` | `React.ReactNode` |
 
 ## Examples
 
@@ -5219,16 +5253,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Stepper } from "@appier/aiqua-design-system/Stepper";
+import { Stepper } from "@appier/aiqua-design-system
 
 <Stepper />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `steps` | `StepProps[]` |
 
 ## Examples
 
@@ -5411,7 +5439,8 @@ export const WithCustomIcon = {
 
 # StepperInput
 
-The StepperInput component is a key part of the Aiqua Design System.
+Version `v2.0.2`| [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=33401-448681&t=AJpHD5HQ2KyonQSH-0)
+StepperInput is a numeric input field that supports the **type="number"** attribute. It provides a convenient way for users to control the value by using plus and minus buttons located before and after the input field. These intuitive controls allow users to easily increment or decrement the value with a simple click.
 
 ## Main Example
 
@@ -5424,7 +5453,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { StepperInput } from "@appier/aiqua-design-system/StepperInput";
+import { StepperInput } from "@appier/aiqua-design-system
 
 <StepperInput />
 ```
@@ -5506,7 +5535,7 @@ The styles component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { styles } from "@aiqua/components/styles";
+import { styles } from "@appier/aiqua-design-system";
 
 <styles />
 ```
@@ -5515,7 +5544,7 @@ import { styles } from "@aiqua/components/styles";
 
 # Switch
 
-The Switch component is a key part of the Aiqua Design System.
+The SwitchGroup component allows users to select multiple options from a group of switches.
 
 ## Main Example
 
@@ -5528,7 +5557,7 @@ export const NoTitle = {
 ## Usage
 
 ```tsx
-import { Switch } from "@appier/aiqua-design-system/Switch";
+import { Switch } from "@appier/aiqua-design-system
 
 <Switch />
 ```
@@ -5567,7 +5596,7 @@ The Table component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Table } from "@aiqua/components/Table";
+import { Table } from "@appier/aiqua-design-system";
 
 <Table />
 ```
@@ -5576,7 +5605,8 @@ import { Table } from "@aiqua/components/Table";
 
 # Tabs
 
-The Tabs component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?type=design&node-id=1-426409&mode=design&t=GQfItnp8WhGUB2u3-0)
+The Tabs component streamline user interfaces by segmenting related content into separate views, allowing swift and intuitive navigation between them.
 
 ## Main Example
 
@@ -5600,7 +5630,7 @@ export const Normal = () => {
 ## Usage
 
 ```tsx
-import { Tabs } from "@appier/aiqua-design-system/Tabs";
+import { Tabs } from "@appier/aiqua-design-system
 
 <Tabs />
 ```
@@ -5835,23 +5865,23 @@ export const NonClickableTag = {
 ## Usage
 
 ```tsx
-import { Tag } from "@appier/aiqua-design-system/Tag";
+import { Tag } from "@appier/aiqua-design-system
 
 <Tag />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `clickable` | `boolean` |
-| `editable` | `boolean` |
-| `removable` | `boolean` |
-| `error` | `boolean` |
-| `tooltipContent` | `string \| React.ReactNode` |
-| `disabled` | `boolean` |
-| `onClose` | `(e: React.MouseEvent<HTMLOrSVGElement>) => void` |
-| `onClick` | `(e: React.MouseEvent<TagElement>) => void` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `clickable` | `boolean` | No | If `true`, will be set button role, even if the onClick prop is not defined. |
+| `editable` | `boolean` | No | Whether the Tag is editable |
+| `removable` | `boolean` | No | Whether the Tag can be removed or closed |
+| `error` | `boolean` | No | Mark the tag as failed or warning. |
+| `tooltipContent` | `string \| React.ReactNode` | No | Allow tooltip with content if need. |
+| `disabled` | `boolean` | No | If `true`, the tag will be disabled. |
+| `onClose` | `(e: React.MouseEvent<HTMLOrSVGElement>) => void` | No | Callback executed when tag is removed or closed |
+| `onClick` | `(e: React.MouseEvent<TagElement>) => void` | No | Callback executed when tag is clicked |
 
 ## Examples
 
@@ -5907,7 +5937,7 @@ export const ClickableWithRemovableTag = {
 
 # TagInput
 
-The TagInput component is a key part of the Aiqua Design System.
+TagInput is an interactive input component that allows users to add tags by typing or selecting from a dropdown menu. It facilitates the creation of tags by enabling users to enter tag names directly or choose from a predefined list, enhancing the user experience when selecting and managing tags.ement that offers a straightforward and adaptable text input field. It is essential for gathering user input in diverse contexts.
 
 ## Main Example
 
@@ -5920,7 +5950,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { TagInput } from "@appier/aiqua-design-system/TagInput";
+import { TagInput } from "@appier/aiqua-design-system
 
 <TagInput />
 ```
@@ -6183,10 +6213,22 @@ export const Solo = {
 ## Usage
 
 ```tsx
-import { TagSelect } from "@appier/aiqua-design-system/TagSelect";
+import { TagSelect } from "@appier/aiqua-design-system
 
 <TagSelect />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `placeholder` | `string` | No | The short hint displayed in the select before the user select a value |
+| `separator` | `React.ReactNode` | No | Custom separator node. |
+| `isMenuOpen` | `boolean` | No | Pass this prop to manually control the open / close state for the menu. |
+| `onDelete` | `(deleteTag: string) => void` | No | Callback called when the user delete a tag |
+| `onTagsValueValidate` | `(tagValue: string, tagIdx: number, tags: string[]) => React.ReactNode` | No | Callback called for tag validation when the tags change |
+| `renderDisplayContent` | `(value: T) => React.ReactNode` | No | Function to render custom display content for the tags |
+| `height` | `number \| string` | No | Defined height of  `Select input` area. |
 
 ## Examples
 
@@ -6321,7 +6363,7 @@ The Text component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Text } from "@aiqua/components/Text";
+import { Text } from "@appier/aiqua-design-system";
 
 <Text />
 ```
@@ -6330,7 +6372,9 @@ import { Text } from "@aiqua/components/Text";
 
 # Textarea
 
-The Textarea component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=33401-449212&t=AJpHD5HQ2KyonQSH-0)
+
+Textarea is a multi-line input field that allows users to enter and edit longer blocks of text. It provides a larger text input area compared to a regular single-line input field, enabling users to input or modify substantial amounts of text conveniently.
 
 ## Main Example
 
@@ -6343,7 +6387,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Textarea } from "@appier/aiqua-design-system/Textarea";
+import { Textarea } from "@appier/aiqua-design-system
 
 <Textarea />
 ```
@@ -6518,7 +6562,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { TextareaWithReplaceRule } from "@appier/aiqua-design-system/TextareaWithReplaceRule";
+import { TextareaWithReplaceRule } from "@appier/aiqua-design-system
 
 <TextareaWithReplaceRule />
 ```
@@ -6526,7 +6570,9 @@ import { TextareaWithReplaceRule } from "@appier/aiqua-design-system/TextareaWit
 
 # TextButton
 
-The TextButton component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/design/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0-%7C-Library?node-id=27962-384872&m=dev)
+
+The `TextButton` component is a lightweight, text-only button designed for less prominent actions.
 
 ## Main Example
 
@@ -6537,10 +6583,19 @@ export const Basic = Template.bind({});
 ## Usage
 
 ```tsx
-import { TextButton } from "@appier/aiqua-design-system/TextButton";
+import { TextButton } from "@appier/aiqua-design-system
 
 <TextButton />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `variant` | `(typeof VARIANT)[keyof typeof VARIANT]` | No | Defines the variant of the button. The button will take the default variant if the value is `undefined`. |
+| `disabled` | `boolean` | No | If `true`, the button will be disabled. |
+| `startIcon` | `React.ReactNode` | No | A icon start of contained button or icon only base button use |
+| `endIcon` | `React.ReactNode` | No | A icon end of contained button |
 
 ## Examples
 
@@ -6600,7 +6655,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { TextInput } from "@appier/aiqua-design-system/TextInput";
+import { TextInput } from "@appier/aiqua-design-system
 
 <TextInput />
 ```
@@ -6742,7 +6797,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { TextSelect } from "@appier/aiqua-design-system/TextSelect";
+import { TextSelect } from "@appier/aiqua-design-system
 
 <TextSelect />
 ```
@@ -7081,21 +7136,21 @@ export const Simple = {
 ## Usage
 
 ```tsx
-import { TimePicker } from "@appier/aiqua-design-system/TimePicker";
+import { TimePicker } from "@appier/aiqua-design-system
 
 <TimePicker />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `onBlur` | `(v?: string) => void` |
-| `minHour` | `number` |
-| `maxHour` | `number` |
-| `hourStep` | `number` |
-| `minuteStep` | `number` |
-| `allowInput` | `boolean` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `onBlur` | `(v?: string) => void` | No | Callback function fired when the input is blurred. |
+| `minHour` | `number` | No | Minimum hour option in the picker. Must be between 0 and 24. If `minHour` >= `maxHour`, it will fallback to 0. @default 0 |
+| `maxHour` | `number` | No | Maximum hour option in the picker. Must be between 0 and 24. If `maxHour` <= `minHour`, it will fallback to 23. @default 23 |
+| `hourStep` | `number` | No | Interval between hours in picker |
+| `minuteStep` | `number` | No | Interval between minutes in picker |
+| `allowInput` | `boolean` | No | Allow input hh:mm value |
 
 ## Examples
 
@@ -7217,7 +7272,7 @@ The Timestamp component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Timestamp } from "@aiqua/components/Timestamp";
+import { Timestamp } from "@appier/aiqua-design-system";
 
 <Timestamp />
 ```
@@ -7226,7 +7281,8 @@ import { Timestamp } from "@aiqua/components/Timestamp";
 
 # Toast
 
-The Toast component is a key part of the Aiqua Design System.
+Version `v2.1.0` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?node-id=1%3A82&mode=dev)
+Toast is an ephemeral user interface element that floats on the screen and is used to display a brief message or notification and provide feedback on the user's interaction with the application.
 
 ## Main Example
 
@@ -7240,7 +7296,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Toast } from "@appier/aiqua-design-system/Toast";
+import { Toast } from "@appier/aiqua-design-system
 
 <Toast />
 ```
@@ -7424,7 +7480,12 @@ export const CloseByEvent = {
 
 # ToggleButton
 
-The ToggleButton component is a key part of the Aiqua Design System.
+Version `v2.0.2` | [Figma specification](https://www.figma.com/file/CfUvdo5ibWVSExALxU4jvI/Design-System-2.0-Change-log-%2F-Use-case-%2F-Specifications?node-id=1%3A78314)
+A ToggleButton can be used to group related options with button.
+
+
+## Min Width
+The min width of ToggleButtonGroup will depends on number of ToggleButton. Ex 2-options will be `200px`, 3-options will be `300px`.
 
 ## Main Example
 
@@ -7442,20 +7503,20 @@ export const Normal = () => {
 ## Usage
 
 ```tsx
-import { ToggleButton } from "@appier/aiqua-design-system/ToggleButton";
+import { ToggleButton } from "@appier/aiqua-design-system
 
 <ToggleButton />
 ```
 
 ## Props
 
-| Prop | Type |
-|------|------|
-| `icon` | `React.ReactNode` |
-| `label` | `React.ReactNode` |
-| `value` | `string` |
-| `className` | `string` |
-| `disabled` | `boolean` |
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `icon` | `React.ReactNode` | No | The icon before the label. |
+| `label` | `React.ReactNode` | Yes | The label of the button. |
+| `value` | `string` | Yes | Define the value of the ToggleButton, which is used to decide whether the ToggleButton is selected or not. |
+| `className` | `string` | No | The className of the ToggleButton. |
+| `disabled` | `boolean` | No | The disabled state of the ToggleButton. |
 
 ## Examples
 
@@ -7516,7 +7577,8 @@ export const Disabled = () => {
 
 # Tooltip
 
-The Tooltip component is a key part of the Aiqua Design System.
+Version `v2.0.1` | [Figma specification](https://www.figma.com/file/xQS97DcKNTYfyCYaUOLMWv/Design-System-2.0?type=design&node-id=19447-303453&t=eDO7bVdYrybm1cTl-0)
+Tooltip provides contextual information or additional details about a specific element when users hover over it, enhancing the user experience by offering concise and helpful explanations or descriptions.
 
 ## Main Example
 
@@ -7530,27 +7592,10 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Tooltip } from "@appier/aiqua-design-system/Tooltip";
+import { Tooltip } from "@appier/aiqua-design-system
 
 <Tooltip />
 ```
-
-## Props
-
-| Prop | Type |
-|------|------|
-| `placement` | `Placement` |
-| `withInfoIcon` | `boolean` |
-| `title` | `React.ReactNode` |
-| `content` | `React.ReactNode` |
-| `fallbackPlacements` | `Placement[]` |
-| `children` | `React.ReactNode` |
-| `disableHoverListener` | `boolean` |
-| `enterDelay` | `number` |
-| `defaultOpen` | `boolean` |
-| `isOpen` | `boolean` |
-| `onOpenChange` | `(isOpen: boolean) => void` |
-| `ignoreSafePolygonTriangle` | `boolean` |
 
 ## Examples
 
@@ -7673,7 +7718,7 @@ The Tooltips component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { Tooltips } from "@aiqua/components/Tooltips";
+import { Tooltips } from "@appier/aiqua-design-system";
 
 <Tooltips />
 ```
@@ -7682,7 +7727,8 @@ import { Tooltips } from "@aiqua/components/Tooltips";
 
 # TriggerButton
 
-The TriggerButton component is a key part of the Aiqua Design System.
+Version `v2.0.0` | [Figma specification](https://www.figma.com/file/v8AjTv6zlRwLWeGQtkTfEQ/AI-Copilot-%7C-Library%2C-Spec?type=design&node-id=799-4134)
+Buttons enable actions or navigation with a single tap, coming in various styles for specific needs. From submittng forms to opening dialogs, they serve as primary triggers.
 
 ## Main Example
 
@@ -7696,10 +7742,19 @@ export const Basic = {
 ## Usage
 
 ```tsx
-import { TriggerButton } from "@appier/aiqua-design-system/TriggerButton";
+import { TriggerButton } from "@appier/aiqua-design-system
 
 <TriggerButton />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `variant` | `(typeof VARIANT)[keyof typeof VARIANT]` | No | Defines the variant of the button. The button will take the default variant if the value is `undefined`. |
+| `disabled` | `boolean` | No | If `true`, the button will be disabled. |
+| `theme` | `THEME_TYPES` | No | The theme of the button. The button will take the default theme if the value is `undefined`. |
+| `icon` | `React.ReactNode` | No | An icon of the button. |
 
 ## Examples
 
@@ -7735,7 +7790,7 @@ The types component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { types } from "@aiqua/components/types";
+import { types } from "@appier/aiqua-design-system";
 
 <types />
 ```
@@ -7757,7 +7812,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { Upload } from "@appier/aiqua-design-system/Upload";
+import { Upload } from "@appier/aiqua-design-system
 
 <Upload />
 ```
@@ -7770,7 +7825,7 @@ The utils component is a key part of the Aiqua Design System.
 ## Usage
 
 ```tsx
-import { utils } from "@aiqua/components/utils";
+import { utils } from "@appier/aiqua-design-system";
 
 <utils />
 ```
@@ -7792,7 +7847,7 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { VirtualizedTable } from "@appier/aiqua-design-system/VirtualizedTable";
+import { VirtualizedTable } from "@appier/aiqua-design-system
 
 <VirtualizedTable />
 ```
@@ -8202,10 +8257,23 @@ export const Normal = {
 ## Usage
 
 ```tsx
-import { WidgetCard } from "@appier/aiqua-design-system/WidgetCard";
+import { WidgetCard } from "@appier/aiqua-design-system
 
 <WidgetCard />
 ```
+
+## Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `isActive` | `boolean` | No | Defines widget is be selected / active or not. |
+| `isDragging` | `boolean` | No | Defines widget is be dragging or not. |
+| `isDisabled` | `boolean` | No | Defines widget is be disabled or not. |
+| `title` | `string \| React.ReactNode` | Yes | Defines title of widget. |
+| `leftSubTitle` | `string \| React.ReactNode` | No | Defines subTitle below title of widget. |
+| `rightSubTitle` | `string \| React.ReactNode` | No | Defines subTitle below action of widget. |
+| `action` | `React.ReactNode` | No | Operating area, actionable element to place in the top-right |
+| `showDrag` | `boolean` | No | If `true`, display drag icon in the top-left |
 
 ## Examples
 
